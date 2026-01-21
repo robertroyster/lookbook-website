@@ -1,20 +1,33 @@
 /* ========================================
-   LookbookMenu — Premium Minimalist Styles
+   LookbookMenu — Premium Warm Palette Styles
    Mobile-first, scroll-friendly
    ======================================== */
 
-/* ---------- CSS Variables ---------- */
+/* ---------- CSS Variables (Warm Palette) ---------- */
 :root {
-  --color-bg: #fafafa;
-  --color-bg-alt: #ffffff;
-  --color-text: #1a1a1a;
-  --color-text-muted: #6b6b6b;
-  --color-accent: #1a1a1a;
-  --color-accent-hover: #333333;
-  --color-border: #e5e5e5;
-  --color-gradient-1: #f5f0eb;
-  --color-gradient-2: #e8e0d8;
-  --color-gradient-3: #d4c8bc;
+  /* Warm palette */
+  --bg: #fff7ed;              /* warm cream */
+  --surface: #ffffff;
+  --ink: #1f160f;             /* warm near-black */
+  --muted: rgba(31,22,15,.68);
+
+  --line: rgba(31,22,15,.10);
+
+  --accent: #f97316;          /* orange */
+  --accent-2: #f59e0b;        /* amber */
+  --accent-ink: #1f160f;
+
+  --shadow: 0 18px 50px rgba(31,22,15,.10);
+  --shadow-soft: 0 12px 30px rgba(31,22,15,.08);
+
+  --radius: 18px;
+  --radius-lg: 26px;
+  --radius-full: 9999px;
+
+  /* Warm gradients for placeholders */
+  --gradient-1: #fde8d7;
+  --gradient-2: #fcd9bd;
+  --gradient-3: #fbcca3;
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
@@ -25,12 +38,7 @@
   --space-xl: 6rem;
   --space-2xl: 10rem;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 24px;
-  --radius-full: 9999px;
-
-  --transition: 0.3s ease;
+  --transition: 0.15s ease;
 }
 
 /* ---------- Reset & Base ---------- */
@@ -43,15 +51,22 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
   font-family: var(--font-sans);
-  background: var(--color-bg);
-  color: var(--color-text);
+  color: var(--ink);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Subtle warm "restaurant lighting" glow */
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(249,115,22,.18), transparent 55%),
+    radial-gradient(700px 420px at 80% 0%, rgba(245,158,11,.18), transparent 60%),
+    radial-gradient(900px 600px at 60% 95%, rgba(249,115,22,.10), transparent 60%),
+    var(--bg);
+  min-height: 100vh;
 }
 
 /* ---------- Container ---------- */
@@ -67,46 +82,77 @@ h1, h2, h3 {
   line-height: 1.15;
   font-weight: 500;
   letter-spacing: -0.02em;
+  color: var(--ink);
 }
 
-/* ---------- Buttons ---------- */
+p {
+  color: var(--muted);
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- Section Title with Warm Underline ---------- */
+.section-title {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  margin-bottom: var(--space-md);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  height: 8px;
+  margin-top: 10px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, rgba(249,115,22,.30), rgba(245,158,11,.18), transparent);
+}
+
+/* ---------- Buttons (Warm & Glowy) ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 1.75rem;
+  padding: 12px 24px;
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 650;
   text-decoration: none;
   border-radius: var(--radius-full);
-  transition: all var(--transition);
+  border: 1px solid var(--line);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
   cursor: pointer;
-  border: none;
 }
 
 .btn-primary {
-  background: var(--color-accent);
-  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #1a120b;
+  border-color: rgba(31,22,15,.10);
+  box-shadow: 0 14px 30px rgba(249,115,22,.22);
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-hover);
   transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(249,115,22,.26);
 }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
+  background: rgba(255,255,255,.75);
+  color: var(--ink);
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-text);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
 }
 
 .btn-large {
-  padding: 1rem 2.25rem;
+  padding: 14px 32px;
   font-size: 1rem;
 }
 
@@ -133,11 +179,12 @@ h1, h2, h3 {
 .hero-title {
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   margin-bottom: var(--space-md);
+  color: var(--ink);
 }
 
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--color-text-muted);
+  color: var(--muted);
   max-width: 500px;
   margin: 0 auto var(--space-md);
 }
@@ -149,7 +196,7 @@ h1, h2, h3 {
   align-items: center;
 }
 
-/* Phone Mockup */
+/* ---------- Phone Mockup (Warm Polish) ---------- */
 .hero-phone {
   display: flex;
   justify-content: center;
@@ -158,19 +205,30 @@ h1, h2, h3 {
 .phone-mockup {
   width: 260px;
   height: 520px;
-  background: var(--color-text);
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(31,22,15,.12);
   border-radius: 40px;
   padding: 12px;
   position: relative;
-  box-shadow:
-    0 50px 100px -20px rgba(0,0,0,0.15),
-    0 30px 60px -30px rgba(0,0,0,0.2);
+  box-shadow: 0 30px 70px rgba(31,22,15,.14);
+}
+
+.phone-mockup::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 42px;
+  background: linear-gradient(135deg, rgba(249,115,22,.25), rgba(245,158,11,.15), transparent 60%);
+  pointer-events: none;
+  filter: blur(12px);
+  opacity: .8;
+  z-index: -1;
 }
 
 .phone-notch {
   width: 100px;
   height: 28px;
-  background: var(--color-text);
+  background: var(--ink);
   border-radius: 20px;
   position: absolute;
   top: 12px;
@@ -182,7 +240,7 @@ h1, h2, h3 {
 .phone-screen {
   width: 100%;
   height: 100%;
-  background: var(--color-bg);
+  background: var(--bg);
   border-radius: 32px;
   overflow: hidden;
   padding: var(--space-md);
@@ -194,17 +252,19 @@ h1, h2, h3 {
 
 .phone-card {
   flex: 1;
-  background: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-2));
-  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+  border-radius: var(--radius);
   animation: shimmer 3s ease-in-out infinite;
 }
 
 .phone-card:nth-child(2) {
   animation-delay: 0.5s;
+  background: linear-gradient(135deg, var(--gradient-2), var(--gradient-3));
 }
 
 .phone-card:nth-child(3) {
   animation-delay: 1s;
+  background: linear-gradient(135deg, var(--gradient-3), var(--gradient-1));
 }
 
 @keyframes shimmer {
@@ -217,7 +277,7 @@ h1, h2, h3 {
    ======================================== */
 .problem {
   padding: var(--space-xl) 0;
-  background: var(--color-bg-alt);
+  background: var(--surface);
 }
 
 .problem-text {
@@ -226,14 +286,16 @@ h1, h2, h3 {
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.5;
+  color: var(--ink);
 }
 
 .problem-text .highlight {
   font-weight: 600;
+  color: var(--ink);
 }
 
 .problem-text .muted {
-  color: var(--color-text-muted);
+  color: var(--muted);
 }
 
 /* ========================================
@@ -244,17 +306,13 @@ h1, h2, h3 {
   text-align: center;
 }
 
-.section-title {
-  font-size: clamp(1.75rem, 5vw, 2.75rem);
-  margin-bottom: var(--space-md);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+.aha .section-title {
+  display: block;
 }
 
 .aha-body {
   font-size: clamp(1rem, 2vw, 1.125rem);
-  color: var(--color-text-muted);
+  color: var(--muted);
   max-width: 600px;
   margin: 0 auto var(--space-lg);
 }
@@ -263,6 +321,7 @@ h1, h2, h3 {
   font-size: clamp(1.25rem, 3vw, 1.5rem);
   font-weight: 500;
   font-style: italic;
+  color: var(--accent);
 }
 
 /* ========================================
@@ -270,12 +329,13 @@ h1, h2, h3 {
    ======================================== */
 .how-it-works {
   padding: var(--space-xl) 0;
-  background: var(--color-bg-alt);
+  background: var(--surface);
 }
 
 .how-it-works .section-title {
   text-align: center;
   margin-bottom: var(--space-lg);
+  display: block;
 }
 
 .steps {
@@ -284,39 +344,47 @@ h1, h2, h3 {
   gap: var(--space-md);
 }
 
+/* Warm Card Styling */
 .step-card {
-  background: var(--color-bg);
-  padding: var(--space-md);
+  background: rgba(255,255,255,.78);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+  padding: var(--space-md);
   text-align: center;
-  transition: transform var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .step-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(249,115,22,.22);
 }
 
 .step-number {
   width: 48px;
   height: 48px;
-  background: var(--color-text);
-  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #1a120b;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 auto var(--space-sm);
+  box-shadow: 0 8px 20px rgba(249,115,22,.25);
 }
 
 .step-title {
   font-size: 1.25rem;
   margin-bottom: var(--space-xs);
+  color: var(--ink);
 }
 
 .step-desc {
-  color: var(--color-text-muted);
+  color: var(--muted);
   font-size: 0.9375rem;
 }
 
@@ -330,6 +398,7 @@ h1, h2, h3 {
 .proof .section-title {
   text-align: center;
   margin-bottom: var(--space-lg);
+  display: block;
 }
 
 .screenshot-strip {
@@ -341,28 +410,37 @@ h1, h2, h3 {
 
 .dish-card {
   aspect-ratio: 1;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius);
   overflow: hidden;
   position: relative;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.dish-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(249,115,22,.22);
 }
 
 .dish-image {
   width: 100%;
   height: 100%;
   /* Gradient placeholder — replace with: background-image: url('../assets/dish-1.jpg'); background-size: cover; */
-  background: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-2), var(--color-gradient-3));
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
 }
 
 .dish-card:nth-child(2) .dish-image {
-  background: linear-gradient(135deg, var(--color-gradient-2), var(--color-gradient-3), var(--color-gradient-1));
+  background: linear-gradient(135deg, var(--gradient-2), var(--gradient-3), var(--gradient-1));
 }
 
 .dish-card:nth-child(3) .dish-image {
-  background: linear-gradient(135deg, var(--color-gradient-3), var(--color-gradient-1), var(--color-gradient-2));
+  background: linear-gradient(135deg, var(--gradient-3), var(--gradient-1), var(--gradient-2));
 }
 
 .dish-card:nth-child(4) .dish-image {
-  background: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-3), var(--color-gradient-2));
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3), var(--gradient-2));
 }
 
 .dish-name {
@@ -371,7 +449,7 @@ h1, h2, h3 {
   left: 0;
   right: 0;
   padding: var(--space-sm);
-  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  background: linear-gradient(transparent, rgba(31,22,15,.6));
   color: #fff;
   font-size: 0.875rem;
   font-weight: 500;
@@ -387,11 +465,12 @@ h1, h2, h3 {
   font-size: clamp(1.125rem, 2.5vw, 1.375rem);
   font-style: italic;
   margin-bottom: var(--space-sm);
+  color: var(--ink);
 }
 
 .quote cite {
   font-style: normal;
-  color: var(--color-text-muted);
+  color: var(--muted);
   font-size: 0.9375rem;
 }
 
@@ -400,12 +479,13 @@ h1, h2, h3 {
    ======================================== */
 .use-cases {
   padding: var(--space-xl) 0;
-  background: var(--color-bg-alt);
+  background: var(--surface);
 }
 
 .use-cases .section-title {
   text-align: center;
   margin-bottom: var(--space-lg);
+  display: block;
 }
 
 .use-case-columns {
@@ -415,14 +495,25 @@ h1, h2, h3 {
 }
 
 .use-case {
-  background: var(--color-bg);
-  padding: var(--space-md);
+  background: rgba(255,255,255,.78);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+  padding: var(--space-md);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.use-case:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(249,115,22,.22);
 }
 
 .use-case-title {
   font-size: 1.25rem;
   margin-bottom: var(--space-sm);
+  color: var(--ink);
 }
 
 .use-case-list {
@@ -433,14 +524,14 @@ h1, h2, h3 {
   padding: var(--space-xs) 0;
   padding-left: 1.5rem;
   position: relative;
-  color: var(--color-text-muted);
+  color: var(--muted);
 }
 
 .use-case-list li::before {
   content: '→';
   position: absolute;
   left: 0;
-  color: var(--color-text);
+  color: var(--accent);
 }
 
 /* ========================================
@@ -454,11 +545,12 @@ h1, h2, h3 {
 .cta-title {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: var(--space-md);
+  color: var(--ink);
 }
 
 .cta-subtitle {
   font-size: clamp(1rem, 2vw, 1.125rem);
-  color: var(--color-text-muted);
+  color: var(--muted);
   margin-bottom: var(--space-lg);
 }
 
@@ -475,17 +567,18 @@ h1, h2, h3 {
 .footer {
   padding: var(--space-lg) 0;
   text-align: center;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--line);
 }
 
 .footer-brand {
   font-weight: 600;
   font-size: 1.125rem;
   margin-bottom: var(--space-xs);
+  color: var(--ink);
 }
 
 .footer-tagline {
-  color: var(--color-text-muted);
+  color: var(--muted);
   font-size: 0.875rem;
 }
 
