@@ -1,0 +1,24 @@
+# Assets Directory
+
+Place your images here. Recommended filenames:
+
+## Dish Images (for proof section)
+- dish-1.jpg (or .png, .webp)
+- dish-2.jpg
+- dish-3.jpg
+- dish-4.jpg
+
+To use them, update css/styles.css:
+
+```css
+.dish-card:nth-child(1) .dish-image {
+  background-image: url('../assets/dish-1.jpg');
+  background-size: cover;
+  background-position: center;
+}
+```
+
+## Recommended image specs
+- Aspect ratio: 1:1 (square)
+- Minimum size: 400x400px
+- Format: WebP or optimized JPG
