@@ -61,7 +61,14 @@
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
-        if (targetId === '#' || targetId === '#demo') return; // skip dummy links
+        if (targetId === '#') return; // skip empty anchors
+
+        // Handle #top specially - scroll to top of page
+        if (targetId === '#top') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
 
         const target = document.querySelector(targetId);
         if (target) {

@@ -732,3 +732,281 @@ a {
     height: 600px;
   }
 }
+
+/* ========================================
+   STICKY NAV
+   ======================================== */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,247,237,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: var(--space-sm) 0;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.nav-links {
+  display: none;
+  gap: var(--space-md);
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+}
+
+.nav-cta {
+  padding: 8px 18px;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+/* ========================================
+   PROOF STRIP
+   ======================================== */
+.proof-strip {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: var(--space-md) 0;
+}
+
+.proof-strip-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.proof-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.proof-item strong {
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+
+.proof-item span {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+@media (min-width: 640px) {
+  .proof-strip-inner {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-lg);
+    text-align: left;
+  }
+
+  .proof-item {
+    flex-direction: column;
+  }
+}
+
+/* ========================================
+   IFRAME EMBEDS (Phone Mockup + Live Example)
+   ======================================== */
+.phone-screen.demo-embed {
+  padding: 0;
+  padding-top: 40px;
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.demo-embed iframe,
+.live-example-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+/* ========================================
+   LIVE EXAMPLE SECTION
+   ======================================== */
+.live-example {
+  padding: var(--space-xl) 0;
+  background: var(--surface);
+  text-align: center;
+}
+
+.live-example .section-title {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: var(--space-lg);
+}
+
+.live-example-embed {
+  max-width: 400px;
+  margin: 0 auto var(--space-lg);
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background: var(--bg);
+}
+
+.example-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .example-ctas {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   FAQ SECTION
+   ======================================== */
+.faq {
+  padding: var(--space-xl) 0;
+}
+
+.faq .section-title {
+  text-align: center;
+  display: block;
+  margin-bottom: var(--space-lg);
+}
+
+.faq-list {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.faq-list details {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-list details:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.faq-list summary {
+  padding: var(--space-md) 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color var(--transition);
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: '+';
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--muted);
+  transition: transform var(--transition);
+}
+
+.faq-list details[open] summary::after {
+  content: '−';
+  color: var(--accent);
+}
+
+.faq-list details[open] summary {
+  color: var(--accent);
+}
+
+.faq-list details p {
+  padding: 0 0 var(--space-md);
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ========================================
+   BOOK DEMO SECTION
+   ======================================== */
+.book-demo {
+  padding: var(--space-xl) 0;
+  background: var(--surface);
+  text-align: center;
+}
+
+.book-demo .section-title {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.book-demo .section-subtitle {
+  margin-bottom: var(--space-lg);
+}
+
+.book-demo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .book-demo-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.form-note {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* ========================================
+   HERO MICRO COPY
+   ======================================== */
+.hero-micro {
+  margin-top: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
