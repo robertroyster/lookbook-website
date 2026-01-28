@@ -838,14 +838,13 @@ a {
 /* ========================================
    IFRAME EMBEDS (Phone Mockup + Live Example)
    ======================================== */
-.phone-screen.demo-embed {
-  padding: 0;
-  padding-top: 40px;
-  border-radius: 32px;
-  overflow: hidden;
+.phone-screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 0 32px 32px;
 }
 
-.demo-embed iframe,
 .live-example-embed iframe {
   width: 100%;
   height: 100%;
