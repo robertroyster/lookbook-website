@@ -226,28 +226,16 @@ a {
 }
 
 .phone-notch {
-  width: 100px;
-  height: 28px;
-  background: var(--ink);
-  border-radius: 20px;
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+  display: none;
 }
 
 .phone-screen {
+  position: relative;
   width: 100%;
   height: 100%;
-  background: var(--bg);
   border-radius: 32px;
   overflow: hidden;
-  padding: var(--space-md);
-  padding-top: 48px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+  background: transparent;
 }
 
 .phone-card {
@@ -845,12 +833,11 @@ a {
 }
 
 .demo-video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  transform: scale(1.15) translateY(-6%);
-  transform-origin: top center;
   display: block;
 }
 
