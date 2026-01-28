@@ -1,3 +1,2 @@
-# Serve Vue app for /try route
-/try    /try.html   200
+# Only redirect /tryit since try.html handles /try automatically
 /tryit  /try.html   200
