@@ -4,9 +4,49 @@ This document explains how to add, update, and name images for the LookbookMenu 
 
 ---
 
+## Expected Assets & Specifications
+
+The following table lists all required assets with their exact names and specs.
+
+### Hero Section (R2-hosted)
+
+| File Name | Type | Dimensions | Max Size | Notes |
+|-----------|------|------------|----------|-------|
+| `hero-demo.mp4` | Video | 390 x 844px | 5MB | Phone screen demo, vertical aspect, looping |
+| `hero-poster.jpg` | Image | 390 x 844px | 100KB | First-frame fallback for video |
+
+**R2 URL pattern:** `https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/[filename]`
+
+### Dish Images (local)
+
+| File Name | Type | Dimensions | Max Size | Notes |
+|-----------|------|------------|----------|-------|
+| `dish-truffle-pasta.jpg` | JPG | 800 x 800px | 150KB | Square crop, clean background |
+| `dish-wagyu-tartare.jpg` | JPG | 800 x 800px | 150KB | Square crop, clean background |
+| `dish-citrus-salad.jpg` | JPG | 800 x 800px | 150KB | Square crop, clean background |
+| `dish-lava-cake.jpg` | JPG | 800 x 800px | 150KB | Square crop, clean background |
+
+### Branding & UI (local)
+
+| File Name | Type | Dimensions | Max Size | Notes |
+|-----------|------|------------|----------|-------|
+| `logo-dark.svg` | SVG | Variable | 10KB | Dark version for light backgrounds |
+| `logo-light.svg` | SVG | Variable | 10KB | Light version for dark backgrounds |
+| `favicon.ico` | ICO | 32 x 32px | 5KB | Browser tab icon |
+| `apple-touch-icon.png` | PNG | 180 x 180px | 20KB | iOS home screen icon |
+
+### Open Graph / Social
+
+| File Name | Type | Dimensions | Max Size | Notes |
+|-----------|------|------------|----------|-------|
+| `og-default.jpg` | JPG | 1200 x 630px | 200KB | Facebook/LinkedIn sharing |
+| `og-twitter.jpg` | JPG | 1200 x 600px | 200KB | Twitter card image |
+
+---
+
 ## Folder Structure
 
-All images live in `/assets/` with the following subfolders:
+All local images live in `/assets/` with the following subfolders:
 
 ```
 assets/
@@ -51,63 +91,45 @@ og-twitter.jpg
 
 ---
 
-## Recommended Specifications
+## How to Update Assets
 
-### Dish Photos
+### Hero Video (R2)
 
-| Property | Recommendation |
-|----------|----------------|
-| Format | JPG (photos) or WebP |
-| Dimensions | 800 x 800px (square) or 800 x 600px (4:3) |
-| File size | Under 150KB (optimize for web) |
-| Style | Clean background, good lighting, appetizing |
+The hero phone mockup displays a looping video hosted on Cloudflare R2. To update:
 
-### Hero/Background Images
+1. Export video at 390 x 844px (iPhone 14 Pro screen size)
+2. Compress to under 5MB using HandBrake or similar
+3. Export first frame as `hero-poster.jpg` for fallback
+4. Upload both files to R2 bucket under `/assets/`
 
-| Property | Recommendation |
-|----------|----------------|
-| Format | JPG or WebP |
-| Dimensions | 1920 x 1080px minimum |
-| File size | Under 300KB |
-
-### Icons/Logos
-
-| Property | Recommendation |
-|----------|----------------|
-| Format | SVG (preferred) or PNG |
-| Dimensions | Variable (SVG scales) |
-
----
-
-## How to Update Images in HTML
-
-### 1. Dish Preview Cards
-
-In `index.html`, find the `.dish-card` elements (around line 113-128):
+In `index.html`, the video is referenced at lines 54-63:
 
 ```html
-<div class="dish-card">
-  <div class="dish-image" style="background-image: url('assets/dishes/dish-truffle-pasta.jpg')"></div>
-  <span class="dish-name">Truffle Pasta</span>
-</div>
+<video
+  class="demo-video"
+  autoplay muted loop playsinline
+  poster="https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/hero-poster.jpg"
+>
+  <source src="https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/hero-demo.mp4" type="video/mp4">
+</video>
 ```
 
-**To update:**
+### Dish Images (local)
+
+For dish images used elsewhere on the site:
+
 1. Add your image to `/assets/dishes/`
-2. Update the `style="background-image: url('...')"` path
-3. Update the `.dish-name` text to match
+2. Name it following the pattern: `dish-[descriptive-name].jpg`
+3. Reference via `background-image: url('assets/dishes/dish-name.jpg')`
 
-### 2. Phone Mockup (Hero)
+### Adding Images via CSS
 
-The phone mockup in the hero section can display actual dish cards. Update the `.phone-card` elements or replace with actual images.
-
-### 3. Adding New Images via CSS
-
-For background images used in CSS, update `/css/styles.css`:
+For background images in CSS, update `/css/styles.css`:
 
 ```css
-.hero {
-  background-image: url('../assets/hero-background.jpg');
+.some-element {
+  background-image: url('../assets/dishes/dish-name.jpg');
+  background-size: cover;
 }
 ```
 
@@ -122,11 +144,15 @@ For background images used in CSS, update `/css/styles.css`:
 
 ---
 
-## Current Placeholder Images
+## Current Status
 
-The website currently uses CSS-generated placeholders for:
+**Completed:**
+- Hero video (`hero-demo.mp4`) — hosted on R2
+- Hero poster fallback (`hero-poster.jpg`) — hosted on R2
 
-- Phone mockup dish cards (`.phone-card`)
-- Dish preview strip (`.dish-image`)
-
-These need to be replaced with actual food photography before launch.
+**Still needed before launch:**
+- `og-default.jpg` — Open Graph image for social sharing
+- `og-twitter.jpg` — Twitter card image
+- `favicon.ico` — Browser tab icon
+- `apple-touch-icon.png` — iOS home screen icon
+- `logo-dark.svg` / `logo-light.svg` — Brand logos (if needed)
