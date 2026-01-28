@@ -1,0 +1,3 @@
+# Serve Vue app for /try route
+/try    /try.html   200
+/tryit  /try.html   200
