@@ -11,13 +11,13 @@ const CONTENT = {
 
   // Nav
   navBrand: "LookbookMenu",
-  navCta: "Book a demo",
+  navCta: "Try It Now",
 
   // Hero
   heroTitle: "Browse the menu<br>like a lookbook",
   heroSubtitle: "Enhance your menu with an Instagram-style lookbook that drives visits and sells more dishes.",
   heroCta1: "See a live example",
-  heroCta2: "Book a 10-minute demo",
+  heroCta2: "Try It Now",
   heroBadge: "No app. No tutorial. No learning curve.",
   heroMicro: "Works alongside your existing menu online or with a QR code. Your lookbook handles inspiration.",
 
@@ -97,7 +97,7 @@ const CONTENT = {
   // Final CTA
   finalCtaTitle: "You're producing beautiful food.<br>Is your menu showing it?",
   finalCta1: "See a live example",
-  finalCta2: "Visit lookbookmenu.com/tryit",
+  finalCta2: "Visit lookbookmenu.com/try",
 
   // Footer
   footerBrand: "LookbookMenu",
