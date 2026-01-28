@@ -31,6 +31,7 @@
     // Nav
     set('.nav-brand', CONTENT.navBrand);
     set('.nav-cta', CONTENT.navCta);
+    setHref('.nav-cta', CONTENT.links.tryIt);
 
     // Hero
     set('.hero-title', CONTENT.heroTitle);
@@ -41,7 +42,7 @@
     // Hero CTAs
     const heroCtas = document.querySelectorAll('.hero-ctas .btn');
     if (heroCtas[0]) { heroCtas[0].innerHTML = CONTENT.heroCta1; heroCtas[0].href = CONTENT.links.liveExample; }
-    if (heroCtas[1]) heroCtas[1].innerHTML = CONTENT.heroCta2;
+    if (heroCtas[1]) { heroCtas[1].innerHTML = CONTENT.heroCta2; heroCtas[1].href = CONTENT.links.tryIt; }
 
     // Problem
     set('.problem-title', CONTENT.problemTitle);
@@ -78,7 +79,7 @@
     set('.live-example .section-title', CONTENT.exampleTitle);
     set('.live-example .section-subtitle', CONTENT.exampleSubtitle);
     const exampleCtas = document.querySelectorAll('.example-ctas .btn');
-    if (exampleCtas[0]) exampleCtas[0].innerHTML = CONTENT.exampleCta1;
+    if (exampleCtas[0]) { exampleCtas[0].innerHTML = CONTENT.exampleCta1; exampleCtas[0].href = CONTENT.links.tryIt; }
     if (exampleCtas[1]) exampleCtas[1].innerHTML = CONTENT.exampleCta2;
 
     // FAQ
@@ -95,14 +96,14 @@
     set('.book-demo .section-subtitle', CONTENT.bookSubtitle);
     set('.form-note', CONTENT.bookNote);
     const bookCtas = document.querySelectorAll('.book-demo-actions .btn');
-    if (bookCtas[0]) { bookCtas[0].innerHTML = CONTENT.bookCta1; bookCtas[0].href = CONTENT.links.demoEmail; }
+    if (bookCtas[0]) { bookCtas[0].innerHTML = CONTENT.bookCta1; bookCtas[0].href = CONTENT.links.tryIt; }
     if (bookCtas[1]) { bookCtas[1].innerHTML = CONTENT.bookCta2; bookCtas[1].href = CONTENT.links.liveExample; }
 
     // Final CTA
     set('.cta-title', CONTENT.finalCtaTitle);
     const finalCtas = document.querySelectorAll('.cta-buttons .btn');
     if (finalCtas[0]) { finalCtas[0].innerHTML = CONTENT.finalCta1; finalCtas[0].href = CONTENT.links.liveExample; }
-    if (finalCtas[1]) finalCtas[1].innerHTML = CONTENT.finalCta2;
+    if (finalCtas[1]) { finalCtas[1].innerHTML = CONTENT.finalCta2; finalCtas[1].href = CONTENT.links.tryIt; }
 
     // Footer
     set('.footer-brand', CONTENT.footerBrand);

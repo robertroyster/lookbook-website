@@ -90,7 +90,8 @@ const CONTENT = {
 
   // Book Demo
   bookTitle: "Try It Now",
-  bookSubtitle: "Visit lookbookmenu.com/tryit to upload your menu and see how easy it is to get your lOOkbook menu.",
+  bookSubtitle: "Upload your menu and see how easy it is to get your lOOkbook menu.",
+  bookCta1: "Try It Now",
   bookCta2: "Open the live example",
   bookNote: "No spam. Just the demo + a simple next step.",
 
@@ -106,6 +107,7 @@ const CONTENT = {
   // Links (edit URLs here)
   links: {
     liveExample: "https://lookbook.menu/beautiful",
+    tryIt: "/tryit",
     demoEmail: "mailto:info@lookbookmenu.com?subject=LookbookMenu%20Demo&body=Restaurant%20Name:%0AWebsite:%0ACity:%0ABest%20Times:%0A"
   }
 };
