@@ -1,8 +1,17 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
 // API endpoint - points to admin API
 const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev/api'
+
+// Capture affiliate param from URL
+const route = useRoute()
+const affiliate = ref('')
+
+onMounted(() => {
+  affiliate.value = route.query.affiliate || ''
+})
 
 // UI States
 const viewState = ref('form') // 'form' | 'processing' | 'success' | 'error'
@@ -157,6 +166,11 @@ async function submitForm() {
       formData.append('menuFile', menuFile.value)
     } else if (menuUrl.value) {
       formData.append('menuUrl', menuUrl.value)
+    }
+
+    // Only include affiliate if present
+    if (affiliate.value) {
+      formData.append('affiliate', affiliate.value)
     }
 
     processingStep.value = 'Uploading menu...'

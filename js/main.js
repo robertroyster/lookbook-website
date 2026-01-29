@@ -159,6 +159,23 @@
     });
   }
 
+  // ---------- Pass URL params to /try links ----------
+  // Forwards affiliate and tracking params to the try page
+
+  function forwardUrlParams() {
+    const params = window.location.search;
+    if (!params) return;
+
+    document.querySelectorAll('a[href^="/try"]').forEach((link) => {
+      const url = new URL(link.href, window.location.origin);
+      const currentParams = new URLSearchParams(params);
+      currentParams.forEach((value, key) => {
+        url.searchParams.set(key, value);
+      });
+      link.href = url.pathname + url.search;
+    });
+  }
+
   // ---------- Smooth scroll for anchor links ----------
 
   function initSmoothScroll() {
@@ -187,6 +204,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     loadContent();
+    forwardUrlParams();
     autoAddFadeIn();
     initScrollAnimations();
     initSmoothScroll();
