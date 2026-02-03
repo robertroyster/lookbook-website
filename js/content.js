@@ -106,7 +106,7 @@ const CONTENT = {
 
   // Links (edit URLs here)
   links: {
-    liveExample: "https://lookbook.menu/browse/beautiful",
+    liveExample: "https://lookbook.menu/beautiful?v=3",
     tryIt: "/try",
     demoEmail: "mailto:info@lookbookmenu.com?subject=LookbookMenu%20Demo&body=Restaurant%20Name:%0AWebsite:%0ACity:%0ABest%20Times:%0A"
   }
