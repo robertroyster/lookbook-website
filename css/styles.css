@@ -271,10 +271,11 @@ a { color: inherit; }
 .hero-contact a:hover { color: var(--accent); }
 .hero-contact span { margin: 0 0.5rem; color: var(--line); }
 
-/* Sexy Photo Strip */
+/* Photo Strip — constrained to text width, auto-scrolling */
 .photo-strip {
-  margin-top: var(--space-md);
-  padding: 14px;
+  margin: var(--space-md) auto 0;
+  max-width: 540px;
+  padding: 10px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
   background: rgba(255,255,255,.70);
@@ -286,32 +287,27 @@ a { color: inherit; }
 .photo-strip-track {
   display: flex;
   gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  width: max-content;
+  animation: strip-scroll 20s linear infinite;
 }
 
-.photo-strip-track::-webkit-scrollbar { height: 8px; }
-.photo-strip-track::-webkit-scrollbar-thumb {
-  background: rgba(31,22,15,.18);
-  border-radius: var(--radius-full);
+.photo-strip:hover .photo-strip-track {
+  animation-play-state: paused;
 }
 
 .photo-strip-track img {
   width: 120px;
   height: 84px;
+  flex-shrink: 0;
   border-radius: 16px;
   object-fit: cover;
   border: 1px solid rgba(31,22,15,.10);
   box-shadow: 0 10px 24px rgba(31,22,15,.10);
-  scroll-snap-align: start;
-  transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.photo-strip-track img:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(31,22,15,.14);
+@keyframes strip-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* Phone Mockup */
@@ -616,6 +612,7 @@ section[id] { scroll-margin-top: 96px; }
   .hero-content { text-align: left; flex: 1; }
   .hero-subtitle { margin-left: 0; }
   .hero-ctas { justify-content: flex-start; }
+  .photo-strip { margin-left: 0; }
   .hero-phone { flex: 0 0 auto; }
 
   .steps { grid-template-columns: repeat(3, 1fr); }
@@ -625,12 +622,11 @@ section[id] { scroll-margin-top: 96px; }
 
 @media (min-width: 1024px) {
   .phone-mockup { width: 300px; height: 600px; }
-  .photo-strip-track img { width: 150px; height: 96px; }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
   .nav-links a { transition: none; }
-  .photo-strip-track img { transition: none; }
+  .photo-strip-track { animation: none; }
 }
