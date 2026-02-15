@@ -11,21 +11,19 @@
   function loadContent() {
     if (typeof CONTENT === 'undefined') return;
 
-    // Helper to set innerHTML
-    const set = (selector, value) => {
-      const el = document.querySelector(selector);
-      if (el && value) el.innerHTML = value;
+    var set = function (selector, value) {
+      var el = document.querySelector(selector);
+      if (el && value != null) el.innerHTML = value;
     };
 
-    // Helper to set href
-    const setHref = (selector, value) => {
-      const el = document.querySelector(selector);
+    var setHref = function (selector, value) {
+      var el = document.querySelector(selector);
       if (el && value) el.href = value;
     };
 
     // Meta
     document.title = CONTENT.siteTitle;
-    const metaDesc = document.querySelector('meta[name="description"]');
+    var metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.content = CONTENT.siteDescription;
 
     // Nav
@@ -36,78 +34,93 @@
     // Hero
     set('.hero-title', CONTENT.heroTitle);
     set('.hero-subtitle', CONTENT.heroSubtitle);
-    set('.hero-badge', CONTENT.heroBadge);
-    set('.hero-micro', CONTENT.heroMicro);
-
-    // Hero CTAs
-    const heroCtas = document.querySelectorAll('.hero-ctas .btn');
+    set('.hero-proof', CONTENT.heroProof);
+    var heroCtas = document.querySelectorAll('.hero-ctas .btn');
     if (heroCtas[0]) { heroCtas[0].innerHTML = CONTENT.heroCta1; heroCtas[0].href = CONTENT.links.liveExample; }
     if (heroCtas[1]) { heroCtas[1].innerHTML = CONTENT.heroCta2; heroCtas[1].href = CONTENT.links.tryIt; }
 
-    // Problem
-    set('.problem-title', CONTENT.problemTitle);
-    set('.problem-text', CONTENT.problemText);
-
-    // Aha
-    set('.aha-question', `"${CONTENT.ahaQuestion}"`);
-    set('.aha-answer', `"${CONTENT.ahaAnswer}"`);
-
-    // Dual Use
-    set('.dual-use .section-title', CONTENT.dualUseTitle);
-    const dualCards = document.querySelectorAll('.dual-use-card');
-    if (dualCards[0]) {
-      dualCards[0].querySelector('.dual-use-title').innerHTML = CONTENT.dualUseCard1Title;
-      dualCards[0].querySelector('.dual-use-list').innerHTML = CONTENT.dualUseCard1Items.map(i => `<li>${i}</li>`).join('');
+    // Why
+    set('.why .section-title', CONTENT.whyTitle);
+    var whyBody = document.querySelector('.why-body');
+    if (whyBody && CONTENT.whyBody) {
+      whyBody.innerHTML = CONTENT.whyBody.map(function (p) { return '<p>' + p + '</p>'; }).join('')
+        + '<p class="why-closer">' + CONTENT.whyCloser + '</p>';
     }
-    if (dualCards[1]) {
-      dualCards[1].querySelector('.dual-use-title').innerHTML = CONTENT.dualUseCard2Title;
-      dualCards[1].querySelector('.dual-use-list').innerHTML = CONTENT.dualUseCard2Items.map(i => `<li>${i}</li>`).join('');
+    var whyBullets = document.querySelector('.why-bullets');
+    if (whyBullets && CONTENT.whyBullets) {
+      whyBullets.innerHTML = CONTENT.whyBullets.map(function (b) { return '<li>' + b + '</li>'; }).join('');
     }
-    set('.dual-use-summary', CONTENT.dualUseSummary);
+
+    // Who
+    set('.who .section-title', CONTENT.whoTitle);
+    var whoCards = document.querySelectorAll('.who-card');
+    if (whoCards[0]) {
+      whoCards[0].querySelector('.who-card-title').innerHTML = CONTENT.whoCard1Title;
+      whoCards[0].querySelector('p').innerHTML = CONTENT.whoCard1Text;
+    }
+    if (whoCards[1]) {
+      whoCards[1].querySelector('.who-card-title').innerHTML = CONTENT.whoCard2Title;
+      whoCards[1].querySelector('p').innerHTML = CONTENT.whoCard2Text;
+    }
+    set('.who-closer', CONTENT.whoCloser);
+
+    // Live Example
+    set('.live-example .section-title', CONTENT.exampleTitle);
+    set('.live-example .section-subtitle', CONTENT.exampleSubtitle);
+    set('.example-callout', CONTENT.exampleCallout);
+    var exampleCtas = document.querySelectorAll('.example-ctas .btn');
+    if (exampleCtas[0]) { exampleCtas[0].innerHTML = CONTENT.exampleCta1; exampleCtas[0].href = CONTENT.links.tryIt; }
+    if (exampleCtas[1]) exampleCtas[1].innerHTML = CONTENT.exampleCta2;
 
     // How It Works
     set('.how-it-works .section-title', CONTENT.howTitle);
-    const stepCards = document.querySelectorAll('.step-card');
-    CONTENT.howSteps.forEach((step, i) => {
+    var stepCards = document.querySelectorAll('.step-card');
+    CONTENT.howSteps.forEach(function (step, i) {
       if (stepCards[i]) {
         stepCards[i].querySelector('.step-title').innerHTML = step.title;
         stepCards[i].querySelector('.step-desc').innerHTML = step.desc;
       }
     });
+    set('.how-closer', CONTENT.howCloser);
 
-    // Live Example
-    set('.live-example .section-title', CONTENT.exampleTitle);
-    set('.live-example .section-subtitle', CONTENT.exampleSubtitle);
-    const exampleCtas = document.querySelectorAll('.example-ctas .btn');
-    if (exampleCtas[0]) { exampleCtas[0].innerHTML = CONTENT.exampleCta1; exampleCtas[0].href = CONTENT.links.tryIt; }
-    if (exampleCtas[1]) exampleCtas[1].innerHTML = CONTENT.exampleCta2;
+    // Analytics
+    set('.analytics .section-title', CONTENT.analyticsTitle);
+    set('.analytics-intro', CONTENT.analyticsIntro);
+    var analyticsList = document.querySelector('.analytics-list');
+    if (analyticsList && CONTENT.analyticsItems) {
+      analyticsList.innerHTML = CONTENT.analyticsItems.map(function (item) {
+        return '<li><strong>' + item.label + '</strong> \u2014 ' + item.detail + '</li>';
+      }).join('');
+    }
+    set('.analytics-closer', CONTENT.analyticsCloser);
+
+    // Features
+    var featuresList = document.querySelector('.features-list');
+    if (featuresList && CONTENT.features) {
+      featuresList.innerHTML = CONTENT.features.map(function (f) {
+        return '<li><strong>' + f.title + '</strong> ' + f.desc + '</li>';
+      }).join('');
+    }
 
     // FAQ
     set('.faq .section-title', CONTENT.faqTitle);
-    const faqList = document.querySelector('.faq-list');
+    var faqList = document.querySelector('.faq-list');
     if (faqList && CONTENT.faqs) {
-      faqList.innerHTML = CONTENT.faqs.map(faq =>
-        `<details><summary>${faq.q}</summary><p>${faq.a}</p></details>`
-      ).join('');
+      faqList.innerHTML = CONTENT.faqs.map(function (faq) {
+        return '<details><summary>' + faq.q + '</summary><p>' + faq.a + '</p></details>';
+      }).join('');
     }
 
-    // Book Demo
-    set('.book-demo .section-title', CONTENT.bookTitle);
-    set('.book-demo .section-subtitle', CONTENT.bookSubtitle);
-    set('.form-note', CONTENT.bookNote);
-    const bookCtas = document.querySelectorAll('.book-demo-actions .btn');
-    if (bookCtas[0]) { bookCtas[0].innerHTML = CONTENT.bookCta1; bookCtas[0].href = CONTENT.links.tryIt; }
-    if (bookCtas[1]) { bookCtas[1].innerHTML = CONTENT.bookCta2; bookCtas[1].href = CONTENT.links.liveExample; }
-
-    // Final CTA
-    set('.cta-title', CONTENT.finalCtaTitle);
-    const finalCtas = document.querySelectorAll('.cta-buttons .btn');
-    if (finalCtas[0]) { finalCtas[0].innerHTML = CONTENT.finalCta1; finalCtas[0].href = CONTENT.links.liveExample; }
-    if (finalCtas[1]) { finalCtas[1].innerHTML = CONTENT.finalCta2; finalCtas[1].href = CONTENT.links.tryIt; }
+    // Try It
+    set('.try-it .section-title', CONTENT.tryTitle);
+    set('.try-it .section-subtitle', CONTENT.trySubtitle);
+    var tryCta = document.querySelector('.try-it-actions .btn');
+    if (tryCta) { tryCta.innerHTML = CONTENT.tryCta; tryCta.href = CONTENT.links.tryIt; }
 
     // Footer
     set('.footer-brand', CONTENT.footerBrand);
     set('.footer-tagline', CONTENT.footerTagline);
+    set('.footer-note', CONTENT.footerNote);
   }
 
   // ---------- Fade-in on scroll ----------
@@ -140,16 +153,13 @@
 
   function autoAddFadeIn() {
     const selectors = [
-      '.problem-text',
       '.section-title',
-      '.aha-body',
-      '.aha-tagline',
+      '.why-body',
+      '.why-bullets',
+      '.who-card',
       '.step-card',
-      '.dish-card',
-      '.quote',
-      '.use-case',
-      '.cta-title',
-      '.cta-subtitle',
+      '.analytics-list',
+      '.features-list li',
     ];
 
     selectors.forEach((selector) => {
@@ -200,6 +210,103 @@
     });
   }
 
+  // ---------- Scroll-spy for active nav highlighting ----------
+
+  function initScrollSpy() {
+    var navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    if (!navLinks.length) return;
+
+    var linkById = new Map(
+      navLinks
+        .map(function (a) {
+          var id = decodeURIComponent(a.getAttribute('href') || '').slice(1);
+          return [id, a];
+        })
+        .filter(function (pair) { return !!pair[0]; })
+    );
+
+    var sections = Array.from(document.querySelectorAll('section[id]'))
+      .filter(function (sec) { return linkById.has(sec.id); });
+
+    if (!sections.length) return;
+
+    function setActive(id) {
+      navLinks.forEach(function (a) { a.classList.remove('active'); });
+      var activeLink = linkById.get(id);
+      if (activeLink) activeLink.classList.add('active');
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        var visible = entries
+          .filter(function (e) { return e.isIntersecting; })
+          .map(function (e) { return { id: e.target.id, top: e.boundingClientRect.top }; })
+          .sort(function (a, b) { return a.top - b.top; });
+
+        if (visible.length) {
+          setActive(visible[0].id);
+        } else {
+          var y = window.scrollY;
+          var current = sections[0].id;
+          for (var i = 0; i < sections.length; i++) {
+            if (sections[i].offsetTop <= y + 120) current = sections[i].id;
+          }
+          setActive(current);
+        }
+      },
+      {
+        root: null,
+        threshold: [0.1, 0.25, 0.5],
+        rootMargin: '-20% 0px -65% 0px'
+      }
+    );
+
+    sections.forEach(function (sec) { observer.observe(sec); });
+
+    setActive(sections[0].id);
+  }
+
+  // ---------- GA4 custom event tracking ----------
+
+  function initGA4Tracking() {
+    if (typeof gtag !== 'function') return;
+
+    // Track "See a live example" clicks as view_lookbook_menu
+    document.querySelectorAll('a[href*="lookbook.menu"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        gtag('event', 'view_lookbook_menu', {
+          'event_category': 'engagement',
+          'event_label': 'Lookbook Menu Viewed',
+          'value': 1
+        });
+      });
+    });
+
+    // Track phone number clicks
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        gtag('event', 'phone_click', {
+          'event_category': 'conversion',
+          'event_label': 'Phone Number Clicked',
+          'phone_number': '919-816-2113',
+          'value': 1
+        });
+      });
+    });
+
+    // Track "Try It" CTA clicks
+    document.querySelectorAll('a[href^="/try"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        gtag('event', 'button_click', {
+          'event_category': 'engagement',
+          'event_label': 'Try It Now',
+          'button_text': link.textContent.trim(),
+          'value': 1
+        });
+      });
+    });
+  }
+
   // ---------- Init ----------
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -208,5 +315,7 @@
     autoAddFadeIn();
     initScrollAnimations();
     initSmoothScroll();
+    initScrollSpy();
+    initGA4Tracking();
   });
 })();

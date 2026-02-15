@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LookbookMenu — Your food deserves a lOOkbOOk</title>
-  <meta name="description" content="Turn your restaurant menu into a visual lookbook that sells the visit before the guest ever walks in.">
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LookbookMenu — We eat with our eyes</title>
+  <meta name="description" content="Your most beautiful dishes are hiding behind a PDF. LookbookMenu turns your menu into a photo-first experience guests love to scroll." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMCKQMZL1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DMCKQMZL1X');
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
@@ -13,13 +23,24 @@
 <header class="top-nav">
   <div class="container nav-inner">
     <a class="nav-brand" href="#top">LookbookMenu</a>
+
     <nav class="nav-links" aria-label="Primary">
-      <a href="#problem">Why</a>
+      <a href="#why">Why</a>
       <a href="#example">Example</a>
       <a href="#how">How</a>
       <a href="#faq">FAQ</a>
+      <a href="#try-it">Try It</a>
     </nav>
-    <a class="btn btn-primary nav-cta" href="/try">Try It Now</a>
+
+    <div class="nav-right">
+      <div class="header-contact" aria-label="Contact">
+        <a class="contact-link" href="tel:+19198162113">919-816-2113</a>
+        <span class="sep">&middot;</span>
+        <a class="contact-link" href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
+      </div>
+
+      <a class="btn btn-primary nav-cta" href="/try">Try It Free</a>
+    </div>
   </div>
 </header>
 
@@ -27,23 +48,24 @@
 <section class="hero" id="top">
   <div class="container">
     <div class="hero-content">
-      <h1 class="hero-title">Browse the menu<br>like a lookbook</h1>
+      <h1 class="hero-title">We eat with our eyes.</h1>
+
       <p class="hero-subtitle">
-        Enhance your menu with an Instagram-style lookbook that drives visits and sells more dishes.
+        Your most beautiful dishes are hiding behind a PDF full of words.
+        LookbookMenu turns your menu into a photo-first menu guests love to scroll&mdash;so they go from
+        &ldquo;that sounds good&rdquo; to &ldquo;I want that.&rdquo;
+      </p>
+
+      <p class="hero-proof">
+        No app. No POS change. Not online ordering&mdash;just visual browsing that helps guests decide faster.
       </p>
 
       <div class="hero-ctas">
         <a href="https://lookbook.menu/beautiful?v=3" class="btn btn-primary" target="_blank" rel="noopener">
-          See a live example
+          See a Live Example
         </a>
-        <a href="/try" class="btn btn-secondary">Try It Now</a>
+        <a href="/try" class="btn btn-secondary">Try It Free</a>
       </div>
-
-      <p class="hero-badge">No app. No tutorial. No learning curve.</p>
-
-      <p class="hero-micro">
-        Works alongside your existing menu online or with a QR code. Your lookbook handles inspiration.
-      </p>
     </div>
 
     <!-- Video demo in phone mockup -->
@@ -66,100 +88,59 @@
   </div>
 </section>
 
-<!-- ========== PROOF STRIP (hidden until we have real reviews) ========== -->
-<section class="proof-strip" aria-label="Social proof" hidden
-  <div class="container proof-strip-inner">
-    <div class="proof-item">
-      <strong>"Guests order faster."</strong>
-      <span>— GM, sports bar</span>
-    </div>
-    <div class="proof-item">
-      <strong>Used by</strong>
-      <span>restaurants that care how food looks online</span>
-    </div>
-    <div class="proof-item">
-      <strong>Built for</strong>
-      <span>QR + online discovery</span>
-    </div>
-  </div>
-</section>
-
-<!-- ========== THE PDF PROBLEM ========== -->
-<section class="problem" id="problem">
+<!-- ========== WHY ========== -->
+<section class="why" id="why">
   <div class="container">
-    <h2 class="problem-title">The PDF Problem</h2>
-    <p class="problem-text">
-      Your food closes the deal.<br>
-      But potential guests are looking at a PDF full of words.
-    </p>
+    <h2 class="section-title">The table decides. The kitchen confirms.</h2>
+
+    <div class="why-body">
+      <p>Watch what people do when they sit down. They don&rsquo;t start by reading. They look around. They see what&rsquo;s on other tables. They watch plates come out of the kitchen.</p>
+      <p>And then it happens&mdash;regret. They spot a better dish and think: &ldquo;I should&rsquo;ve gotten that.&rdquo;</p>
+      <p>A PDF can&rsquo;t show that moment. A Lookbook can.</p>
+      <p class="why-closer">Put your best plates where guests are already looking: their phone.</p>
+    </div>
+
+    <ul class="why-bullets">
+      <li>Fewer questions because guests can see what it is</li>
+      <li>Faster decisions because the photos do the explaining</li>
+      <li>More confident orders (and fewer &ldquo;I wish I ordered that&rdquo; moments)</li>
+    </ul>
   </div>
 </section>
 
-<!-- ========== THE AHA (Sell the Visit) ========== -->
-<section class="aha">
+<!-- ========== WHO IT'S FOR ========== -->
+<section class="who" id="who">
   <div class="container">
-    <p class="aha-contrast">
-      Traditional menus answer: <span class="aha-question">"What do you have?"</span><br>
-      LookbookMenu answers: <span class="aha-answer">"I want That dish."</span>
-    </p>
-  </div>
-</section>
+    <h2 class="section-title">Built for busy restaurants&mdash;and for food designers.</h2>
 
-<!-- ========== ONE LOOKBOOK, TWO REVENUE PATHS ========== -->
-<section class="dual-use">
-  <div class="container">
-    <h2 class="section-title">One lookbook. Two revenue paths.</h2>
-    <div class="dual-use-columns">
-      <div class="dual-use-card">
-        <h3 class="dual-use-title">In-House QR code</h3>
-        <ul class="dual-use-list">
-          <li>Better item discovery</li>
-          <li>Higher-value orders</li>
-          <li>Guests see what they didn't know you had, and they want</li>
-        </ul>
+    <div class="who-columns">
+      <div class="who-card">
+        <h3 class="who-card-title">Busy operators</h3>
+        <p>You want it live fast, easy to update, and clean in service. We get it.</p>
       </div>
-      <div class="dual-use-card">
-        <h3 class="dual-use-title">Online Lookbook Link</h3>
-        <ul class="dual-use-list">
-          <li>Drives new visits</li>
-          <li>Sells the experience before guests arrive</li>
-          <li>Turns browsing into I Want</li>
-        </ul>
+
+      <div class="who-card">
+        <h3 class="who-card-title">Design-forward</h3>
+        <p>You care about the look, the spacing, the vibe, and the way dishes are presented. We do too.</p>
       </div>
     </div>
-    <p class="dual-use-summary">Your lOOkbook menu becomes a marketing asset.</p>
+
+    <p class="who-closer">Simple when you want it. Detailed when you need it.</p>
   </div>
 </section>
 
-<!-- ========== HOW IT WORKS ========== -->
-<section class="how-it-works" id="how">
-  <div class="container">
-    <h2 class="section-title">How it works</h2>
-    <div class="steps">
-      <div class="step-card">
-        <div class="step-number">1</div>
-        <h3 class="step-title">Upload your menu</h3>
-        <p class="step-desc">Upload a PDF or URL with your menu.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">2</div>
-        <h3 class="step-title">Share your lookbook</h3>
-        <p class="step-desc">Get a public link to use anywhere and QR code for your current menu.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">3</div>
-        <h3 class="step-title">Watch visits grow</h3>
-        <p class="step-desc">Guests arrive ready to order.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== LIVE EXAMPLE SECTION ========== -->
+<!-- ========== LIVE EXAMPLE ========== -->
 <section class="live-example" id="example">
   <div class="container">
-    <h2 class="section-title">See a live example</h2>
-    <p class="section-subtitle">The exact experience your guests get on their phones.</p>
+    <h2 class="section-title">A menu that looks like your food.</h2>
+    <p class="section-subtitle">
+      A Lookbook feels like browsing a feed&mdash;sections are clean, dish photos are front and center,
+      and guests can scan fast without getting lost in text.
+    </p>
+
+    <p class="example-note">
+      This is what guests see when they scan your QR &mdash; fast, visual, and made for choosing.
+    </p>
 
     <div class="live-example-embed">
       <iframe
@@ -170,80 +151,136 @@
       ></iframe>
     </div>
 
+    <p class="example-callout">
+      Want yours built? Send your menu and we&rsquo;ll generate a Try-It Lookbook so you can see it immediately.
+    </p>
+
     <div class="example-ctas">
-      <a href="/try" class="btn btn-primary">Try It and claim your menu Now</a>
+      <a href="/try" class="btn btn-primary">Try It Free</a>
       <a href="#faq" class="btn btn-secondary">See FAQs</a>
     </div>
   </div>
 </section>
 
-<!-- ========== FAQ (OBJECTION HANDLING) ========== -->
+<!-- ========== HOW IT WORKS ========== -->
+<section class="how-it-works" id="how">
+  <div class="container">
+    <h2 class="section-title">We set it up fast. You make it gorgeous.</h2>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Instant Try-It (AI)</h3>
+        <p class="step-desc">
+          Upload your menu PDF, paste your website URL, or snap photos of your menu.
+          Our AI generates your first Lookbook immediately so you can see the experience right away.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Photo Manager</h3>
+        <p class="step-desc">
+          Take dish photos during prep or on the pass. Upload from your phone. Swap photos anytime.
+          No designer. No delay.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Keep it current</h3>
+        <p class="step-desc">
+          Update prices, descriptions, and sections. Turn items on/off (sold out, seasonal, 86&rsquo;d).
+          Create lunch/dinner/happy hour menus without starting over.
+        </p>
+      </div>
+    </div>
+
+    <p class="how-closer">Same menu. Better presentation.</p>
+  </div>
+</section>
+
+<!-- ========== ANALYTICS ========== -->
+<section class="analytics" id="analytics">
+  <div class="container">
+    <h2 class="section-title">Know what guests crave.</h2>
+    <p class="analytics-intro">If people are staring at a dish photo, that&rsquo;s information you can use.</p>
+
+    <ul class="analytics-list">
+      <li><strong>QR scans</strong> by day and time</li>
+      <li><strong>Items browsed</strong> &mdash; what gets the attention</li>
+      <li><strong>Dwell time</strong> &mdash; what guests linger on</li>
+      <li><strong>Top sections</strong> &mdash; what&rsquo;s pulling people in</li>
+    </ul>
+
+    <p class="analytics-closer">Use it to feature the winners, re-shoot the sleepers, and refine your menu like a merchandiser.</p>
+  </div>
+</section>
+
+<!-- ========== FEATURES STRIP ========== -->
+<section class="features-strip" id="features">
+  <div class="container">
+    <ul class="features-list">
+      <li><strong>Multi-location ready</strong> Brand QR shows all locations. Location QR goes straight to that store.</li>
+      <li><strong>Brand-matched design</strong> Logo, colors, and a clean lookbook feel.</li>
+      <li><strong>Dietary &amp; allergen tags</strong> GF, vegan, spicy, nuts&mdash;help guests decide confidently.</li>
+      <li><strong>Shareable dish links</strong> Perfect for Instagram, Google posts, emails, ads.</li>
+      <li><strong>QR downloads + print tips</strong> Table tents, stickers, posters&mdash;simple to deploy.</li>
+      <li><strong>Real support</strong> We help you launch and keep it fresh.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
 <section class="faq" id="faq">
   <div class="container">
-    <h2 class="section-title">Questions you're probably asking</h2>
+    <h2 class="section-title">Common questions</h2>
 
     <div class="faq-list">
       <details>
-        <summary>Do I need to change my POS or online ordering?</summary>
-        <p>No. LookbookMenu sits alongside what you already use. It's a visual layer for browsing and discovery.</p>
+        <summary>Is this online ordering?</summary>
+        <p>No. LookbookMenu is menu enhancement&mdash;a visual browsing layer that helps guests choose faster and feel confident.</p>
       </details>
 
       <details>
-        <summary>Does this replace my paper menu?</summary>
-        <p>No. You just add a QR code to your menu and guests can browse all your dishes like Instagram.</p>
+        <summary>How fast can I see it?</summary>
+        <p>In minutes. Send a PDF, a URL, or menu photos and we&rsquo;ll generate a Try-It Lookbook immediately.</p>
       </details>
 
       <details>
-        <summary>How do I get photos onto the site?</summary>
-        <p>We have a photo uploader that lets you snap, crop and upload easily.</p>
+        <summary>What if I don&rsquo;t have great photos yet?</summary>
+        <p>Start with the Try-It Lookbook, then use Photo Manager to swap in real dish photos as you shoot them&mdash;right from the line.</p>
       </details>
 
       <details>
-        <summary>Can I hide prices?</summary>
-        <p>Yes. Many restaurants use printed menus for pricing and the lookbook for inspiration and craving.</p>
+        <summary>Can we do multiple menus (lunch/dinner/happy hour)?</summary>
+        <p>Yes. Separate sections or separate menus&mdash;whatever matches how you serve.</p>
       </details>
 
       <details>
-        <summary>Does it help marketing?</summary>
-        <p>Yes—your lookbook link is perfect for Google Business Profile, Yelp, Instagram bio, and ads.</p>
+        <summary>Can it work for multi-location brands?</summary>
+        <p>Yes. You can have a brand page plus location pages, with QRs for each.</p>
       </details>
 
       <details>
-        <summary>What can I track?</summary>
-        <p>QR scans, clicks, most-viewed dishes, and browsing behavior.</p>
+        <summary>Can guests view it at home before they come?</summary>
+        <p>Yes. Share it anywhere&mdash;website, Google profile, Instagram bio, email.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ========== TRY IT NOW (REAL CONVERSION) ========== -->
-<section class="book-demo" id="book">
+<!-- ========== TRY IT ========== -->
+<section class="try-it" id="try-it">
   <div class="container">
-    <h2 class="section-title">Try It Now</h2>
-    <p class="section-subtitle">Upload your menu and see how easy it is to get your lOOkbook menu.</p>
+    <h2 class="section-title">Let&rsquo;s make your menu look as good as your food.</h2>
+    <p class="section-subtitle">
+      Send your menu and we&rsquo;ll generate your Try-It Lookbook so you can see it instantly.
+      Then you can start swapping in dish photos the same day.
+    </p>
 
-    <div class="book-demo-actions">
-      <a class="btn btn-primary btn-large" href="/try">
-        Try It Now
-      </a>
-      <a class="btn btn-secondary btn-large" href="https://lookbook.menu/beautiful?v=3" target="_blank" rel="noopener">
-        Open the live example
-      </a>
-    </div>
-
-    <p class="form-note">No spam. Just the demo + a simple next step.</p>
-  </div>
-</section>
-
-<!-- ========== FINAL CTA ========== -->
-<section class="final-cta">
-  <div class="container">
-    <h2 class="cta-title">You're producing beautiful food.<br>Is your menu showing it?</h2>
-    <div class="cta-buttons">
-      <a href="https://lookbook.menu/beautiful?v=3" class="btn btn-primary btn-large" target="_blank" rel="noopener">
-        See a live example
-      </a>
-      <a href="/try" class="btn btn-secondary btn-large">Try It Now</a>
+    <div class="try-it-actions">
+      <a class="btn btn-primary btn-large" href="/try">Try It Free</a>
     </div>
   </div>
 </section>
@@ -252,7 +289,15 @@
 <footer class="footer">
   <div class="container">
     <p class="footer-brand">LookbookMenu</p>
-    <p class="footer-tagline">Your food deserves a lookbook.</p>
+    <p class="footer-tagline">We eat with our eyes.</p>
+
+    <p class="footer-contact">
+      <a href="tel:+19198162113">Call: 919-816-2113</a>
+      <span>&middot;</span>
+      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
+    </p>
+
+    <p class="footer-note">Menu enhancement only. Not online ordering.</p>
   </div>
 </footer>
 
