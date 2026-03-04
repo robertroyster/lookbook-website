@@ -50,8 +50,8 @@
     // Why / Revenue Engine — content is hardcoded in HTML, skip dynamic injection
 
     // Who
-    set('.who .section-title', CONTENT.whoTitle);
-    var whoCards = document.querySelectorAll('.who-card');
+    set('#who .section-title', CONTENT.whoTitle);
+    var whoCards = document.querySelectorAll('#who .who-card');
     if (whoCards[0]) {
       if (CONTENT.whoCard1Title) whoCards[0].querySelector('.who-card-title').innerHTML = CONTENT.whoCard1Title;
       if (CONTENT.whoCard1Text) whoCards[0].querySelector('p').innerHTML = CONTENT.whoCard1Text;
@@ -60,7 +60,7 @@
       if (CONTENT.whoCard2Title) whoCards[1].querySelector('.who-card-title').innerHTML = CONTENT.whoCard2Title;
       if (CONTENT.whoCard2Text) whoCards[1].querySelector('p').innerHTML = CONTENT.whoCard2Text;
     }
-    set('.who-closer', CONTENT.whoCloser);
+    set('#who .who-closer', CONTENT.whoCloser);
 
     // Live Example
     set('.live-example .section-title', CONTENT.exampleTitle);

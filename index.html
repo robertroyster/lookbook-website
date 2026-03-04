@@ -15,120 +15,60 @@
     gtag('config', 'G-DMCKQMZL1X');
   </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="stylesheet" href="css/styles.css?v=4" />
 
   <!-- LookBook Attribution Tracking -->
   <script>
   (function() {
     'use strict';
-
     const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev';
     const VISITOR_ID_KEY = 'lbm_visitor_id';
     const SESSION_ID_KEY = 'lbm_session_id';
     const ATTRIBUTION_KEY = 'lbm_attribution';
-
     function uuid() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         const r = Math.random() * 16 | 0;
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
       });
     }
-
     function getVisitorId() {
       let id = localStorage.getItem(VISITOR_ID_KEY);
-      if (!id) {
-        id = uuid();
-        localStorage.setItem(VISITOR_ID_KEY, id);
-        document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax';
-      }
+      if (!id) { id = uuid(); localStorage.setItem(VISITOR_ID_KEY, id); document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax'; }
       return id;
     }
-
     function getSessionId() {
       let id = sessionStorage.getItem(SESSION_ID_KEY);
-      if (!id) {
-        id = uuid();
-        sessionStorage.setItem(SESSION_ID_KEY, id);
-      }
+      if (!id) { id = uuid(); sessionStorage.setItem(SESSION_ID_KEY, id); }
       return id;
     }
-
     function getUrlParams() {
       var params = new URLSearchParams(window.location.search);
-      return {
-        gclid: params.get('gclid'),
-        utm_source: params.get('utm_source'),
-        utm_medium: params.get('utm_medium'),
-        utm_campaign: params.get('utm_campaign'),
-        utm_term: params.get('utm_term'),
-        utm_content: params.get('utm_content')
-      };
+      return { gclid: params.get('gclid'), utm_source: params.get('utm_source'), utm_medium: params.get('utm_medium'), utm_campaign: params.get('utm_campaign'), utm_term: params.get('utm_term'), utm_content: params.get('utm_content') };
     }
-
     function storeAttribution(data) {
       var existing = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}');
-      if (data.gclid || !existing.gclid) {
-        var attribution = Object.assign({}, existing, data, { updated_at: Date.now() });
-        localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution));
-      }
+      if (data.gclid || !existing.gclid) { var attribution = Object.assign({}, existing, data, { updated_at: Date.now() }); localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution)); }
     }
-
-    function getAttribution() {
-      return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}');
-    }
-
+    function getAttribution() { return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); }
     async function captureAttribution() {
       var params = getUrlParams();
       if (!params.gclid && !params.utm_source) return;
-
-      var data = Object.assign({}, params, {
-        landing_page: window.location.pathname,
-        referrer: document.referrer,
-        visitor_id: getVisitorId(),
-        session_id: getSessionId()
-      });
-
+      var data = Object.assign({}, params, { landing_page: window.location.pathname, referrer: document.referrer, visitor_id: getVisitorId(), session_id: getSessionId() });
       storeAttribution(data);
-
       try {
-        var response = await fetch(API_BASE + '/api/public/attribution', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
+        var response = await fetch(API_BASE + '/api/public/attribution', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
         var result = await response.json();
-        if (result.attribution_id) {
-          storeAttribution({ attribution_id: result.attribution_id });
-        }
-      } catch (e) {
-        console.warn('Attribution capture failed:', e);
-      }
+        if (result.attribution_id) { storeAttribution({ attribution_id: result.attribution_id }); }
+      } catch (e) { console.warn('Attribution capture failed:', e); }
     }
-
     window.LookBookTracking = {
-      getVisitorId: getVisitorId,
-      getSessionId: getSessionId,
-      getAttribution: getAttribution,
-
+      getVisitorId: getVisitorId, getSessionId: getSessionId, getAttribution: getAttribution,
       getTrackingData: function() {
         var attr = getAttribution();
-        return {
-          visitor_id: getVisitorId(),
-          session_id: getSessionId(),
-          attribution_id: attr.attribution_id || null,
-          gclid: attr.gclid || null,
-          utm_source: attr.utm_source || null,
-          utm_medium: attr.utm_medium || null,
-          utm_campaign: attr.utm_campaign || null
-        };
+        return { visitor_id: getVisitorId(), session_id: getSessionId(), attribution_id: attr.attribution_id || null, gclid: attr.gclid || null, utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null };
       }
     };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', captureAttribution);
-    } else {
-      captureAttribution();
-    }
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', captureAttribution); } else { captureAttribution(); }
   })();
   </script>
 </head>
@@ -138,7 +78,6 @@
 <header class="top-nav">
   <div class="container nav-inner">
     <a class="nav-brand" href="#top">LookbookMenu</a>
-
     <nav class="nav-links" aria-label="Primary">
       <a href="/how-it-works.html">How It Works</a>
       <a href="/google-pipeline.html">Google Pipeline</a>
@@ -146,14 +85,7 @@
       <a href="/examples.html">Examples</a>
       <a href="/pricing.html">Pricing</a>
     </nav>
-
     <div class="nav-right">
-      <div class="header-contact" aria-label="Contact">
-        <a class="contact-link" href="tel:+19198162113">919-816-2113</a>
-        <span class="sep">&middot;</span>
-        <a class="contact-link" href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
-      </div>
-
       <a class="btn btn-primary nav-cta" href="/try">Scan Your Menu</a>
     </div>
   </div>
@@ -164,58 +96,41 @@
   <div class="container">
     <div class="hero-content">
       <h1 class="hero-title">We eat with our eyes.</h1>
-
       <p class="hero-subtitle">
         Your most beautiful dishes are hiding behind a PDF full of words.
         LookbookMenu turns your menu into a photo-first lookbook guests love to scroll —
-        so they go from <em>“that sounds interesting”</em> to <em>“I want that.”</em>
+        so they go from <em>"that sounds interesting"</em> to <em>"I want that."</em>
       </p>
-
       <p class="hero-proof">
         No app. No POS change. Not online ordering — just visual browsing that helps guests decide faster.
       </p>
-
       <div class="hero-ctas">
-        <a href="https://lookbook.menu/beautiful?v=3" class="btn btn-primary" target="_blank" rel="noopener">
-          See a Live Example
-        </a>
+        <a href="#" class="btn btn-primary">See a Live Example</a>
         <a href="/try" class="btn btn-secondary">Try It Free</a>
       </div>
-
-      <!-- Sexy photo strip (swap these image URLs with your best dishes) -->
       <div class="photo-strip" aria-label="Dish photo strip">
         <div class="photo-strip-track">
           <img src="https://r2.lookbookmenu.com/_stock/appetizers_01.jpg" alt="Appetizer" loading="lazy">
           <img src="https://r2.lookbookmenu.com/_stock/entrees_02.jpg" alt="Entree" loading="lazy">
           <img src="https://r2.lookbookmenu.com/_stock/appetizers_04.jpg" alt="Appetizer" loading="lazy">
           <img src="https://r2.lookbookmenu.com/_stock/burgers_01.jpg" alt="Burger" loading="lazy">
-          <!-- duplicate set for seamless loop -->
           <img src="https://r2.lookbookmenu.com/_stock/appetizers_01.jpg" alt="Appetizer" loading="lazy">
           <img src="https://r2.lookbookmenu.com/_stock/entrees_02.jpg" alt="Entree" loading="lazy">
           <img src="https://r2.lookbookmenu.com/_stock/appetizers_04.jpg" alt="Appetizer" loading="lazy">
           <img src="https://r2.lookbookmenu.com/_stock/burgers_01.jpg" alt="Burger" loading="lazy">
         </div>
       </div>
-
       <p class="hero-contact">
         <a href="tel:+19198162113">Call: 919-816-2113</a>
         <span>&middot;</span>
         <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
       </p>
     </div>
-
-    <!-- Video demo in phone mockup -->
     <div class="hero-phone">
       <div class="phone-mockup" aria-label="LookbookMenu demo">
         <div class="phone-screen demo-embed">
-          <video
-            class="demo-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            poster="https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/hero-poster.jpg"
-          >
+          <video class="demo-video" autoplay muted loop playsinline
+            poster="https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/hero-poster.jpg">
             <source src="https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/hero-demo.mp4" type="video/mp4">
           </video>
         </div>
@@ -225,50 +140,27 @@
 </section>
 
 <!-- ========== REVENUE ENGINE ========== -->
-<section class=”who” id=”why”>
-  <div class=”container”>
-    <h2 class=”section-title”>We drive revenue. Here’s how.</h2>
-
-    <div class=”who-columns” style=”grid-template-columns:1fr; max-width:680px; margin:0 auto var(--space-lg);”>
-      <div class=”who-card” style=”border-left:3px solid var(--accent); text-align:left;”>
-        <p style=”color:var(--muted); margin:0 0 8px;”><em>A manager told us:</em></p>
-        <p style=”color:var(--ink); margin:0;”>
-          “I try to get my servers to sell the special. We’ve got this beautiful grouper on special — mornay sauce with capers.
-          It’s wonderful… and they just don’t sell it.”
-        </p>
+<section class="who" id="why">
+  <div class="container">
+    <h2 class="section-title">We drive revenue. Here's how.</h2>
+    <div class="who-columns who-columns-3">
+      <div class="who-card">
+        <h3 class="who-card-title">Sell specials automatically</h3>
+        <p>Photos do the selling — every table, every time. No more hoping the pitch lands.</p>
+      </div>
+      <div class="who-card">
+        <h3 class="who-card-title">Increase check size with browsing</h3>
+        <p>Guests add apps, upgrades, and dessert because they <em>found</em> them — not because they read a list.</p>
+      </div>
+      <div class="who-card">
+        <h3 class="who-card-title">Make your menu visible online</h3>
+        <p>PDF menus are nearly invisible to modern discovery. If your menu isn't visible, you're getting left behind.</p>
       </div>
     </div>
-
-    <p style=”text-align:center; font-size:clamp(1rem, 2.5vw, 1.125rem); line-height:1.8; max-width:680px; margin:0 auto var(--space-sm);”>
-      Because words don’t sell food. <strong>Images do.</strong>
-    </p>
-    <p style=”text-align:center; font-size:clamp(1rem, 2.5vw, 1.125rem); line-height:1.8; max-width:680px; margin:0 auto var(--space-lg);”>
-      LookbookMenu turns your menu into <strong>Dish Discovery</strong> — “Wow, look at that dish” browsing that makes guests confident it’s worth the price.
-    </p>
-
-    <div class=”steps”>
-      <div class=”step-card”>
-        <div class=”step-number”>1</div>
-        <h3 class=”step-title”>Sell specials automatically</h3>
-        <p class=”step-desc”>Photos do the selling — every table, every time. No more hoping the pitch lands.</p>
-      </div>
-      <div class=”step-card”>
-        <div class=”step-number”>2</div>
-        <h3 class=”step-title”>Increase check size with browsing</h3>
-        <p class=”step-desc”>Guests add apps, upgrades, and dessert because they <em>found</em> them — not because they read a list.</p>
-      </div>
-      <div class=”step-card”>
-        <div class=”step-number”>3</div>
-        <h3 class=”step-title”>Make your menu visible online</h3>
-        <p class=”step-desc”>PDF menus are hard to browse and nearly invisible to modern discovery (search, AI, sharing). If your menu isn’t visible, you’re getting left behind.</p>
-      </div>
-    </div>
-
-    <p class=”who-closer”>A restaurant with a Lookbook lets guests browse dishes — on-site via QR and online on your website — instead of forcing them through a PDF full of words.</p>
-
-    <div class=”hero-ctas” style=”justify-content:center; margin-top:var(--space-md);”>
-      <a href=”/try” class=”btn btn-primary”>Scan Your Menu</a>
-      <a href=”/examples.html” class=”btn btn-secondary”>See Dish Discovery</a>
+    <p class="who-closer">Guests browse dishes on-site via QR and online on your website — instead of a PDF full of words.</p>
+    <div class="hero-ctas" style="justify-content:center; margin-top:var(--space-md);">
+      <a href="/try" class="btn btn-primary">Scan Your Menu</a>
+      <a href="/examples.html" class="btn btn-secondary">See Dish Discovery</a>
     </div>
   </div>
 </section>
@@ -277,19 +169,16 @@
 <section class="who" id="who">
   <div class="container">
     <h2 class="section-title">Built for busy restaurants — and for food designers.</h2>
-
     <div class="who-columns">
       <div class="who-card">
         <h3 class="who-card-title">Busy operators</h3>
-        <p>Fast setup. Easy updates. Clean in service. You’re not adding work — you’re making decisions easier.</p>
+        <p>Fast setup. Easy updates. Clean in service. You're not adding work — you're making decisions easier.</p>
       </div>
-
       <div class="who-card">
         <h3 class="who-card-title">Design-forward teams</h3>
         <p>Typography, spacing, vibe, presentation. A menu that feels like your brand — not a spreadsheet.</p>
       </div>
     </div>
-
     <p class="who-closer">Simple when you want it. Detailed when you need it.</p>
   </div>
 </section>
@@ -298,37 +187,23 @@
 <section class="how-it-works" id="how">
   <div class="container">
     <h2 class="section-title">We set it up fast. You make it gorgeous.</h2>
-
     <div class="steps">
       <div class="step-card">
         <div class="step-number">1</div>
         <h3 class="step-title">Instant Try-It (AI)</h3>
-        <p class="step-desc">
-          Upload your menu PDF, paste your website URL, or snap photos of your menu.
-          Our AI generates your first Lookbook immediately — so you can see it right away.
-        </p>
+        <p class="step-desc">Upload your menu PDF, paste your website URL, or snap photos.</p>
       </div>
-
       <div class="step-card">
         <div class="step-number">2</div>
         <h3 class="step-title">Photo Manager</h3>
-        <p class="step-desc">
-          Take dish photos during prep or on the pass. Upload from your phone.
-          Swap photos anytime. No designer. No delay.
-        </p>
+        <p class="step-desc">Take dish photos during prep. Upload from your phone.</p>
       </div>
-
       <div class="step-card">
         <div class="step-number">3</div>
         <h3 class="step-title">Easy edits</h3>
-        <p class="step-desc">
-          Update prices, descriptions, and sections. Turn items on/off (sold out, seasonal, 86’d).
-          Create lunch/dinner/happy hour menus without starting over.
-        </p>
+        <p class="step-desc">Update prices, descriptions, and sections.</p>
       </div>
     </div>
-
-    <p class="how-closer">Same menu. Better presentation.</p>
   </div>
 </section>
 
@@ -336,18 +211,14 @@
 <section class="analytics" id="analytics">
   <div class="container">
     <h2 class="section-title">Know what guests crave.</h2>
-    <p class="analytics-intro">If people are staring at a dish photo, that’s information you can use.</p>
-
+    <p class="analytics-intro">If people are staring at a dish photo, that's information you can use.</p>
     <ul class="analytics-list">
       <li><strong>QR scans</strong> by day and time</li>
       <li><strong>Items browsed</strong> — what gets attention</li>
       <li><strong>Dwell time</strong> — what guests linger on</li>
       <li><strong>Top sections</strong> — what pulls people in</li>
     </ul>
-
-    <p class="analytics-closer">
-      Use it to feature the winners, re-shoot the sleepers, and refine your menu like a merchandiser.
-    </p>
+    <p class="analytics-closer">Use it to feature the winners, re-shoot the sleepers, and refine your menu like a merchandiser.</p>
   </div>
 </section>
 
@@ -355,11 +226,11 @@
 <section class="features-strip" id="features">
   <div class="container">
     <ul class="features-list">
-      <li><strong>Multi-location ready</strong> Brand QR shows all locations. Location QR goes straight to that store.</li>
+      <li><strong>Multi-location ready</strong> Brand QR shows all locations.</li>
       <li><strong>Brand-matched design</strong> Logo, colors, and a clean lookbook feel.</li>
-      <li><strong>Dietary &amp; allergen tags</strong> GF, vegan, spicy, nuts — help guests decide confidently.</li>
+      <li><strong>Dietary &amp; allergen tags</strong> GF, vegan, spicy, nuts.</li>
       <li><strong>Shareable dish links</strong> Perfect for Instagram, Google posts, emails, ads.</li>
-      <li><strong>QR downloads + print tips</strong> Table tents, stickers, posters — simple to deploy.</li>
+      <li><strong>QR downloads + print tips</strong> Table tents, stickers, posters.</li>
       <li><strong>Real support</strong> We help you launch and keep it fresh.</li>
     </ul>
   </div>
@@ -369,37 +240,9 @@
 <section class="faq" id="faq">
   <div class="container">
     <h2 class="section-title">Common questions</h2>
-
     <div class="faq-list">
-      <details>
-        <summary>Is this online ordering?</summary>
-        <p>No. LookbookMenu is menu enhancement — a visual browsing layer that helps guests choose faster and feel confident.</p>
-      </details>
-
-      <details>
-        <summary>How fast can I see it?</summary>
-        <p>In minutes. Send a PDF, a URL, or menu photos and we generate a Try-It Lookbook immediately.</p>
-      </details>
-
-      <details>
-        <summary>What if I don’t have great photos yet?</summary>
-        <p>Start with the Try-It Lookbook, then use Photo Manager to swap in real dish photos as you shoot them — right from the line.</p>
-      </details>
-
-      <details>
-        <summary>Can we do multiple menus (lunch/dinner/happy hour)?</summary>
-        <p>Yes. Separate sections or separate menus — whatever matches how you serve.</p>
-      </details>
-
-      <details>
-        <summary>Can it work for multi-location brands?</summary>
-        <p>Yes. You can have a brand page plus location pages, with QRs for each.</p>
-      </details>
-
-      <details>
-        <summary>Can guests view it at home before they come?</summary>
-        <p>Yes. Share it anywhere — website, Google profile, Instagram bio, email, ads.</p>
-      </details>
+      <details><summary>Is this online ordering?</summary><p>No. LookbookMenu is menu enhancement.</p></details>
+      <details><summary>How fast can I see it?</summary><p>In minutes.</p></details>
     </div>
   </div>
 </section>
@@ -407,48 +250,27 @@
 <!-- ========== TRY IT ========== -->
 <section class="try-it" id="try-it">
   <div class="container">
-    <h2 class="section-title">Let’s make your menu look as good as your food.</h2>
-    <p class="section-subtitle">
-      Send your menu and we’ll generate your Try-It Lookbook so you can see it instantly.
-      Then start swapping in dish photos the same day.
-    </p>
-
+    <h2 class="section-title">Let's make your menu look as good as your food.</h2>
+    <p class="section-subtitle">Send your menu and we'll generate your Try-It Lookbook.</p>
     <div class="try-it-actions">
       <a class="btn btn-primary btn-large" href="/try">Try It Free</a>
     </div>
-
-    <p class="try-it-contact">
-      <a href="tel:+19198162113">Call: 919-816-2113</a>
-      <span>&middot;</span>
-      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
-    </p>
   </div>
 </section>
 
-<!-- ========== BUT WAIT... THERE'S MORE ========== -->
+<!-- ========== BUT WAIT ========== -->
 <section class="more-teaser" id="more-teaser">
   <div class="container">
     <h2 class="more-teaser-title">But wait… there's more.</h2>
-    <p class="more-teaser-body">
-      See exactly how LookBook turns your menu into a visual food showroom.
-    </p>
+    <p class="more-teaser-body">See exactly how LookBook turns your menu into a visual food showroom.</p>
     <a href="/how-it-works.html" class="btn btn-primary">Next: How It Works →</a>
   </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
 <footer class="footer">
   <div class="container">
     <p class="footer-brand">LookbookMenu</p>
     <p class="footer-tagline">We eat with our eyes.</p>
-
-    <p class="footer-contact">
-      <a href="tel:+19198162113">Call: 919-816-2113</a>
-      <span>&middot;</span>
-      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
-    </p>
-
-    <p class="footer-note">Menu enhancement only. Not online ordering.</p>
   </div>
 </footer>
 

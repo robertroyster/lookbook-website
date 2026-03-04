@@ -423,8 +423,8 @@ a { color: inherit; }
 .who-columns { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
 
 .who-card {
-  background: rgba(255,255,255,.78);
-  border: 1px solid var(--line);
+  background: #ffffff;
+  border: 1.5px solid rgba(31,22,15,.12);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(10px);
@@ -663,6 +663,7 @@ section[id] { scroll-margin-top: 96px; }
 
   .steps { grid-template-columns: repeat(3, 1fr); }
   .who-columns { grid-template-columns: repeat(2, 1fr); }
+  .who-columns-3 { grid-template-columns: repeat(3, 1fr); }
   .features-list { grid-template-columns: repeat(3, 1fr); }
 }
 
