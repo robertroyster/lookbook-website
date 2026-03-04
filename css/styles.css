@@ -350,13 +350,13 @@ a { color: inherit; }
 /* ========================================
    WHY
    ======================================== */
-.why { padding: var(--space-xl) 0; background: var(--bg); }
+.why { padding: var(--space-xl) 0; background: var(--surface); }
 .why .section-title { text-align: center; display: block; margin-bottom: var(--space-lg); }
 
 .why-body { max-width: 680px; margin: 0 auto var(--space-lg); }
 .why-body p { font-size: clamp(1rem, 2.5vw, 1.125rem); line-height: 1.8; margin-bottom: var(--space-sm); }
 
-.why-closer { color: var(--ink) !important; font-weight: 600; margin-top: var(--space-md) !important; }
+.why-closer { color: var(--ink) !important; font-weight: 600; margin-top: var(--space-md) !important; text-align: center; max-width: 680px; margin-left: auto; margin-right: auto; }
 
 .why-quote {
   border-left: 3px solid var(--accent);
@@ -374,23 +374,30 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-md);
-  max-width: 680px;
   margin: 0 auto var(--space-lg);
 }
 @media (min-width: 700px) {
-  .why-bullets { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
+  .why-bullets { grid-template-columns: repeat(3, 1fr); }
 }
 .why-bullet-card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  padding: var(--space-md);
-  box-shadow: var(--shadow-soft);
+  background: rgba(255,255,255,.78);
   border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+  padding: var(--space-md);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.why-bullet-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent);
 }
 .why-bullet-card h3 {
-  font-size: 1rem;
+  font-size: 1.125rem;
   margin: 0 0 var(--space-xs);
   color: var(--ink);
+  font-weight: 700;
 }
 .why-bullet-card p {
   font-size: 0.9375rem;
