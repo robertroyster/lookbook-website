@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && npm run copy-static",
-    "copy-static": "cp index.html how-it-works.html google-pipeline.html analytics.html examples.html pricing.html dist/ && cp -r css dist/ && cp -r js dist/ && cp -r assets dist/ 2>/dev/null || true",
+    "copy-static": "cp index.html how-it-works.html google-pipeline.html analytics.html examples.html pricing.html faq.html dist/ && cp -r css dist/ && cp -r js dist/ && cp -r assets dist/ 2>/dev/null || true",
     "preview": "vite preview"
   },
   "dependencies": {

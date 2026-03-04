@@ -647,6 +647,16 @@ a { color: inherit; }
 
 .faq-list details p { padding: 0 0 var(--space-md); color: var(--muted); line-height: 1.7; }
 
+.faq-group-title {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+}
+
+.faq + .faq { padding-top: 0; }
+
 /* ========================================
    TRY IT
    ======================================== */

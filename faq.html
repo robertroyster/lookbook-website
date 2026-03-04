@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Common Questions — LookbookMenu</title>
+  <meta name="description" content="Answers to the most common questions about LookbookMenu — the photo-first menu platform for restaurants." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMCKQMZL1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DMCKQMZL1X');
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+  (function() {
+    'use strict';
+    const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev';
+    const VISITOR_ID_KEY = 'lbm_visitor_id';
+    const SESSION_ID_KEY = 'lbm_session_id';
+    const ATTRIBUTION_KEY = 'lbm_attribution';
+    function uuid() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16); }); }
+    function getVisitorId() { let id = localStorage.getItem(VISITOR_ID_KEY); if (!id) { id = uuid(); localStorage.setItem(VISITOR_ID_KEY, id); document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax'; } return id; }
+    function getSessionId() { let id = sessionStorage.getItem(SESSION_ID_KEY); if (!id) { id = uuid(); sessionStorage.setItem(SESSION_ID_KEY, id); } return id; }
+    function getUrlParams() { var params = new URLSearchParams(window.location.search); return { gclid: params.get('gclid'), utm_source: params.get('utm_source'), utm_medium: params.get('utm_medium'), utm_campaign: params.get('utm_campaign'), utm_term: params.get('utm_term'), utm_content: params.get('utm_content') }; }
+    function storeAttribution(data) { var existing = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); if (data.gclid || !existing.gclid) { var attribution = Object.assign({}, existing, data, { updated_at: Date.now() }); localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution)); } }
+    function getAttribution() { return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); }
+    async function captureAttribution() { var params = getUrlParams(); if (!params.gclid && !params.utm_source) return; var data = Object.assign({}, params, { landing_page: window.location.pathname, referrer: document.referrer, visitor_id: getVisitorId(), session_id: getSessionId() }); storeAttribution(data); try { var response = await fetch(API_BASE + '/api/public/attribution', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); var result = await response.json(); if (result.attribution_id) { storeAttribution({ attribution_id: result.attribution_id }); } } catch (e) { console.warn('Attribution capture failed:', e); } }
+    window.LookBookTracking = { getVisitorId: getVisitorId, getSessionId: getSessionId, getAttribution: getAttribution, getTrackingData: function() { var attr = getAttribution(); return { visitor_id: getVisitorId(), session_id: getSessionId(), attribution_id: attr.attribution_id || null, gclid: attr.gclid || null, utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null }; } };
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', captureAttribution); } else { captureAttribution(); }
+  })();
+  </script>
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/">LookbookMenu</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/google-pipeline.html">Google Pipeline</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/examples.html">Examples</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/faq.html" class="active-page">Common Questions</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-primary nav-cta" href="/try">Scan Your Menu</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-hero-title">Common Questions</h1>
+    <p class="page-hero-subtitle">Everything you need to know about LookbookMenu.</p>
+  </div>
+</section>
+
+<!-- ========== FAQ: GETTING STARTED ========== -->
+<section class="faq">
+  <div class="container">
+    <h2 class="faq-group-title">Getting Started</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Is LookbookMenu an online ordering platform?</summary>
+        <p>No—LookbookMenu is a photo-first menu, discovery, and browsing platform. It helps guests explore your food, crave what they see, and click through to the ordering flow you already use.</p>
+      </details>
+      <details>
+        <summary>How fast can I see my menu in LookbookMenu?</summary>
+        <p>Very fast. Upload a menu PDF, paste your website URL, or snap photos of your menu, and our AI can generate your first lookbook quickly so you can see the experience right away.</p>
+      </details>
+      <details>
+        <summary>What if I don't have great food photos yet?</summary>
+        <p>That is completely fine. You can start with the assets you have now and improve over time. Add photos dish by dish, swap them anytime, and build a stronger visual menu without waiting for a full professional shoot.</p>
+      </details>
+      <details>
+        <summary>What kind of restaurants is this for?</summary>
+        <p>It works especially well for restaurants that care about presentation, have dishes worth showing off, run specials or events, or want a better way to turn menu browsing into revenue.</p>
+      </details>
+      <details>
+        <summary>Will this replace my website?</summary>
+        <p>No. LookbookMenu strengthens your menu experience and discovery layer. It can live alongside your existing website and ordering tools while making your menu much more visual and much easier to browse.</p>
+      </details>
+      <details>
+        <summary>What is the biggest difference between LookbookMenu and a PDF menu?</summary>
+        <p>A PDF lists your food. LookbookMenu helps sell it. Instead of forcing guests to read through words alone, it helps them discover dishes visually, crave what they see, and choose with more confidence.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ: MANAGING MENUS + PHOTOS ========== -->
+<section class="faq">
+  <div class="container">
+    <h2 class="faq-group-title">Managing Menus + Photos</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Do I need a designer or developer to keep it updated?</summary>
+        <p>No. You can update prices, descriptions, sections, availability, and photos without relying on a designer, rebuilding a PDF, or waiting on web edits.</p>
+      </details>
+      <details>
+        <summary>Can I run multiple menus like lunch, dinner, brunch, or happy hour?</summary>
+        <p>Yes. LookbookMenu supports multiple menus and dayparts, so you can present the right menu at the right time without starting over from scratch.</p>
+      </details>
+      <details>
+        <summary>What if my menu changes often?</summary>
+        <p>That is exactly where LookbookMenu helps most. It is built for restaurants that need to move quickly, keep things current, and avoid the friction of constant PDF and website updates.</p>
+      </details>
+      <details>
+        <summary>Can we promote food and drink specials?</summary>
+        <p>Yes. Specials are one of the strongest use cases. LookbookMenu helps you highlight the dishes and drinks you most want to sell, with imagery that makes them easier to notice and easier to crave.</p>
+      </details>
+      <details>
+        <summary>Can we make events browseable too?</summary>
+        <p>Yes. LookbookMenu can turn specials, limited-time offers, and events into visual browsing pages guests can actually explore—instead of burying them in a text post or PDF.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ: GOOGLE + AI DISCOVERY ========== -->
+<section class="faq">
+  <div class="container">
+    <h2 class="faq-group-title">Google + AI Discovery</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Does this help with Google Business Profile?</summary>
+        <p>Yes. LookbookMenu is built to work with Google Business Profile so your menu content and promotions are easier to connect to how guests already discover restaurants on Google.</p>
+      </details>
+      <details>
+        <summary>Why does Google Business Profile integration matter?</summary>
+        <p>Because guests often discover restaurants before they ever reach your website. A stronger visual presence tied into GBP helps your dishes, specials, and updates show up where people are already searching.</p>
+      </details>
+      <details>
+        <summary>Does this help with AI discovery too?</summary>
+        <p>Yes. One of the problems with PDFs is that they are weak discovery assets. LookbookMenu creates a more browseable, structured, photo-first layer that is better suited for modern web and AI-driven discovery.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ: GUESTS + MULTI-LOCATION ========== -->
+<section class="faq">
+  <div class="container">
+    <h2 class="faq-group-title">Guests + Multi-Location</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Can guests browse the menu at home before they come in?</summary>
+        <p>Yes. Guests can explore your menu before they ever arrive, which helps build craving earlier and makes them more confident about what they want to order.</p>
+      </details>
+      <details>
+        <summary>Can guests use it in-store too?</summary>
+        <p>Yes. It works well for in-store browsing, QR experiences, table-side discovery, and pre-visit browsing from home.</p>
+      </details>
+      <details>
+        <summary>Can it work for multi-location brands?</summary>
+        <p>Yes. LookbookMenu can support multi-location restaurant groups, making it easier to manage menus, location-specific items, and brand consistency across stores.</p>
+      </details>
+      <details>
+        <summary>Can each location have different menus or specials?</summary>
+        <p>Yes. Locations can have different menus, different specials, and different visual promotions while still staying within one brand system.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRY IT ========== -->
+<section class="try-it">
+  <div class="container">
+    <h2 class="section-title">Ready to see your menu come to life?</h2>
+    <p class="section-subtitle">Upload your menu and get your Try-It Lookbook in minutes.</p>
+    <div class="try-it-actions">
+      <a class="btn btn-primary btn-large" href="/try">Try It Free</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-brand">LookbookMenu</p>
+    <p class="footer-tagline">We eat with our eyes.</p>
+    <p class="footer-contact">
+      <a href="tel:+19198162113">Call: 919-816-2113</a>
+      <span>&middot;</span>
+      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
+    </p>
+    <p class="footer-note">Menu enhancement only. Not online ordering.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
