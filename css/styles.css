@@ -350,7 +350,7 @@ a { color: inherit; }
 /* ========================================
    WHY
    ======================================== */
-.why { padding: var(--space-xl) 0; background: var(--surface); }
+.why { padding: var(--space-xl) 0; background: var(--bg); }
 .why .section-title { text-align: center; display: block; margin-bottom: var(--space-lg); }
 
 .why-body { max-width: 680px; margin: 0 auto var(--space-lg); }
@@ -381,11 +381,11 @@ a { color: inherit; }
   .why-bullets { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
 }
 .why-bullet-card {
-  background: var(--white);
+  background: var(--surface);
   border-radius: var(--radius);
   padding: var(--space-md);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--line);
 }
 .why-bullet-card h3 {
   font-size: 1rem;
