@@ -8,7 +8,7 @@ var PAGE_CONTENT = {
   heroTitle: "See it in action.",
   heroSubtitle: "Browse a real LookBook menu below. Scroll through categories, tap into dishes, and see what your guests will experience.",
 
-  moreTeaserTitle: "Ready to launch yours?",
+  moreTeaserTitle: "Ready to launch your LookBook?",
   moreTeaserBody: "See pricing and start turning your menu into a food showroom.",
   moreTeaserBtn: "Next: Pricing \u2192",
   moreTeaserHref: "/pricing.html",

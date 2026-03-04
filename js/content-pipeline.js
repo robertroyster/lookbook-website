@@ -9,9 +9,9 @@ var PAGE_CONTENT = {
   heroSubtitle: "When someone finds your restaurant on Google, they want to see your food \u2014 not download a document. LookBook gives you shareable food pages that work inside Google Business Profile.",
 
   moreTeaserTitle: "But wait\u2026 there\u2019s more.",
-  moreTeaserBody: "If you can see what guests browse, you can sell more of what works.",
-  moreTeaserBtn: "Next: Analytics \u2192",
-  moreTeaserHref: "/analytics.html",
+  moreTeaserBody: "See real LookBook menus, category feeds, and dish pages in action.",
+  moreTeaserBtn: "Next: Examples \u2192",
+  moreTeaserHref: "/examples.html",
 
   loadSections: function (set) {
     set('.section-problem-title', 'The PDF problem');
