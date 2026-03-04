@@ -47,17 +47,7 @@
       if (CONTENT.links && CONTENT.links.tryIt) heroCtas[1].href = CONTENT.links.tryIt;
     }
 
-    // Why
-    set('.why .section-title', CONTENT.whyTitle);
-    var whyBody = document.querySelector('.why-body');
-    if (whyBody && Array.isArray(CONTENT.whyBody) && CONTENT.whyBody.length) {
-      whyBody.innerHTML = CONTENT.whyBody.map(function (p) { return '<p>' + p + '</p>'; }).join('')
-        + (CONTENT.whyCloser ? '<p class="why-closer">' + CONTENT.whyCloser + '</p>' : '');
-    }
-    var whyBullets = document.querySelector('.why-bullets');
-    if (whyBullets && Array.isArray(CONTENT.whyBullets) && CONTENT.whyBullets.length) {
-      whyBullets.innerHTML = CONTENT.whyBullets.map(function (b) { return '<li>' + b + '</li>'; }).join('');
-    }
+    // Why / Revenue Engine — content is hardcoded in HTML, skip dynamic injection
 
     // Who
     set('.who .section-title', CONTENT.whoTitle);
