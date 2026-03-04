@@ -358,15 +358,54 @@ a { color: inherit; }
 
 .why-closer { color: var(--ink) !important; font-weight: 600; margin-top: var(--space-md) !important; }
 
-.why-bullets { list-style: none; max-width: 600px; margin: 0 auto; }
-.why-bullets li {
-  padding: var(--space-xs) 0;
-  padding-left: 1.75rem;
-  position: relative;
-  color: var(--muted);
-  font-size: 0.9375rem;
+.why-quote {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-md);
+  margin: var(--space-md) auto;
+  max-width: 680px;
+  font-style: normal;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  line-height: 1.7;
+  color: var(--ink);
 }
-.why-bullets li::before { content: '\2713'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.why-quote em { color: var(--muted); font-style: italic; }
+
+.why-bullets {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  max-width: 680px;
+  margin: 0 auto var(--space-lg);
+}
+@media (min-width: 700px) {
+  .why-bullets { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
+}
+.why-bullet-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,.06);
+}
+.why-bullet-card h3 {
+  font-size: 1rem;
+  margin: 0 0 var(--space-xs);
+  color: var(--ink);
+}
+.why-bullet-card p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+.why-ctas {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-lg);
+  flex-wrap: wrap;
+}
 
 /* ========================================
    WHO
