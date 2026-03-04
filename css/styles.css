@@ -653,6 +653,95 @@ section[id] { scroll-margin-top: 96px; }
 }
 
 /* ========================================
+   TEASER STRIP (3-card row linking to subpages)
+   ======================================== */
+.teaser-strip {
+  padding: var(--space-xl) 0;
+}
+
+.teaser-strip-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.teaser-card {
+  background: rgba(255,255,255,.78);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+  padding: var(--space-md);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.teaser-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(249,115,22,.22);
+}
+
+.teaser-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-xs);
+}
+
+.teaser-card-desc {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.teaser-card .btn {
+  font-size: 0.875rem;
+  padding: 8px 18px;
+}
+
+@media (min-width: 640px) {
+  .teaser-strip-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .teaser-strip-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ========================================
+   OUTCOMES (compact bullet section)
+   ======================================== */
+.outcomes {
+  padding: var(--space-lg) 0;
+  text-align: center;
+}
+
+.outcomes-title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  margin-bottom: var(--space-md);
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* ========================================
+   MINI EXAMPLE PREVIEW
+   ======================================== */
+.example-preview {
+  padding: var(--space-xl) 0;
+  background: var(--surface);
+  text-align: center;
+}
+
+.example-preview .live-example-embed {
+  max-width: 360px;
+  margin: 0 auto var(--space-md);
+}
+
+/* ========================================
    SUBPAGE STYLES
    ======================================== */
 

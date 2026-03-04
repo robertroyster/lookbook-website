@@ -59,31 +59,6 @@
       whyBullets.innerHTML = CONTENT.whyBullets.map(function (b) { return '<li>' + b + '</li>'; }).join('');
     }
 
-    // Who
-    set('.who .section-title', CONTENT.whoTitle);
-    var whoCards = document.querySelectorAll('.who-card');
-    if (whoCards[0]) {
-      if (CONTENT.whoCard1Title) whoCards[0].querySelector('.who-card-title').innerHTML = CONTENT.whoCard1Title;
-      if (CONTENT.whoCard1Text) whoCards[0].querySelector('p').innerHTML = CONTENT.whoCard1Text;
-    }
-    if (whoCards[1]) {
-      if (CONTENT.whoCard2Title) whoCards[1].querySelector('.who-card-title').innerHTML = CONTENT.whoCard2Title;
-      if (CONTENT.whoCard2Text) whoCards[1].querySelector('p').innerHTML = CONTENT.whoCard2Text;
-    }
-    set('.who-closer', CONTENT.whoCloser);
-
-    // Live Example
-    set('.live-example .section-title', CONTENT.exampleTitle);
-    set('.live-example .section-subtitle', CONTENT.exampleSubtitle);
-    set('.example-note', CONTENT.exampleNote);
-    set('.example-callout', CONTENT.exampleCallout);
-    var exampleCtas = document.querySelectorAll('.example-ctas .btn');
-    if (exampleCtas[0]) {
-      if (CONTENT.exampleCta1) exampleCtas[0].innerHTML = CONTENT.exampleCta1;
-      if (CONTENT.links && CONTENT.links.tryIt) exampleCtas[0].href = CONTENT.links.tryIt;
-    }
-    if (exampleCtas[1] && CONTENT.exampleCta2) exampleCtas[1].innerHTML = CONTENT.exampleCta2;
-
     // How It Works
     set('.how-it-works .section-title', CONTENT.howTitle);
     var stepCards = document.querySelectorAll('.step-card');
@@ -95,25 +70,6 @@
       });
     }
     set('.how-closer', CONTENT.howCloser);
-
-    // Analytics
-    set('.analytics .section-title', CONTENT.analyticsTitle);
-    set('.analytics-intro', CONTENT.analyticsIntro);
-    var analyticsList = document.querySelector('.analytics-list');
-    if (analyticsList && Array.isArray(CONTENT.analyticsItems) && CONTENT.analyticsItems.length) {
-      analyticsList.innerHTML = CONTENT.analyticsItems.map(function (item) {
-        return '<li><strong>' + item.label + '</strong> \u2014 ' + item.detail + '</li>';
-      }).join('');
-    }
-    set('.analytics-closer', CONTENT.analyticsCloser);
-
-    // Features
-    var featuresList = document.querySelector('.features-list');
-    if (featuresList && Array.isArray(CONTENT.features) && CONTENT.features.length) {
-      featuresList.innerHTML = CONTENT.features.map(function (f) {
-        return '<li><strong>' + f.title + '</strong> ' + f.desc + '</li>';
-      }).join('');
-    }
 
     // FAQ
     set('.faq .section-title', CONTENT.faqTitle);

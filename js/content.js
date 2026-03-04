@@ -1,13 +1,13 @@
 /**
- * Site Content
+ * Site Content — Homepage
  * Edit text here and it will update on the website.
  * After editing, commit and push to deploy changes.
  */
 
 const CONTENT = {
   // Meta
-  siteTitle: "LookbookMenu — We eat with our eyes",
-  siteDescription: "Your most beautiful dishes are hiding behind a PDF. LookbookMenu turns your menu into a photo-first lookbook guests love to scroll.",
+  siteTitle: "LookbookMenu \u2014 We eat with our eyes",
+  siteDescription: "Photo-first browsing so guests go from \u201csounds good\u201d to \u201cI want that.\u201d LookBook turns your menu into a visual food showroom.",
 
   // Nav
   navBrand: "LookbookMenu",
@@ -15,107 +15,53 @@ const CONTENT = {
 
   // Hero
   heroTitle: "We eat with our eyes.",
-  heroSubtitle: "Your most beautiful dishes are hiding behind a PDF full of words. LookbookMenu turns your menu into a photo-first lookbook guests love to scroll\u2014so they go from \u201cthat sounds interesting\u201d to \u201cI want that.\u201d",
-  heroProof: "No app. No POS change. Not online ordering\u2014just visual browsing that helps guests decide faster.",
+  heroSubtitle: "Photo-first browsing so guests go from <em>\u201csounds good\u201d</em> to <em>\u201cI want that.\u201d</em>",
   heroCta1: "See a Live Example",
-  heroCta2: "Try It Free",
+  heroCta2: "Scan Your Menu",
 
-  // Why
-  whyTitle: "The table decides. The kitchen confirms.",
+  // PDF Problem (mini)
+  whyTitle: "Your best dishes are hiding behind a PDF.",
   whyBody: [
-    "Watch what people do when they sit down. They don\u2019t start by reading. They look around. They see what\u2019s on other tables. They watch plates come out of the kitchen.",
-    "And then it happens\u2014regret. They spot a better dish and think: \u201cI should\u2019ve gotten that.\u201d",
-    "A PDF can\u2019t show that moment. A Lookbook can."
+    "Guests don\u2019t read menus \u2014 they look around the room to see what looks good. A PDF full of words can\u2019t create that craving. A LookBook can."
   ],
-  whyCloser: "Put your best plates where guests are already looking: their phone.",
   whyBullets: [
-    "Fewer questions because guests can see what it is",
-    "Faster decisions because the photos do the explaining",
-    "More confident orders (and fewer \u201cI wish I ordered that\u201d moments)"
+    "Sell more appetizers, desserts, and cocktails",
+    "Promote specials, events, and seasonal dishes",
+    "No app, no POS change \u2014 just a visual layer on top of your existing menu"
   ],
 
-  // Who
-  whoTitle: "Built for busy restaurants\u2014and for food designers.",
-  whoCard1Title: "Busy operators",
-  whoCard1Text: "You want it live fast, easy to update, and clean in service. We get it.",
-  whoCard2Title: "Design-forward",
-  whoCard2Text: "You care about the look, the spacing, the vibe, and the way dishes are presented. We do too.",
-  whoCloser: "Simple when you want it. Detailed when you need it.",
-
-  // Live Example
-  exampleTitle: "A menu that looks like your food.",
-  exampleSubtitle: "A Lookbook feels like browsing a feed\u2014sections are clean, dish photos are front and center, and guests can scan fast without getting lost in text.",
-  exampleCallout: "Want yours built? Send your menu and we\u2019ll generate a Try-It Lookbook so you can see it immediately.",
-  exampleCta1: "Try It Free",
-  exampleCta2: "See FAQs",
-
-  // How It Works
-  howTitle: "We set it up fast. You make it gorgeous.",
+  // How It Works (mini 3-step)
+  howTitle: "Launch in minutes.",
   howSteps: [
-    { title: "Instant Try-It (AI)", desc: "Upload your menu PDF, paste your website URL, or snap photos of your menu. Our AI generates your first Lookbook immediately so you can see the experience right away." },
-    { title: "Photo Manager", desc: "Take dish photos during prep or on the pass. Upload from your phone. Swap photos anytime. No designer. No delay." },
-    { title: "Keep it current", desc: "Update prices, descriptions, and sections. Turn items on/off (sold out, seasonal, 86\u2019d). Create lunch/dinner/happy hour menus without starting over." }
-  ],
-  howCloser: "Same menu. Better presentation.",
-
-  // Analytics
-  analyticsTitle: "Know what guests crave.",
-  analyticsIntro: "If people are staring at a dish photo, that\u2019s information you can use.",
-  analyticsItems: [
-    { label: "QR scans", detail: "by day and time" },
-    { label: "Items browsed", detail: "what gets the attention" },
-    { label: "Dwell time", detail: "what guests linger on" },
-    { label: "Top sections", detail: "what\u2019s pulling people in" }
-  ],
-  analyticsCloser: "Use it to feature the winners, re-shoot the sleepers, and refine your menu like a merchandiser.",
-
-  // Features
-  features: [
-    { title: "Multi-location ready", desc: "Brand QR shows all locations. Location QR goes straight to that store." },
-    { title: "Brand-matched design", desc: "Logo, colors, and a clean lookbook feel." },
-    { title: "Dietary & allergen tags", desc: "GF, vegan, spicy, nuts\u2014help guests decide confidently." },
-    { title: "Shareable dish links", desc: "Perfect for Instagram, Google posts, emails, ads." },
-    { title: "QR downloads + print tips", desc: "Table tents, stickers, posters\u2014simple to deploy." },
-    { title: "Real support", desc: "We help you launch and keep it fresh." }
+    { title: "Upload", desc: "Send a PDF, paste a URL, or snap photos of your menu." },
+    { title: "Share", desc: "Get a link and QR code. Add to tables, Google, Instagram, anywhere." },
+    { title: "Update", desc: "Swap photos and edit anytime from your phone. No designer needed." }
   ],
 
-  // FAQ
+  // FAQ (3 Qs)
   faqTitle: "Common questions",
   faqs: [
     {
       q: "Is this online ordering?",
-      a: "No. LookbookMenu is menu enhancement\u2014a visual browsing layer that helps guests choose faster and feel confident."
+      a: "No. LookBook is visual browsing \u2014 not ordering, not delivery. It helps guests decide by showing them the food."
+    },
+    {
+      q: "Do I need to change my POS or website?",
+      a: "No. LookBook is a layer on top of what you already have. No integrations, no rebuilds."
     },
     {
       q: "How fast can I see it?",
-      a: "In minutes. Send a PDF, a URL, or menu photos and we\u2019ll generate a Try-It Lookbook immediately."
-    },
-    {
-      q: "What if I don\u2019t have great photos yet?",
-      a: "Start with the Try-It Lookbook, then use Photo Manager to swap in real dish photos as you shoot them\u2014right from the line."
-    },
-    {
-      q: "Can we do multiple menus (lunch/dinner/happy hour)?",
-      a: "Yes. Separate sections or separate menus\u2014whatever matches how you serve."
-    },
-    {
-      q: "Can it work for multi-location brands?",
-      a: "Yes. You can have a brand page plus location pages, with QRs for each."
-    },
-    {
-      q: "Can guests view it at home before they come?",
-      a: "Yes. Share it anywhere\u2014website, Google profile, Instagram bio, email."
+      a: "Minutes. Upload a menu and your LookBook is generated immediately."
     }
   ],
 
-  // Try It
+  // Try It CTA
   tryTitle: "Let\u2019s make your menu look as good as your food.",
-  trySubtitle: "Send your menu and we\u2019ll generate your Try-It Lookbook so you can see it instantly. Then you can start swapping in dish photos the same day.",
-  tryCta: "Try It Free",
+  tryCta: "Scan Your Menu",
 
-  // But Wait... There's More (homepage teaser)
+  // But Wait... There's More
   moreTeaserTitle: "But wait\u2026 there\u2019s more.",
-  moreTeaserBody: "See exactly how LookBook turns your menu into a visual food showroom.",
+  moreTeaserBody: "Want to see the exact guest flow \u2014 from QR scan to dish pages?",
   moreTeaserBtn: "Next: How It Works \u2192",
   moreTeaserHref: "/how-it-works.html",
 
@@ -129,7 +75,7 @@ const CONTENT = {
   phoneFull: "+19198162113",
   email: "info@lookbookmenu.com",
 
-  // Links (edit URLs here)
+  // Links
   links: {
     liveExample: "https://lookbook.menu/beautiful?v=3",
     tryIt: "/try"

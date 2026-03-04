@@ -9,7 +9,7 @@ var PAGE_CONTENT = {
   heroSubtitle: "LookBook turns your existing menu into a photo-first browsing experience. Guests see dishes, not walls of text \u2014 and they order with confidence.",
 
   moreTeaserTitle: "But wait\u2026 there\u2019s more.",
-  moreTeaserBody: "See how LookBook turns your Google profile into a food discovery engine.",
+  moreTeaserBody: "Now put dish links where guests actually discover restaurants: Google.",
   moreTeaserBtn: "Next: Google Pipeline \u2192",
   moreTeaserHref: "/google-pipeline.html",
 
