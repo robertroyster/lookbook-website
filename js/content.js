@@ -36,10 +36,10 @@ const CONTENT = {
 
   // Who
   whoTitle: "Built for busy restaurants\u2014and for food designers.",
-  whoCard1Title: "Busy operators",
-  whoCard1Text: "You want it live fast, easy to update, and clean in service. We get it.",
-  whoCard2Title: "Design-forward",
-  whoCard2Text: "You care about the look, the spacing, the vibe, and the way dishes are presented. We do too.",
+  whoCard1Title: "Easy to run",
+  whoCard1Text: "Built for teams who need a menu system that is fast to launch, simple to update, and painless to manage.",
+  whoCard2Title: "Built to sell beautifully",
+  whoCard2Text: "Every dish gets a cleaner, more intentional presentation that makes your menu feel more premium and your food more craveable.",
   whoCloser: "Simple when you want it. Detailed when you need it.",
 
   // Live Example
@@ -52,9 +52,10 @@ const CONTENT = {
   // How It Works
   howTitle: "We set it up fast. You make it gorgeous.",
   howSteps: [
-    { title: "Instant Try-It (AI)", desc: "Upload your menu PDF, paste your website URL, or snap photos of your menu. Our AI generates your first Lookbook immediately so you can see the experience right away." },
-    { title: "Photo Manager", desc: "Take dish photos during prep or on the pass. Upload from your phone. Swap photos anytime. No designer. No delay." },
-    { title: "Keep it current", desc: "Update prices, descriptions, and sections. Turn items on/off (sold out, seasonal, 86\u2019d). Create lunch/dinner/happy hour menus without starting over." }
+    { title: "Instant Try-It (AI)", desc: "Upload your menu PDF, paste your website URL, or snap menu photos\u2014LookbookMenu builds your first photo-first lookbook in minutes so you can see (and share) the experience right away." },
+    { title: "Photo Manager", desc: "Shoot dishes during prep or on the pass, upload from your phone, and swap photos anytime. No designer. No waiting. Your menu always looks its best." },
+    { title: "Keep it current", desc: "Edit prices, descriptions, and sections anytime. Toggle items on/off (sold out, seasonal, 86\u2019d), run lunch/dinner/happy hour menus, and highlight the dishes you most want to sell\u2014specials, upsells, and high-margin winners." },
+    { title: "Specials + events made browseable", desc: "Launch food and drink specials fast, keep limited-time offers fresh, and turn events into visual pages guests can actually explore\u2014not just text buried in a post or PDF." }
   ],
   howCloser: "Same menu. Better presentation.",
 
