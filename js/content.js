@@ -11,7 +11,7 @@ const CONTENT = {
 
   // Nav
   navBrand: "LookbookMenu",
-  navCta: "Try It Free",
+  navCta: "Scan Your Menu",
 
   // Hero
   heroTitle: "We eat with our eyes.",
@@ -112,6 +112,12 @@ const CONTENT = {
   tryTitle: "Let\u2019s make your menu look as good as your food.",
   trySubtitle: "Send your menu and we\u2019ll generate your Try-It Lookbook so you can see it instantly. Then you can start swapping in dish photos the same day.",
   tryCta: "Try It Free",
+
+  // But Wait... There's More (homepage teaser)
+  moreTeaserTitle: "But wait\u2026 there\u2019s more.",
+  moreTeaserBody: "See exactly how LookBook turns your menu into a visual food showroom.",
+  moreTeaserBtn: "Next: How It Works \u2192",
+  moreTeaserHref: "/how-it-works.html",
 
   // Footer
   footerBrand: "LookbookMenu",

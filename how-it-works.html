@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How It Works — LookbookMenu</title>
+  <meta name="description" content="See how LookBook turns your restaurant menu into a visual food showroom guests love to scroll." />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMCKQMZL1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DMCKQMZL1X');
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- LookBook Attribution Tracking -->
+  <script>
+  (function() {
+    'use strict';
+    const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev';
+    const VISITOR_ID_KEY = 'lbm_visitor_id';
+    const SESSION_ID_KEY = 'lbm_session_id';
+    const ATTRIBUTION_KEY = 'lbm_attribution';
+    function uuid() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+      });
+    }
+    function getVisitorId() {
+      let id = localStorage.getItem(VISITOR_ID_KEY);
+      if (!id) { id = uuid(); localStorage.setItem(VISITOR_ID_KEY, id); document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax'; }
+      return id;
+    }
+    function getSessionId() {
+      let id = sessionStorage.getItem(SESSION_ID_KEY);
+      if (!id) { id = uuid(); sessionStorage.setItem(SESSION_ID_KEY, id); }
+      return id;
+    }
+    function getUrlParams() {
+      var params = new URLSearchParams(window.location.search);
+      return { gclid: params.get('gclid'), utm_source: params.get('utm_source'), utm_medium: params.get('utm_medium'), utm_campaign: params.get('utm_campaign'), utm_term: params.get('utm_term'), utm_content: params.get('utm_content') };
+    }
+    function storeAttribution(data) {
+      var existing = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}');
+      if (data.gclid || !existing.gclid) { var attribution = Object.assign({}, existing, data, { updated_at: Date.now() }); localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution)); }
+    }
+    function getAttribution() { return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); }
+    async function captureAttribution() {
+      var params = getUrlParams();
+      if (!params.gclid && !params.utm_source) return;
+      var data = Object.assign({}, params, { landing_page: window.location.pathname, referrer: document.referrer, visitor_id: getVisitorId(), session_id: getSessionId() });
+      storeAttribution(data);
+      try {
+        var response = await fetch(API_BASE + '/api/public/attribution', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        var result = await response.json();
+        if (result.attribution_id) { storeAttribution({ attribution_id: result.attribution_id }); }
+      } catch (e) { console.warn('Attribution capture failed:', e); }
+    }
+    window.LookBookTracking = {
+      getVisitorId: getVisitorId, getSessionId: getSessionId, getAttribution: getAttribution,
+      getTrackingData: function() { var attr = getAttribution(); return { visitor_id: getVisitorId(), session_id: getSessionId(), attribution_id: attr.attribution_id || null, gclid: attr.gclid || null, utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null }; }
+    };
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', captureAttribution); } else { captureAttribution(); }
+  })();
+  </script>
+</head>
+<body>
+
+<!-- ========== STICKY NAV ========== -->
+<header class="top-nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/">LookbookMenu</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/how-it-works.html" class="active-page">How It Works</a>
+      <a href="/google-pipeline.html">Google Pipeline</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/examples.html">Examples</a>
+      <a href="/pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-right">
+      <div class="header-contact" aria-label="Contact">
+        <a class="contact-link" href="tel:+19198162113">919-816-2113</a>
+        <span class="sep">&middot;</span>
+        <a class="contact-link" href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
+      </div>
+      <a class="btn btn-primary nav-cta" href="/try">Scan Your Menu</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-hero-title">Your menu, but visual.</h1>
+    <p class="page-hero-subtitle">
+      LookBook turns your existing menu into a photo-first browsing experience.
+      Guests see dishes, not walls of text — and they order with confidence.
+    </p>
+    <div class="page-hero-ctas">
+      <a href="/try" class="btn btn-primary">Scan Your Menu</a>
+      <a href="/examples.html" class="btn btn-secondary">See Examples</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VISUAL BROWSING ========== -->
+<section class="page-section" id="visual">
+  <div class="container">
+    <h2 class="section-title section-visual-title">Visual browsing, not reading.</h2>
+    <div class="page-section-body">
+      <p class="section-visual-body">
+        Guests scroll through dish photos organized by category — appetizers, entrées, desserts, cocktails.
+        Each dish shows a photo, name, description, and price. It feels like browsing a feed, not reading a document.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CATEGORY PAGES ========== -->
+<section class="page-section" id="categories">
+  <div class="container">
+    <h2 class="section-title section-categories-title">Category pages</h2>
+    <div class="page-section-body">
+      <p class="section-categories-body">
+        Every menu section gets its own shareable page. Link directly to appetizers from your Google profile,
+        or cocktails from an Instagram post.
+      </p>
+      <ul class="url-examples">
+        <li>/your-restaurant/category/appetizers</li>
+        <li>/your-restaurant/category/desserts</li>
+        <li>/your-restaurant/category/cocktails</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DISH PAGES ========== -->
+<section class="page-section" id="dishes">
+  <div class="container">
+    <h2 class="section-title section-dishes-title">Dish pages</h2>
+    <div class="page-section-body">
+      <p class="section-dishes-body">
+        Every dish gets its own page with a photo, description, price, and dietary tags.
+        Share individual dishes in Google Posts, emails, or ads.
+      </p>
+      <ul class="url-examples">
+        <li>/your-restaurant/dish/buffalo-chicken-pizza</li>
+        <li>/your-restaurant/dish/chocolate-lava-cake</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== QR FLOW ========== -->
+<section class="page-section" id="qr">
+  <div class="container">
+    <h2 class="section-title section-qr-title">QR → phone → food</h2>
+    <div class="page-section-body">
+      <p class="section-qr-body">
+        Guests scan a QR code at the table and instantly see your menu as a visual feed.
+        No app download. No pinching a PDF. Just beautiful food on their phone.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BUT WAIT... THERE'S MORE ========== -->
+<section class="more-teaser">
+  <div class="container">
+    <h2 class="more-teaser-title">But wait… there's more.</h2>
+    <p class="more-teaser-body">
+      See how LookBook turns your Google profile into a food discovery engine.
+    </p>
+    <a href="/google-pipeline.html" class="btn btn-primary">Next: Google Pipeline →</a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-brand">LookbookMenu</p>
+    <p class="footer-tagline">We eat with our eyes.</p>
+    <p class="footer-contact">
+      <a href="tel:+19198162113">Call: 919-816-2113</a>
+      <span>&middot;</span>
+      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
+    </p>
+    <p class="footer-note">Menu enhancement only. Not online ordering.</p>
+  </div>
+</footer>
+
+<script src="js/content-how.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

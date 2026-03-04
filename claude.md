@@ -8,9 +8,10 @@
 2. Check relevant docs based on the task:
    - `docs/architecture.md` - Project structure, tech stack
    - `docs/css-design-system.md` - Styling, colors, components
-   - `docs/javascript.md` - Animations, interactions
+   - `docs/javascript.md` - Animations, content system, tracking
    - `docs/deployment.md` - Cloudflare Pages & R2
    - `docs/image-guidelines.md` - Asset specs
+   - `docs/lookbook transfer.md` - Google Ads tracking integration
    - `docs/marketing/` - Brand messaging, taglines
 
 ## Updating Documentation
@@ -36,10 +37,15 @@ When you learn something new about the codebase:
 
 | Purpose | URL |
 |---------|-----|
-| Live Demo | https://lookbook.menu/browse/beautiful |
+| Live Demo | https://lookbook.menu/beautiful?v=3 |
+| Try-It Page | /try |
+| Contact Phone | 919-816-2113 |
 | Contact Email | info@lookbookmenu.com |
 | GitHub Repo | https://github.com/robertroyster/lookbook-website |
-| R2 Media Bucket | https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/ |
+| R2 Hero Assets | https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/ |
+| R2 Stock Photos | https://r2.lookbookmenu.com/_stock/ |
+| Admin API | https://lookbook-admin-api.robert-royster.workers.dev/api/ |
+| GA4 Tag | G-DMCKQMZL1X |
 
 ## Commit Style
 
@@ -47,7 +53,7 @@ When you learn something new about the codebase:
 git commit -m "$(cat <<'EOF'
 Short description of change
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -59,34 +65,47 @@ EOF
 ## Code Patterns
 
 **DO:**
-- Keep it vanilla (HTML, CSS, JS only)
+- Keep the landing page vanilla (HTML, CSS, JS only)
 - Mobile-first CSS (base styles for mobile, breakpoints add complexity)
 - Use CSS custom properties for colors/spacing
 - Use semantic HTML elements
 - Use native elements when possible (`<details>` for FAQ, not JS)
-- Keep JS minimal and dependency-free
+- Keep JS minimal and dependency-free on the landing page
+- Edit text in `js/content.js` (not directly in HTML)
 
 **DON'T:**
-- Add npm dependencies or frameworks
+- Add npm dependencies to the landing page
 - Over-engineer simple features
-- Add build steps or transpilation
 - Use jQuery or animation libraries
 - Add comments unless logic is non-obvious
 
+## Architecture Notes
+
+- **Hybrid site:** Landing page is static HTML; Try-It page is a Vue 3 SPA
+- **Content system:** All landing page copy lives in `js/content.js` → injected by `loadContent()` in `main.js`
+- **Tracking:** GA4 + custom attribution tracking on both pages
+- **Build:** `npm run build` (Vite for Vue app, then copies static files to dist/)
+
 ## Common Tasks
+
+### Update Landing Page Copy
+Edit `js/content.js` — all text is centralized there.
 
 ### Add a New Section
 1. Add HTML section in `index.html` following existing patterns
-2. Use existing CSS classes (`.section-title`, `.container`, etc.)
-3. Add section link to nav if needed
+2. Add content fields in `js/content.js`
+3. Add `loadContent()` logic in `js/main.js`
+4. Add styles in `css/styles.css`
+5. Add section link to nav if needed
 
 ### Update CTAs
-- Primary CTA links to: `https://lookbook.menu/browse/beautiful`
+- Primary CTA links to: `/try`
+- Live example links to: `https://lookbook.menu/beautiful?v=3`
 - Demo booking uses mailto: `mailto:info@lookbookmenu.com?subject=...`
 
 ### Add Media Assets
-1. Upload to R2 bucket `/assets/` folder
-2. Reference with full URL: `https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/filename.jpg`
+1. Upload to appropriate R2 bucket
+2. Reference with full URL
 3. Follow naming conventions in `docs/image-guidelines.md`
 
 ### Add Animations
@@ -95,18 +114,18 @@ EOF
 
 ## Things to Avoid
 
-- **No new dependencies** - Keep the site dependency-free
-- **No build tools** - No webpack, vite, etc.
+- **No new dependencies on landing page** - Keep it dependency-free
 - **No over-engineering** - Simple solutions only
-- **No framework patterns** - No components, no state management
+- **No framework patterns on landing page** - No components, no state management
 - **No unused code** - Delete it, don't comment it out
 - **No backwards-compat hacks** - Just change things directly
 
 ## Key Project Info
 
-- **Stack:** Vanilla HTML, CSS, JS (no frameworks)
+- **Landing page:** Vanilla HTML, CSS, JS (452 + 632 + 337 lines)
+- **Content config:** `js/content.js` (132 lines)
+- **Try-It page:** Vue 3 + Vue Router SPA (~1200 lines)
 - **Hosting:** Cloudflare Pages (auto-deploys from main)
-- **Media:** Cloudflare R2
-- **Build:** None required (static files)
-- **CSS:** 1020 lines, custom design system
-- **JS:** 89 lines, IntersectionObserver animations
+- **Media:** Cloudflare R2 (two buckets)
+- **Build:** Vite (for Try-It page only)
+- **Analytics:** GA4 + custom attribution tracking

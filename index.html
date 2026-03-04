@@ -16,6 +16,121 @@
   </script>
 
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- LookBook Attribution Tracking -->
+  <script>
+  (function() {
+    'use strict';
+
+    const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev';
+    const VISITOR_ID_KEY = 'lbm_visitor_id';
+    const SESSION_ID_KEY = 'lbm_session_id';
+    const ATTRIBUTION_KEY = 'lbm_attribution';
+
+    function uuid() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+      });
+    }
+
+    function getVisitorId() {
+      let id = localStorage.getItem(VISITOR_ID_KEY);
+      if (!id) {
+        id = uuid();
+        localStorage.setItem(VISITOR_ID_KEY, id);
+        document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax';
+      }
+      return id;
+    }
+
+    function getSessionId() {
+      let id = sessionStorage.getItem(SESSION_ID_KEY);
+      if (!id) {
+        id = uuid();
+        sessionStorage.setItem(SESSION_ID_KEY, id);
+      }
+      return id;
+    }
+
+    function getUrlParams() {
+      var params = new URLSearchParams(window.location.search);
+      return {
+        gclid: params.get('gclid'),
+        utm_source: params.get('utm_source'),
+        utm_medium: params.get('utm_medium'),
+        utm_campaign: params.get('utm_campaign'),
+        utm_term: params.get('utm_term'),
+        utm_content: params.get('utm_content')
+      };
+    }
+
+    function storeAttribution(data) {
+      var existing = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}');
+      if (data.gclid || !existing.gclid) {
+        var attribution = Object.assign({}, existing, data, { updated_at: Date.now() });
+        localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution));
+      }
+    }
+
+    function getAttribution() {
+      return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}');
+    }
+
+    async function captureAttribution() {
+      var params = getUrlParams();
+      if (!params.gclid && !params.utm_source) return;
+
+      var data = Object.assign({}, params, {
+        landing_page: window.location.pathname,
+        referrer: document.referrer,
+        visitor_id: getVisitorId(),
+        session_id: getSessionId()
+      });
+
+      storeAttribution(data);
+
+      try {
+        var response = await fetch(API_BASE + '/api/public/attribution', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var result = await response.json();
+        if (result.attribution_id) {
+          storeAttribution({ attribution_id: result.attribution_id });
+        }
+      } catch (e) {
+        console.warn('Attribution capture failed:', e);
+      }
+    }
+
+    window.LookBookTracking = {
+      getVisitorId: getVisitorId,
+      getSessionId: getSessionId,
+      getAttribution: getAttribution,
+
+      getTrackingData: function() {
+        var attr = getAttribution();
+        return {
+          visitor_id: getVisitorId(),
+          session_id: getSessionId(),
+          attribution_id: attr.attribution_id || null,
+          gclid: attr.gclid || null,
+          utm_source: attr.utm_source || null,
+          utm_medium: attr.utm_medium || null,
+          utm_campaign: attr.utm_campaign || null
+        };
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', captureAttribution);
+    } else {
+      captureAttribution();
+    }
+  })();
+  </script>
 </head>
 <body>
 
@@ -25,11 +140,11 @@
     <a class="nav-brand" href="#top">LookbookMenu</a>
 
     <nav class="nav-links" aria-label="Primary">
-      <a href="#why">Why</a>
-      <a href="#how">How</a>
-      <a href="#example">Example</a>
-      <a href="#faq">FAQ</a>
-      <a href="#try-it">Try It</a>
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/google-pipeline.html">Google Pipeline</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/examples.html">Examples</a>
+      <a href="/pricing.html">Pricing</a>
     </nav>
 
     <div class="nav-right">
@@ -39,7 +154,7 @@
         <a class="contact-link" href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
       </div>
 
-      <a class="btn btn-primary nav-cta" href="/try">Try It Free</a>
+      <a class="btn btn-primary nav-cta" href="/try">Scan Your Menu</a>
     </div>
   </div>
 </header>
@@ -312,6 +427,17 @@
       <span>&middot;</span>
       <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
     </p>
+  </div>
+</section>
+
+<!-- ========== BUT WAIT... THERE'S MORE ========== -->
+<section class="more-teaser" id="more-teaser">
+  <div class="container">
+    <h2 class="more-teaser-title">But wait… there's more.</h2>
+    <p class="more-teaser-body">
+      See exactly how LookBook turns your menu into a visual food showroom.
+    </p>
+    <a href="/how-it-works.html" class="btn btn-primary">Next: How It Works →</a>
   </div>
 </section>
 

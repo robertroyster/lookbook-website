@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — LookbookMenu</title>
+  <meta name="description" content="$49 per month. No contracts. Launch your visual menu in minutes." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMCKQMZL1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DMCKQMZL1X');
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+  (function() {
+    'use strict';
+    const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev';
+    const VISITOR_ID_KEY = 'lbm_visitor_id';
+    const SESSION_ID_KEY = 'lbm_session_id';
+    const ATTRIBUTION_KEY = 'lbm_attribution';
+    function uuid() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16); }); }
+    function getVisitorId() { let id = localStorage.getItem(VISITOR_ID_KEY); if (!id) { id = uuid(); localStorage.setItem(VISITOR_ID_KEY, id); document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax'; } return id; }
+    function getSessionId() { let id = sessionStorage.getItem(SESSION_ID_KEY); if (!id) { id = uuid(); sessionStorage.setItem(SESSION_ID_KEY, id); } return id; }
+    function getUrlParams() { var params = new URLSearchParams(window.location.search); return { gclid: params.get('gclid'), utm_source: params.get('utm_source'), utm_medium: params.get('utm_medium'), utm_campaign: params.get('utm_campaign'), utm_term: params.get('utm_term'), utm_content: params.get('utm_content') }; }
+    function storeAttribution(data) { var existing = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); if (data.gclid || !existing.gclid) { var attribution = Object.assign({}, existing, data, { updated_at: Date.now() }); localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution)); } }
+    function getAttribution() { return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); }
+    async function captureAttribution() { var params = getUrlParams(); if (!params.gclid && !params.utm_source) return; var data = Object.assign({}, params, { landing_page: window.location.pathname, referrer: document.referrer, visitor_id: getVisitorId(), session_id: getSessionId() }); storeAttribution(data); try { var response = await fetch(API_BASE + '/api/public/attribution', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); var result = await response.json(); if (result.attribution_id) { storeAttribution({ attribution_id: result.attribution_id }); } } catch (e) { console.warn('Attribution capture failed:', e); } }
+    window.LookBookTracking = { getVisitorId: getVisitorId, getSessionId: getSessionId, getAttribution: getAttribution, getTrackingData: function() { var attr = getAttribution(); return { visitor_id: getVisitorId(), session_id: getSessionId(), attribution_id: attr.attribution_id || null, gclid: attr.gclid || null, utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null }; } };
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', captureAttribution); } else { captureAttribution(); }
+  })();
+  </script>
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/">LookbookMenu</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/google-pipeline.html">Google Pipeline</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/examples.html">Examples</a>
+      <a href="/pricing.html" class="active-page">Pricing</a>
+    </nav>
+    <div class="nav-right">
+      <div class="header-contact" aria-label="Contact">
+        <a class="contact-link" href="tel:+19198162113">919-816-2113</a>
+        <span class="sep">&middot;</span>
+        <a class="contact-link" href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
+      </div>
+      <a class="btn btn-primary nav-cta" href="/try">Scan Your Menu</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-hero-title">Simple pricing. Powerful results.</h1>
+    <p class="page-hero-subtitle">
+      One plan. Everything included. No contracts, no setup fees, no surprises.
+    </p>
+  </div>
+</section>
+
+<!-- ========== PRICING CARD ========== -->
+<section class="page-section" id="pricing">
+  <div class="container">
+    <div class="pricing-card">
+      <div class="pricing-amount">$49</div>
+      <div class="pricing-period">per month</div>
+
+      <ul class="pricing-features">
+        <li>Visual menu with unlimited dish photos</li>
+        <li>Category pages + individual dish pages</li>
+        <li>QR codes for tables, tents, and posters</li>
+        <li>Google Business Profile deep links</li>
+        <li>Menu analytics and browsing insights</li>
+        <li>Multi-location support</li>
+        <li>Brand-matched design</li>
+        <li>Real support from real people</li>
+      </ul>
+
+      <a href="/try" class="btn btn-primary btn-large">Scan Your Menu</a>
+
+      <p class="pricing-note">No contracts. Cancel anytime. Launch in minutes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOW FRICTION ========== -->
+<section class="page-section" id="low-friction">
+  <div class="container">
+    <h2 class="section-title">No rebuild. No POS integration.</h2>
+    <div class="page-section-body">
+      <p>Restaurants keep everything they already have:</p>
+      <ul class="action-bullets">
+        <li>Their existing website</li>
+        <li>Their ordering system</li>
+        <li>Their POS</li>
+      </ul>
+      <p>LookBook simply adds a <strong>visual food layer</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="try-it">
+  <div class="container">
+    <h2 class="section-title">Let's make your menu look as good as your food.</h2>
+    <p class="section-subtitle">
+      Send your menu and we'll generate your Try-It LookBook so you can see it instantly.
+    </p>
+    <div class="try-it-actions">
+      <a class="btn btn-primary btn-large" href="/try">Scan Your Menu</a>
+    </div>
+    <p class="try-it-contact">
+      <a href="tel:+19198162113">Call: 919-816-2113</a>
+      <span>&middot;</span>
+      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-brand">LookbookMenu</p>
+    <p class="footer-tagline">We eat with our eyes.</p>
+    <p class="footer-contact">
+      <a href="tel:+19198162113">Call: 919-816-2113</a>
+      <span>&middot;</span>
+      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
+    </p>
+    <p class="footer-note">Menu enhancement only. Not online ordering.</p>
+  </div>
+</footer>
+
+<script src="js/content-pricing.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

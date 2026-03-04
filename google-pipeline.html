@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Pipeline — LookbookMenu</title>
+  <meta name="description" content="Stop sending Google traffic to a dead-end PDF. LookBook creates deep links for every category and dish." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMCKQMZL1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DMCKQMZL1X');
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+  (function() {
+    'use strict';
+    const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev';
+    const VISITOR_ID_KEY = 'lbm_visitor_id';
+    const SESSION_ID_KEY = 'lbm_session_id';
+    const ATTRIBUTION_KEY = 'lbm_attribution';
+    function uuid() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16); }); }
+    function getVisitorId() { let id = localStorage.getItem(VISITOR_ID_KEY); if (!id) { id = uuid(); localStorage.setItem(VISITOR_ID_KEY, id); document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax'; } return id; }
+    function getSessionId() { let id = sessionStorage.getItem(SESSION_ID_KEY); if (!id) { id = uuid(); sessionStorage.setItem(SESSION_ID_KEY, id); } return id; }
+    function getUrlParams() { var params = new URLSearchParams(window.location.search); return { gclid: params.get('gclid'), utm_source: params.get('utm_source'), utm_medium: params.get('utm_medium'), utm_campaign: params.get('utm_campaign'), utm_term: params.get('utm_term'), utm_content: params.get('utm_content') }; }
+    function storeAttribution(data) { var existing = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); if (data.gclid || !existing.gclid) { var attribution = Object.assign({}, existing, data, { updated_at: Date.now() }); localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution)); } }
+    function getAttribution() { return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); }
+    async function captureAttribution() { var params = getUrlParams(); if (!params.gclid && !params.utm_source) return; var data = Object.assign({}, params, { landing_page: window.location.pathname, referrer: document.referrer, visitor_id: getVisitorId(), session_id: getSessionId() }); storeAttribution(data); try { var response = await fetch(API_BASE + '/api/public/attribution', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); var result = await response.json(); if (result.attribution_id) { storeAttribution({ attribution_id: result.attribution_id }); } } catch (e) { console.warn('Attribution capture failed:', e); } }
+    window.LookBookTracking = { getVisitorId: getVisitorId, getSessionId: getSessionId, getAttribution: getAttribution, getTrackingData: function() { var attr = getAttribution(); return { visitor_id: getVisitorId(), session_id: getSessionId(), attribution_id: attr.attribution_id || null, gclid: attr.gclid || null, utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null }; } };
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', captureAttribution); } else { captureAttribution(); }
+  })();
+  </script>
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/">LookbookMenu</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/google-pipeline.html" class="active-page">Google Pipeline</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/examples.html">Examples</a>
+      <a href="/pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-right">
+      <div class="header-contact" aria-label="Contact">
+        <a class="contact-link" href="tel:+19198162113">919-816-2113</a>
+        <span class="sep">&middot;</span>
+        <a class="contact-link" href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
+      </div>
+      <a class="btn btn-primary nav-cta" href="/try">Scan Your Menu</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-hero-title">Stop sending Google traffic to a dead‑end PDF.</h1>
+    <p class="page-hero-subtitle">
+      When someone finds your restaurant on Google, they want to see your food — not download a document.
+      LookBook gives you shareable food pages that work inside Google Business Profile.
+    </p>
+    <div class="page-hero-ctas">
+      <a href="/try" class="btn btn-primary">Scan Your Menu</a>
+      <a href="/examples.html" class="btn btn-secondary">See Examples</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== THE PDF PROBLEM ========== -->
+<section class="page-section" id="problem">
+  <div class="container">
+    <h2 class="section-title section-problem-title">The PDF problem</h2>
+    <div class="page-section-body">
+      <p class="section-problem-body">
+        Most restaurants link their Google Business Profile to a PDF menu.
+        Guests open it, pinch and zoom on a tiny phone screen, get frustrated, and bounce.
+        That traffic is wasted.
+      </p>
+    </div>
+
+    <div class="path-comparison">
+      <div class="path-card path-card--old">
+        <div class="path-card-label">PDF Path</div>
+        <div class="path-steps">
+          <span>Google</span> <span class="arrow">→</span>
+          <span>PDF</span> <span class="arrow">→</span>
+          <span>Pinch/Zoom</span> <span class="arrow">→</span>
+          <span>Bounce</span>
+        </div>
+      </div>
+      <div class="path-card path-card--new">
+        <div class="path-card-label">LookBook Path</div>
+        <div class="path-steps">
+          <span>Google</span> <span class="arrow">→</span>
+          <span>Food Page</span> <span class="arrow">→</span>
+          <span>Cravings</span> <span class="arrow">→</span>
+          <span>Visit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== THE LOOKBOOK PATH ========== -->
+<section class="page-section" id="solution">
+  <div class="container">
+    <h2 class="section-title section-solution-title">The LookBook path</h2>
+    <div class="page-section-body">
+      <p class="section-solution-body">
+        LookBook creates deep links for every category and dish.
+        Instead of a PDF, your Google profile links to real food pages that guests love to browse.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DEEP LINKS ========== -->
+<section class="page-section" id="deeplinks">
+  <div class="container">
+    <h2 class="section-title section-deeplinks-title">Deep links for everything</h2>
+    <div class="page-section-body">
+      <p class="section-deeplinks-body">
+        Every category and dish gets its own URL. Use them in your Google Business Profile menu section,
+        Google Posts, event links, and more.
+      </p>
+      <ul class="url-examples">
+        <li>/your-restaurant/category/appetizers</li>
+        <li>/your-restaurant/category/desserts</li>
+        <li>/your-restaurant/category/cocktails</li>
+        <li>/your-restaurant/dish/buffalo-chicken-pizza</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== POSTING ========== -->
+<section class="page-section" id="posting">
+  <div class="container">
+    <h2 class="section-title section-posting-title">Never run out of content for Google</h2>
+    <div class="page-section-body">
+      <p class="section-posting-body">
+        LookBook makes it easy to post dish features, specials, happy hour, trivia night, brunch —
+        and each post links directly to a food page. Your Google profile stays fresh without extra work.
+      </p>
+      <ul class="action-bullets">
+        <li>Dish features</li>
+        <li>Weekly specials</li>
+        <li>Happy hour</li>
+        <li>Trivia night</li>
+        <li>Brunch</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BUT WAIT ========== -->
+<section class="more-teaser">
+  <div class="container">
+    <h2 class="more-teaser-title">But wait… there's more.</h2>
+    <p class="more-teaser-body">
+      See real LookBook menus, category feeds, and dish pages in action.
+    </p>
+    <a href="/examples.html" class="btn btn-primary">Next: Examples →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-brand">LookbookMenu</p>
+    <p class="footer-tagline">We eat with our eyes.</p>
+    <p class="footer-contact">
+      <a href="tel:+19198162113">Call: 919-816-2113</a>
+      <span>&middot;</span>
+      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
+    </p>
+    <p class="footer-note">Menu enhancement only. Not online ordering.</p>
+  </div>
+</footer>
+
+<script src="js/content-pipeline.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

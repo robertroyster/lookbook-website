@@ -4,9 +4,7 @@ This document explains how to add, update, and name images for the LookbookMenu 
 
 ---
 
-## Expected Assets & Specifications
-
-The following table lists all required assets with their exact names and specs.
+## Current Assets in Use
 
 ### Hero Section (R2-hosted)
 
@@ -15,18 +13,22 @@ The following table lists all required assets with their exact names and specs.
 | `hero-demo.mp4` | Video | 390 x 844px | 5MB | Phone screen demo, vertical aspect, looping |
 | `hero-poster.jpg` | Image | 390 x 844px | 100KB | First-frame fallback for video |
 
-**R2 URL pattern:** `https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/[filename]`
+**R2 URL:** `https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/[filename]`
 
-### Dish Images (local)
+### Photo Strip (R2-hosted stock photos)
 
-| File Name | Type | Dimensions | Max Size | Notes |
-|-----------|------|------------|----------|-------|
-| `dish-truffle-pasta.jpg` | JPG | 800 x 800px | 150KB | Square crop, clean background |
-| `dish-wagyu-tartare.jpg` | JPG | 800 x 800px | 150KB | Square crop, clean background |
-| `dish-citrus-salad.jpg` | JPG | 800 x 800px | 150KB | Square crop, clean background |
-| `dish-lava-cake.jpg` | JPG | 800 x 800px | 150KB | Square crop, clean background |
+| File Name | Type | Notes |
+|-----------|------|-------|
+| `appetizers_01.jpg` | JPG | Used in hero photo strip |
+| `entrees_02.jpg` | JPG | Used in hero photo strip |
+| `appetizers_04.jpg` | JPG | Used in hero photo strip |
+| `burgers_01.jpg` | JPG | Used in hero photo strip |
 
-### Branding & UI (local)
+**R2 URL:** `https://r2.lookbookmenu.com/_stock/[filename]`
+
+Photo strip images display at 120x84px with rounded corners. They are duplicated in the HTML for seamless infinite scroll.
+
+### Branding & UI (needed)
 
 | File Name | Type | Dimensions | Max Size | Notes |
 |-----------|------|------------|----------|-------|
@@ -35,7 +37,7 @@ The following table lists all required assets with their exact names and specs.
 | `favicon.ico` | ICO | 32 x 32px | 5KB | Browser tab icon |
 | `apple-touch-icon.png` | PNG | 180 x 180px | 20KB | iOS home screen icon |
 
-### Open Graph / Social
+### Open Graph / Social (needed)
 
 | File Name | Type | Dimensions | Max Size | Notes |
 |-----------|------|------------|----------|-------|
@@ -46,11 +48,11 @@ The following table lists all required assets with their exact names and specs.
 
 ## Folder Structure
 
-All local images live in `/assets/` with the following subfolders:
+Local images live in `/assets/` (currently only `.gitkeep`). Most images are hosted on R2.
 
 ```
 assets/
-├── dishes/          # Food photography for the preview section
+├── dishes/          # Food photography
 ├── mockups/         # Phone mockups, device frames
 ├── icons/           # UI icons, logos
 └── og/              # Open Graph / social sharing images
@@ -60,30 +62,22 @@ assets/
 
 ## Naming Conventions
 
-### Dish Images
-
-Use lowercase, hyphen-separated names that describe the dish:
-
+### Stock/Dish Images
 ```
-dish-truffle-pasta.jpg
-dish-wagyu-tartare.jpg
-dish-citrus-salad.jpg
-dish-lava-cake.jpg
+appetizers_01.jpg
+entrees_02.jpg
+burgers_01.jpg
 ```
 
-**Pattern:** `dish-[descriptive-name].[ext]`
+**Pattern:** `[category]_[number].[ext]`
 
-### Mockups & UI
-
+### Branding
 ```
-phone-mockup.png
-hero-background.jpg
 logo-dark.svg
 logo-light.svg
 ```
 
 ### Social/OG Images
-
 ```
 og-default.jpg
 og-twitter.jpg
@@ -102,29 +96,17 @@ The hero phone mockup displays a looping video hosted on Cloudflare R2. To updat
 3. Export first frame as `hero-poster.jpg` for fallback
 4. Upload both files to R2 bucket under `/assets/`
 
-In `index.html`, the video is referenced at lines 54-63:
+### Photo Strip Images
 
-```html
-<video
-  class="demo-video"
-  autoplay muted loop playsinline
-  poster="https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/hero-poster.jpg"
->
-  <source src="https://pub-614ffe037f7941e199c1fd8c74179fe6.r2.dev/assets/hero-demo.mp4" type="video/mp4">
-</video>
-```
+The hero photo strip uses 4 images from R2, duplicated for seamless looping. To swap:
 
-### Dish Images (local)
-
-For dish images used elsewhere on the site:
-
-1. Add your image to `/assets/dishes/`
-2. Name it following the pattern: `dish-[descriptive-name].jpg`
-3. Reference via `background-image: url('assets/dishes/dish-name.jpg')`
+1. Upload new images to R2 at `https://r2.lookbookmenu.com/_stock/`
+2. Update the `<img>` src attributes in `index.html` (lines ~188-196)
+3. Update both the original and duplicate set
 
 ### Adding Images via CSS
 
-For background images in CSS, update `/css/styles.css`:
+For background images in CSS:
 
 ```css
 .some-element {
@@ -146,11 +128,12 @@ For background images in CSS, update `/css/styles.css`:
 
 ## Current Status
 
-**Completed:**
+**In use:**
 - Hero video (`hero-demo.mp4`) — hosted on R2
 - Hero poster fallback (`hero-poster.jpg`) — hosted on R2
+- 4 stock dish photos for photo strip — hosted on R2
 
-**Still needed before launch:**
+**Still needed:**
 - `og-default.jpg` — Open Graph image for social sharing
 - `og-twitter.jpg` — Twitter card image
 - `favicon.ico` — Browser tab icon

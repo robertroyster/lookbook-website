@@ -44,6 +44,24 @@ const result = ref(null)
 // Error state
 const error = ref('')
 
+// Track form start (fires once when user begins filling out the form)
+const formStartTracked = ref(false)
+function trackFormStart() {
+  if (formStartTracked.value) return
+  formStartTracked.value = true
+
+  const trackingData = window.LookBookTracking?.getTrackingData() || {}
+  fetch('https://lookbook-admin-api.robert-royster.workers.dev/api/public/attribution', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...trackingData,
+      landing_page: window.location.pathname,
+      event: 'try_demo_started'
+    })
+  }).catch(() => {})
+}
+
 // US States dropdown
 const usStates = [
   'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
@@ -152,6 +170,8 @@ async function submitForm() {
   processingProgress.value = 10
 
   try {
+    const trackingData = window.LookBookTracking?.getTrackingData() || {}
+
     const formData = new FormData()
     formData.append('name', name.value)
     formData.append('address', address.value)
@@ -172,6 +192,13 @@ async function submitForm() {
     if (refCode.value) {
       formData.append('ref', refCode.value)
     }
+
+    // Include attribution tracking fields
+    if (trackingData.visitor_id) formData.append('visitor_id', trackingData.visitor_id)
+    if (trackingData.gclid) formData.append('gclid', trackingData.gclid)
+    if (trackingData.utm_source) formData.append('utm_source', trackingData.utm_source)
+    if (trackingData.utm_medium) formData.append('utm_medium', trackingData.utm_medium)
+    if (trackingData.utm_campaign) formData.append('utm_campaign', trackingData.utm_campaign)
 
     processingStep.value = 'Uploading menu...'
     processingProgress.value = 30
@@ -312,7 +339,7 @@ function startOver() {
             <div class="form-fields">
               <div class="field full">
                 <label class="label">Restaurant name <span class="required">*</span></label>
-                <input v-model="name" class="input" placeholder="e.g., The Corner Bistro" />
+                <input v-model="name" class="input" placeholder="e.g., The Corner Bistro" @focus="trackFormStart" />
               </div>
 
               <div class="field full">

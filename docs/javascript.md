@@ -1,72 +1,93 @@
 # JavaScript
 
-All scripts in `js/main.js` (89 lines). Zero dependencies.
+## Landing Page: js/main.js (337 lines)
 
-## Overview
+Zero external dependencies. Wrapped in an IIFE, runs on `DOMContentLoaded`.
 
-The JavaScript is wrapped in an IIFE and runs on `DOMContentLoaded`. It provides three enhancements:
+### Initialization Order
 
-1. Fade-in animations on scroll
-2. Auto-application of fade-in classes
-3. Smooth scrolling for anchor links
+```javascript
+document.addEventListener('DOMContentLoaded', function () {
+  loadContent();
+  forwardUrlParams();
+  autoAddFadeIn();
+  initScrollAnimations();
+  initSmoothScroll();
+  initScrollSpy();
+  initGA4Tracking();
+});
+```
 
 ## Features
 
-### 1. Fade-in on Scroll
+### 1. Content Loading (`loadContent`)
 
-Uses IntersectionObserver for performance:
+Reads the global `CONTENT` object from `js/content.js` and injects text into the DOM. This keeps all copy in one editable file.
 
-```javascript
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target); // Only animate once
-    }
-  });
-}, { threshold: 0.15 }); // Trigger at 15% visibility
-```
+Covers: meta tags, nav, hero, why, who, how-it-works, live example, analytics, features, FAQ, try-it, and footer sections.
 
-Elements with `.fade-in` class start invisible and slide up when scrolled into view.
+Uses helper functions `set(selector, value)` and `setHref(selector, value)` for null-safe DOM updates.
 
-### 2. Auto-add Fade-in Classes
+### 2. URL Parameter Forwarding (`forwardUrlParams`)
+
+Forwards query parameters (e.g., `?ref=SLR`, `?gclid=xxx`) from the landing page to all `/try` links, preserving attribution and tracking across page navigation.
+
+### 3. Auto-add Fade-in Classes (`autoAddFadeIn`)
 
 Automatically applies `.fade-in` to key elements:
 
 ```javascript
 const selectors = [
-  '.problem-text',
   '.section-title',
+  '.why-body',
+  '.why-bullets',
+  '.who-card',
   '.step-card',
-  '.dish-card',
-  '.quote',
-  '.use-case',
-  '.cta-title',
-  '.cta-subtitle'
+  '.analytics-list',
+  '.features-list li',
 ];
 ```
 
-This avoids manually adding classes in HTML.
+### 4. Scroll-triggered Fade-in (`initScrollAnimations`)
 
-### 3. Smooth Scroll
-
-Intercepts anchor link clicks:
+Uses IntersectionObserver to add `.visible` class when elements enter viewport:
 
 ```javascript
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    target?.scrollIntoView({ behavior: 'smooth' });
-  });
+const observer = new IntersectionObserver(callback, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px',
 });
 ```
 
-Special handling for `#top` scrolls to page top.
+Elements unobserved after animation (animate once only).
+
+### 5. Smooth Scroll (`initSmoothScroll`)
+
+Intercepts anchor link clicks. Special handling for `#top` (scrolls to page top). Uses native `scrollIntoView({ behavior: 'smooth' })`.
+
+### 6. Scroll-spy (`initScrollSpy`)
+
+Highlights the active nav link based on which section is in view. Uses IntersectionObserver with multiple thresholds (`[0.1, 0.25, 0.5]`) and offset margins. Falls back to `offsetTop` comparison when no section is intersecting.
+
+Active link gets `.active` class with an orange underline indicator.
+
+### 7. GA4 Custom Event Tracking (`initGA4Tracking`)
+
+Tracks three event types (requires `gtag` to be defined):
+
+| Event | Trigger | Category |
+|-------|---------|----------|
+| `view_lookbook_menu` | Click any `lookbook.menu` link | engagement |
+| `phone_click` | Click any `tel:` link | conversion |
+| `button_click` | Click any `/try` link | engagement |
+
+## Content System: js/content.js (132 lines)
+
+Global `CONTENT` object with all landing page text. Edit here to update copy without touching HTML.
+
+Key sections: `siteTitle`, `heroTitle`, `heroSubtitle`, `whyTitle`, `whyBody[]`, `whyBullets[]`, `whoTitle`, `howSteps[]`, `analyticsItems[]`, `features[]`, `faqs[]`, `tryTitle`, `footerBrand`, contact info, and link URLs.
 
 ## CSS Integration
-
-The JS works with these CSS classes:
 
 ```css
 .fade-in {
@@ -81,16 +102,18 @@ The JS works with these CSS classes:
 }
 ```
 
-## No Dependencies
+## Try-It Page: src/views/TryIt.vue
+
+Separate Vue 3 component with its own logic:
+- Multi-step form with validation
+- File upload (drag & drop, 5MB limit)
+- API integration with admin backend
+- Attribution tracking via `window.LookBookTracking`
+- QR code display and clipboard copy on success
+
+## No External JS Dependencies
 
 - No jQuery
 - No animation libraries
-- No framework hydration
-- Uses native browser APIs only
-
-## Performance
-
-- IntersectionObserver is more efficient than scroll listeners
-- Elements unobserved after animation (no ongoing checks)
-- Minimal DOM queries (cached on load)
-- Total size: ~4KB unminified
+- Landing page uses native browser APIs only
+- Try-It page uses Vue 3 + Vue Router (installed via npm)

@@ -133,10 +133,78 @@
       if (CONTENT.links && CONTENT.links.tryIt) tryCta.href = CONTENT.links.tryIt;
     }
 
+    // But Wait... There's More (homepage)
+    set('.more-teaser-title', CONTENT.moreTeaserTitle);
+    set('.more-teaser-body', CONTENT.moreTeaserBody);
+    var moreTeaserBtn = document.querySelector('.more-teaser .btn');
+    if (moreTeaserBtn) {
+      if (CONTENT.moreTeaserBtn) moreTeaserBtn.innerHTML = CONTENT.moreTeaserBtn;
+      if (CONTENT.moreTeaserHref) moreTeaserBtn.href = CONTENT.moreTeaserHref;
+    }
+
     // Footer
     set('.footer-brand', CONTENT.footerBrand);
     set('.footer-tagline', CONTENT.footerTagline);
     set('.footer-note', CONTENT.footerNote);
+  }
+
+  // ---------- Load subpage content from PAGE_CONTENT ----------
+
+  function loadPageContent() {
+    if (typeof PAGE_CONTENT === 'undefined') return;
+
+    var set = function (selector, value) {
+      if (value == null || value === '') return;
+      var el = document.querySelector(selector);
+      if (el) el.innerHTML = value;
+    };
+
+    var setHref = function (selector, value) {
+      if (value == null || value === '') return;
+      var el = document.querySelector(selector);
+      if (el) el.href = value;
+    };
+
+    // Meta
+    if (PAGE_CONTENT.siteTitle) document.title = PAGE_CONTENT.siteTitle;
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && PAGE_CONTENT.siteDescription) metaDesc.content = PAGE_CONTENT.siteDescription;
+
+    // Nav brand + CTA (shared)
+    set('.nav-brand', PAGE_CONTENT.navBrand || 'LookbookMenu');
+    set('.nav-cta', PAGE_CONTENT.navCta || 'Scan Your Menu');
+    setHref('.nav-cta', '/try');
+
+    // Page hero
+    set('.page-hero-title', PAGE_CONTENT.heroTitle);
+    set('.page-hero-subtitle', PAGE_CONTENT.heroSubtitle);
+
+    // Page sections (generic — each page defines its own)
+    if (typeof PAGE_CONTENT.loadSections === 'function') {
+      PAGE_CONTENT.loadSections(set, setHref);
+    }
+
+    // But Wait teaser
+    set('.more-teaser-title', PAGE_CONTENT.moreTeaserTitle);
+    set('.more-teaser-body', PAGE_CONTENT.moreTeaserBody);
+    var moreTeaserBtn = document.querySelector('.more-teaser .btn');
+    if (moreTeaserBtn) {
+      if (PAGE_CONTENT.moreTeaserBtn) moreTeaserBtn.innerHTML = PAGE_CONTENT.moreTeaserBtn;
+      if (PAGE_CONTENT.moreTeaserHref) moreTeaserBtn.href = PAGE_CONTENT.moreTeaserHref;
+    }
+
+    // FAQ (if present on subpage)
+    var faqList = document.querySelector('.faq-list');
+    if (faqList && Array.isArray(PAGE_CONTENT.faqs) && PAGE_CONTENT.faqs.length) {
+      faqList.innerHTML = PAGE_CONTENT.faqs.map(function (faq) {
+        return '<details><summary>' + faq.q + '</summary><p>' + faq.a + '</p></details>';
+      }).join('');
+    }
+
+    // Footer
+    set('.footer-brand', PAGE_CONTENT.footerBrand || 'LookbookMenu');
+    set('.footer-tagline', PAGE_CONTENT.footerTagline || 'We eat with our eyes.');
+    set('.footer-note', PAGE_CONTENT.footerNote || 'Menu enhancement only. Not online ordering.');
   }
 
   // ---------- Fade-in on scroll ----------
@@ -176,6 +244,12 @@
       '.step-card',
       '.analytics-list',
       '.features-list li',
+      '.page-hero-title',
+      '.page-section',
+      '.metric-card',
+      '.more-teaser',
+      '.pricing-card',
+      '.path-comparison',
     ];
 
     selectors.forEach((selector) => {
@@ -192,8 +266,11 @@
     const params = window.location.search;
     if (!params) return;
 
-    document.querySelectorAll('a[href^="/try"]').forEach((link) => {
+    // Forward to /try links AND all internal page links
+    document.querySelectorAll('a[href^="/"]').forEach((link) => {
       const url = new URL(link.href, window.location.origin);
+      // Skip external links and anchor-only links
+      if (url.origin !== window.location.origin) return;
       const currentParams = new URLSearchParams(params);
       currentParams.forEach((value, key) => {
         url.searchParams.set(key, value);
@@ -325,13 +402,28 @@
 
   // ---------- Init ----------
 
+  // ---------- Detect page type ----------
+
+  function isHomepage() {
+    var path = window.location.pathname;
+    return path === '/' || path === '/index.html' || path.endsWith('/index.html');
+  }
+
+  // ---------- Init ----------
+
   document.addEventListener('DOMContentLoaded', function () {
-    loadContent();
+    if (isHomepage()) {
+      loadContent();
+    } else {
+      loadPageContent();
+    }
     forwardUrlParams();
     autoAddFadeIn();
     initScrollAnimations();
     initSmoothScroll();
-    initScrollSpy();
+    if (isHomepage()) {
+      initScrollSpy();
+    }
     initGA4Tracking();
   });
 })();

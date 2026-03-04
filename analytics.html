@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics — LookbookMenu</title>
+  <meta name="description" content="Know what guests crave and what they ignore. See what gets attention across Google, QR, and links." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMCKQMZL1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DMCKQMZL1X');
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+  (function() {
+    'use strict';
+    const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev';
+    const VISITOR_ID_KEY = 'lbm_visitor_id';
+    const SESSION_ID_KEY = 'lbm_session_id';
+    const ATTRIBUTION_KEY = 'lbm_attribution';
+    function uuid() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16); }); }
+    function getVisitorId() { let id = localStorage.getItem(VISITOR_ID_KEY); if (!id) { id = uuid(); localStorage.setItem(VISITOR_ID_KEY, id); document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax'; } return id; }
+    function getSessionId() { let id = sessionStorage.getItem(SESSION_ID_KEY); if (!id) { id = uuid(); sessionStorage.setItem(SESSION_ID_KEY, id); } return id; }
+    function getUrlParams() { var params = new URLSearchParams(window.location.search); return { gclid: params.get('gclid'), utm_source: params.get('utm_source'), utm_medium: params.get('utm_medium'), utm_campaign: params.get('utm_campaign'), utm_term: params.get('utm_term'), utm_content: params.get('utm_content') }; }
+    function storeAttribution(data) { var existing = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); if (data.gclid || !existing.gclid) { var attribution = Object.assign({}, existing, data, { updated_at: Date.now() }); localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution)); } }
+    function getAttribution() { return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); }
+    async function captureAttribution() { var params = getUrlParams(); if (!params.gclid && !params.utm_source) return; var data = Object.assign({}, params, { landing_page: window.location.pathname, referrer: document.referrer, visitor_id: getVisitorId(), session_id: getSessionId() }); storeAttribution(data); try { var response = await fetch(API_BASE + '/api/public/attribution', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); var result = await response.json(); if (result.attribution_id) { storeAttribution({ attribution_id: result.attribution_id }); } } catch (e) { console.warn('Attribution capture failed:', e); } }
+    window.LookBookTracking = { getVisitorId: getVisitorId, getSessionId: getSessionId, getAttribution: getAttribution, getTrackingData: function() { var attr = getAttribution(); return { visitor_id: getVisitorId(), session_id: getSessionId(), attribution_id: attr.attribution_id || null, gclid: attr.gclid || null, utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null }; } };
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', captureAttribution); } else { captureAttribution(); }
+  })();
+  </script>
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/">LookbookMenu</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/google-pipeline.html">Google Pipeline</a>
+      <a href="/analytics.html" class="active-page">Analytics</a>
+      <a href="/examples.html">Examples</a>
+      <a href="/pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-right">
+      <div class="header-contact" aria-label="Contact">
+        <a class="contact-link" href="tel:+19198162113">919-816-2113</a>
+        <span class="sep">&middot;</span>
+        <a class="contact-link" href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
+      </div>
+      <a class="btn btn-primary nav-cta" href="/try">Scan Your Menu</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-hero-title">Know what guests crave (and what they ignore).</h1>
+    <p class="page-hero-subtitle">
+      See what gets attention across Google, QR, and links — then use it to sell more of what you want.
+    </p>
+    <div class="page-hero-ctas">
+      <a href="/try" class="btn btn-primary">Scan Your Menu</a>
+      <a href="/examples.html" class="btn btn-secondary">See a Live Example</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CORE METRICS ========== -->
+<section class="page-section" id="metrics">
+  <div class="container">
+    <h2 class="section-title section-metrics-title">The signals that matter</h2>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <h3 class="metric-card-title">Item taps</h3>
+        <p class="metric-card-desc">See which dishes get the most attention — and which ones guests scroll past.</p>
+      </div>
+      <div class="metric-card">
+        <h3 class="metric-card-title">Category interest</h3>
+        <p class="metric-card-desc">Know what people browse before choosing: appetizers, desserts, cocktails, or specials.</p>
+      </div>
+      <div class="metric-card">
+        <h3 class="metric-card-title">Traffic source</h3>
+        <p class="metric-card-desc">See whether guests come from Google, QR codes, or shared links.</p>
+      </div>
+      <div class="metric-card">
+        <h3 class="metric-card-title">Store comparison</h3>
+        <p class="metric-card-desc">Compare browsing patterns across locations to spot what's working.</p>
+      </div>
+      <div class="metric-card">
+        <h3 class="metric-card-title">Trends over time</h3>
+        <p class="metric-card-desc">Track what's rising and falling so you can feature the winners.</p>
+      </div>
+    </div>
+
+    <ul class="sample-metrics">
+      <li><strong>Top dish:</strong> Spicy Chicken Sandwich — 312 taps</li>
+      <li><strong>Top category:</strong> Wings — 41% of browses</li>
+      <li><strong>Top source:</strong> Google — 63% of visits</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== WHAT TO DO WITH IT ========== -->
+<section class="page-section" id="actions">
+  <div class="container">
+    <h2 class="section-title section-actions-title">What to do with it</h2>
+    <ul class="action-bullets">
+      <li>Reorder categories to match actual browsing behavior</li>
+      <li>Promote high-margin items that already get attention</li>
+      <li>Swap photos on ignored dishes to see if visuals make the difference</li>
+      <li>Feature seasonal items backed by real engagement data</li>
+      <li>Identify menu bloat — simplify what nobody browses</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== ANALYTICS FAQ ========== -->
+<section class="page-section faq" id="faq">
+  <div class="container">
+    <h2 class="section-title">Common questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Is this Google Analytics?</summary>
+        <p>No. Google Analytics tracks page views and sessions. LookBook tracks menu behavior directly — which dishes get taps, which categories get browsed, and where traffic comes from. They're complementary.</p>
+      </details>
+      <details>
+        <summary>Do I need to set up tags or UTMs?</summary>
+        <p>No. LookBook has built-in attribution tracking. UTM parameters are supported but optional — tracking works out of the box.</p>
+      </details>
+      <details>
+        <summary>Does this work for QR and Google?</summary>
+        <p>Yes. Both QR scans and Google traffic are tracked as core sources, so you can see how guests arrive and what they browse.</p>
+      </details>
+      <details>
+        <summary>Can I compare stores?</summary>
+        <p>Yes. Multi-location brands can compare browsing patterns and top dishes across stores.</p>
+      </details>
+      <details>
+        <summary>What about privacy?</summary>
+        <p>LookBook tracks aggregated interaction signals — taps, browses, and sources. No personal data is collected or stored.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="try-it">
+  <div class="container">
+    <h2 class="section-title">See what your guests are craving.</h2>
+    <div class="try-it-actions">
+      <a class="btn btn-primary btn-large" href="/try">Scan Your Menu</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-brand">LookbookMenu</p>
+    <p class="footer-tagline">We eat with our eyes.</p>
+    <p class="footer-contact">
+      <a href="tel:+19198162113">Call: 919-816-2113</a>
+      <span>&middot;</span>
+      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
+    </p>
+    <p class="footer-note">Menu enhancement only. Not online ordering.</p>
+  </div>
+</footer>
+
+<script src="js/content-analytics.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
