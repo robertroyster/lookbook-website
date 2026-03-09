@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Google Menu Connector — LookBook Menu</title>
+  <meta name="description" content="PDF menus disappear into a black hole. LBM connects your menu to Google so guests find your food, not just your address." />
+  <link rel="canonical" href="https://lookbookmenu.com/gmc" />
+  <meta property="og:title" content="The Google Menu Connector — LookBook Menu" />
+  <meta property="og:description" content="PDF menus don't travel. LBM connects your menu to Google." />
+  <meta property="og:url" content="https://lookbookmenu.com/gmc" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"We already have a menu on our website.","acceptedAnswer":{"@type":"Answer","text":"A website menu and a connected menu are not the same. LBM adds structure that helps dishes become discoverable on Google."}},{"@type":"Question","name":"We use a PDF menu.","acceptedAnswer":{"@type":"Answer","text":"PDFs are invisible to Google at the dish level. LBM replaces the dead end with a connected, live menu experience."}},{"@type":"Question","name":"Is this just SEO?","acceptedAnswer":{"@type":"Answer","text":"No. LBM is about dish discovery, menu usability, and the structured data foundation that supports modern search and AI-driven discovery."}}]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --dark: #1A1A1A;
+      --mid: #5A5A5A;
+      --light: #999;
+      --border: rgba(0,0,0,0.09);
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── WRAPPER ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 0 56px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 3.75rem);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .hero h1 strong { color: var(--dark); }
+    .hero h1 span { color: var(--mid); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--mid);
+      max-width: 560px;
+      margin: 0 auto 32px;
+      line-height: 1.75;
+    }
+    .cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.18s, transform 0.15s;
+      min-height: 48px;
+    }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-dark { background: var(--dark); color: #fff; }
+    .btn-outline { background: transparent; color: var(--dark); border: 2px solid var(--dark); }
+    .btn-outline:hover { background: var(--dark); color: #fff; }
+    .trust-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--light);
+    }
+
+    /* ── SECTION ── */
+    .section { padding: 64px 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .body-text {
+      font-size: 1rem;
+      color: var(--mid);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+    .body-text + .body-text { margin-top: 14px; }
+
+    /* ── SLIDE IMAGE ── */
+    .slide-wrap {
+      margin: 40px 0 0;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+      background: var(--white);
+    }
+    .slide-wrap img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── PROOF POINTS ── */
+    .proof-list {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .proof-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .proof-arrow {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--dark);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .proof-text {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+    .proof-text strong { color: var(--dark); }
+
+    /* ── CONNECTOR FLOW ── */
+    .flow {
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .flow-node {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .flow-sep {
+      font-size: 16px;
+      color: var(--light);
+      font-weight: 400;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .stat {
+      background: var(--white);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 2.25rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-desc { font-size: 13px; color: var(--mid); line-height: 1.4; }
+
+    /* ── FAQ ── */
+    .faq { margin-top: 36px; display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-top: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .faq-a { font-size: 0.9rem; color: var(--mid); line-height: 1.65; }
+
+    /* ── PROOF PHONES ── */
+    .proof-phones {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .proof-phone {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .proof-phone img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+      display: block;
+      border: 1px solid var(--border);
+    }
+    .proof-phone-cap {
+      font-size: 12px;
+      color: var(--light);
+      text-align: center;
+      line-height: 1.4;
+    }
+    .proof-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--light);
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .proof-phones { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 72px 0 80px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .final-cta h2 { margin-bottom: 14px; }
+    .final-cta .body-text { margin: 0 auto 28px; }
+    .final-cta .trust-note { margin-top: 16px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 56px 0 40px; }
+      .stats { grid-template-columns: 1fr; }
+      .flow { gap: 6px; }
+      .section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <p class="eyebrow">LookBook Menu</p>
+    <h1>
+      <strong>PDF menus don't travel.</strong><br>
+      <span>LBM is the Google Menu Connector.</span>
+    </h1>
+    <p class="hero-sub">
+      Most restaurant menus are invisible to Google at the dish level. LBM turns your menu into structured, discoverable dish data — so guests find your food, not just your address.
+    </p>
+    <div class="cta-group">
+      <a href="https://lookbookmenu.com/get-started" class="btn btn-dark">Get your free menu audit</a>
+      <a href="https://lookbookmenu.com/demo" class="btn btn-outline">See a sample connected menu</a>
+    </div>
+    <p class="trust-note">Free audit &nbsp;·&nbsp; No contract &nbsp;·&nbsp; No setup fee</p>
+  </div>
+
+  <!-- ── PROBLEM: PDF → BLACK HOLE ── -->
+  <div class="section">
+    <p class="label">The Problem</p>
+    <h2>PDF menu → black hole.<br>Where dish discovery goes to die.</h2>
+    <p class="body-text">
+      A PDF is one document. A dead end. When a guest searches "truffle pasta near me" or "best brunch bottomless mimosas," Google cannot read your PDF. Your dishes don't exist in the discovery layer. The food is great. The menu doesn't travel.
+    </p>
+    <div class="proof-list">
+      <div class="proof-item">
+        <span class="proof-arrow">→</span>
+        <span class="proof-text"><strong>No dish-level data</strong> for Google to index or recommend</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-arrow">→</span>
+        <span class="proof-text"><strong>No images</strong> for guests to browse before they decide</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-arrow">→</span>
+        <span class="proof-text"><strong>No structured signals</strong> for AI-driven or voice search discovery</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-arrow">→</span>
+        <span class="proof-text">One document. Zero paths. <strong>Dead end.</strong></span>
+      </div>
+    </div>
+    <div class="slide-wrap">
+      <img src="images/lbmslide4.png" alt="PDF menu falling into a black hole — where dish discovery goes to die" />
+    </div>
+  </div>
+
+  <!-- ── SOLUTION: LBM → GOOGLE MENU ── -->
+  <div class="section">
+    <p class="label">The Solution</p>
+    <h2>LBM connects your menu<br>to Google's discovery layer.</h2>
+    <p class="body-text">
+      LBM is not a PDF designer. Not a website builder. Not a QR code tool. It is the structured menu layer between your restaurant's food and the discovery surfaces guests actually use — Google Search, Maps, and AI-driven recommendations.
+    </p>
+    <p class="body-text">
+      Every dish becomes a page. Every page becomes a signal. Google understands your menu at the item level — names, photos, categories, prices, specials, and availability — and can surface your food when guests are actively searching for it.
+    </p>
+    <div class="flow">
+      <span class="flow-node">Your Menu</span>
+      <span class="flow-sep">→</span>
+      <span class="flow-node">LBM</span>
+      <span class="flow-sep">→</span>
+      <span class="flow-node">Enriched Dish Data</span>
+      <span class="flow-sep">→</span>
+      <span class="flow-node">Google Menu Panel</span>
+      <span class="flow-sep">→</span>
+      <span class="flow-node">Search · Maps · AI</span>
+    </div>
+    <div class="slide-wrap">
+      <img src="images/lbmslide5.png" alt="LBM menu → dish pages → dish discovery across Search, Maps, and AI" />
+    </div>
+  </div>
+
+  <!-- ── WHY IT MATTERS ── -->
+  <div class="section">
+    <p class="label">Why It Matters</p>
+    <h2>Google is where dinner decisions start.</h2>
+    <p class="body-text">
+      62% of guests discover restaurants on Google before they ever visit. The Local Pack earns ~93% more actions than positions 4–10. Your Google Business Profile is already generating calls, directions, and website clicks. LBM makes the menu behind that listing worth finding.
+    </p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">62%</div>
+        <div class="stat-desc">of guests discover restaurants on Google first</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">93%</div>
+        <div class="stat-desc">more actions from top Local Pack positions</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-desc">dish pages = thousands of discovery paths</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LIVE PROOF ── -->
+  <div class="section">
+    <p class="label">Live on Google Now</p>
+    <h2>This is what a connected menu<br>looks like in the wild.</h2>
+    <p class="body-text">
+      These are real screenshots from a live LBM-connected restaurant on Google Search — taken today. Dishes with photos, prices, descriptions, and direct action buttons. This is what guests see when they search for your food.
+    </p>
+    <div class="proof-phones">
+      <div class="proof-phone">
+        <img src="images/ruckus_google_menu_list.png" alt="Ruckus Cary Google menu showing dish list with photos, names, prices and descriptions" />
+        <p class="proof-phone-cap">Menu list with photos &amp; prices</p>
+      </div>
+      <div class="proof-phone">
+        <img src="images/ruckus_nachos_dish_card.png" alt="Ruckus Nachos dish card on Google with full photo, price, description, Call, Directions and Website buttons" />
+        <p class="proof-phone-cap">Dish card: photo + Call / Directions / Website</p>
+      </div>
+      <div class="proof-phone">
+        <img src="images/ruckus_text_only_menu.png" alt="Google menu showing text-only items without photos alongside items that have photos" />
+        <p class="proof-phone-cap">Text-only vs. photo items — the gap is visible</p>
+      </div>
+    </div>
+    <p class="proof-note">Ruckus Cary &nbsp;·&nbsp; Cary, NC &nbsp;·&nbsp; Connected via LBM &nbsp;·&nbsp; Menu updated less than a day ago</p>
+  </div>
+
+  <!-- ── NOT JUST SEO ── -->
+  <div class="section">
+    <p class="label">The Bigger Picture</p>
+    <h2>This is not just SEO.<br>This is dish discovery.</h2>
+    <p class="body-text">
+      SEO is one piece. LBM is about the structured menu foundation that supports every modern discovery surface — Google Search, Maps, AI-powered recommendations, voice search, and photo-first browsing. As search becomes more conversational and more visual, structured menu data becomes the competitive advantage most restaurants don't know they're missing.
+    </p>
+    <div class="proof-list">
+      <div class="proof-item">
+        <span class="proof-arrow">→</span>
+        <span class="proof-text"><strong>AI-driven search</strong> is increasingly dish-specific, not just restaurant-name-specific</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-arrow">→</span>
+        <span class="proof-text"><strong>Voice queries</strong> are often dish-led and location-led</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-arrow">→</span>
+        <span class="proof-text"><strong>Structured menu data</strong> gives discovery systems more to work with than any PDF ever can</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-arrow">→</span>
+        <span class="proof-text"><strong>Specials, events, and seasonal items</strong> become discoverable — not just visible to guests already at your table</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FAQ ── -->
+  <div class="section">
+    <p class="label">Common Questions</p>
+    <h2>We hear these a lot.</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <p class="faq-q">We already have a menu on our website.</p>
+        <p class="faq-a">A website menu and a connected menu are not the same thing. LBM adds the structured dish-level data that helps Google understand and surface your food — not just your address.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">We're already on Google Business Profile.</p>
+        <p class="faq-a">Default GBP menu presence is often thin. LBM enriches the dish data behind your listing so Google can actually recommend specific items when guests are searching for what you serve.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">We use a PDF menu.</p>
+        <p class="faq-a">PDFs are invisible to Google at the dish level and hard to browse on mobile. LBM replaces the dead end with a connected, live menu experience that travels across every discovery surface.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Is this just SEO?</p>
+        <p class="faq-a">No. SEO is one piece. LBM is about dish discovery, menu usability, and the structured foundation that supports modern search, AI recommendations, and photo-first browsing.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">We don't have time to manage another tool.</p>
+        <p class="faq-a">LBM is designed to simplify updates, not add complexity. Update a dish once and it flows to your website, QR menu, and Google simultaneously.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FINAL CTA ── -->
+  <div class="final-cta">
+    <h2>Your menu should be connected<br>to Google. Not sitting in a PDF.</h2>
+    <p class="body-text">
+      Get a free menu audit and see exactly what guests find — and don't find — when they search for your restaurant on Google today.
+    </p>
+    <div class="cta-group">
+      <a href="https://lookbookmenu.com/get-started" class="btn btn-dark">Get your free menu audit</a>
+      <a href="https://lookbookmenu.com/demo" class="btn btn-outline">See a sample connected menu</a>
+    </div>
+    <p class="trust-note">Free audit &nbsp;·&nbsp; See your menu live in 48 hours &nbsp;·&nbsp; No contract &nbsp;·&nbsp; No credit card required</p>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>
