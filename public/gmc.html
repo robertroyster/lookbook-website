@@ -276,6 +276,122 @@
     .final-cta .body-text { margin: 0 auto 28px; }
     .final-cta .trust-note { margin-top: 16px; }
 
+    /* ── NAV ── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,240,232,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.125rem;
+      text-decoration: none;
+      color: var(--dark);
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(245,240,232,.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0;
+      z-index: 99;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--mid);
+      transition: color 160ms ease;
+      padding: 10px 24px;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--dark);
+      color: #fff;
+      transition: opacity 0.18s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .nav-toggle-input { display: none; }
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      order: 3;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform 250ms ease, opacity 250ms ease;
+    }
+    .nav-toggle-input:checked ~ .nav-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle-input:checked ~ .nav-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle-input:checked ~ .nav-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    .nav-toggle-input:checked ~ .nav-links {
+      display: flex;
+    }
+    @media (min-width: 768px) {
+      .nav-toggle { display: none; }
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        position: static;
+        background: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-bottom: none;
+        padding: 0;
+      }
+      .nav-links a { padding: 0; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .hero { padding: 56px 0 40px; }
@@ -286,6 +402,27 @@
   </style>
 </head>
 <body>
+
+<!-- ── NAV ── -->
+<header class="top-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">LookbookMenu</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/google-pipeline.html">Google Pipeline</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/examples.html">Examples</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/faq.html">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a class="nav-cta" href="/try">Scan Your Menu</a>
+    </div>
+  </div>
+</header>
+
 <div class="page">
 
   <!-- ── HERO ── -->
@@ -299,7 +436,7 @@
       Most restaurant menus are invisible to Google at the dish level. LBM turns your menu into structured, discoverable dish data — so guests find your food, not just your address.
     </p>
     <div class="cta-group">
-      <a href="https://lookbookmenu.com/get-started" class="btn btn-dark">Get your free menu audit</a>
+      <a href="https://lookbookmenu.com/try" class="btn btn-dark">See Your Google-Ready Menu</a>
       <a href="https://lookbookmenu.com/demo" class="btn btn-outline">See a sample connected menu</a>
     </div>
     <p class="trust-note">Free audit &nbsp;·&nbsp; No contract &nbsp;·&nbsp; No setup fee</p>
@@ -470,7 +607,7 @@
       Get a free menu audit and see exactly what guests find — and don't find — when they search for your restaurant on Google today.
     </p>
     <div class="cta-group">
-      <a href="https://lookbookmenu.com/get-started" class="btn btn-dark">Get your free menu audit</a>
+      <a href="https://lookbookmenu.com/try" class="btn btn-dark">See Your Google-Ready Menu</a>
       <a href="https://lookbookmenu.com/demo" class="btn btn-outline">See a sample connected menu</a>
     </div>
     <p class="trust-note">Free audit &nbsp;·&nbsp; See your menu live in 48 hours &nbsp;·&nbsp; No contract &nbsp;·&nbsp; No credit card required</p>
