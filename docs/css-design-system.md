@@ -1,6 +1,6 @@
 # CSS Design System
 
-All landing page styles are in `css/styles.css` (632 lines). The Try-It page has its own scoped styles in `src/views/TryIt.vue`.
+All site styles are in `css/styles.css` (1670 lines). The Try-It page (`try.html`) has inline styles for its dark theme.
 
 ## Color Palette
 

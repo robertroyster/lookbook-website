@@ -1,6 +1,6 @@
 # JavaScript
 
-## Landing Page: js/main.js (337 lines)
+## Landing Page: js/main.js (419 lines)
 
 Zero external dependencies. Wrapped in an IIFE, runs on `DOMContentLoaded`.
 
@@ -81,7 +81,7 @@ Tracks three event types (requires `gtag` to be defined):
 | `phone_click` | Click any `tel:` link | conversion |
 | `button_click` | Click any `/try` link | engagement |
 
-## Content System: js/content.js (132 lines)
+## Content System: js/content.js (138 lines)
 
 Global `CONTENT` object with all landing page text. Edit here to update copy without touching HTML.
 

@@ -3,7 +3,7 @@ var PAGE_CONTENT = {
   siteDescription: "See how LookBook turns your restaurant menu into a visual food showroom guests love to scroll.",
 
   navBrand: "LookbookMenu",
-  navCta: "Scan Your Menu",
+  navCta: "Upload Your Menu",
 
   heroTitle: "Your menu, but visual.",
   heroSubtitle: "LookBook turns your existing menu into a photo-first browsing experience. Guests see dishes, not walls of text \u2014 and they order with confidence.",

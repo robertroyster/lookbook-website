@@ -4,24 +4,36 @@
 
 ```
 lookbook-_website/
-├── index.html              # Landing page (452 lines)
-├── try.html                # Try-It page shell — mounts Vue app (136 lines)
+├── index.html              # Landing page (456 lines)
+├── try.html                # Try-It page — standalone dark theme (769 lines)
+├── faq.html                # FAQ page (201 lines)
+├── pricing.html            # Pricing page (145 lines)
+├── how-it-works.html       # How It Works page (198 lines)
+├── analytics.html          # Analytics page (186 lines)
+├── google-pipeline.html    # Google Menu Connector page (188 lines)
+├── examples.html           # Examples page (125 lines)
 ├── css/
-│   └── styles.css          # Landing page styles (632 lines)
+│   └── styles.css          # Site-wide styles (1670 lines)
 ├── js/
-│   ├── main.js             # Landing page JS (337 lines)
-│   └── content.js          # Centralized content config (132 lines)
-├── src/                    # Vue application (Try-It flow)
+│   ├── main.js             # Landing page JS (419 lines)
+│   └── content.js          # Centralized content config (138 lines)
+├── src/                    # Vue application (legacy, used by Vite build)
 │   ├── main.js             # Vue app bootstrap
-│   ├── App.vue             # Root component (router-view)
+│   ├── App.vue             # Root component
 │   ├── router/
-│   │   └── index.js        # Route: /try → TryIt.vue
+│   │   └── index.js        # Route definitions
 │   └── views/
-│       └── TryIt.vue       # Multi-step form (~1200 lines w/ styles)
-├── assets/                 # Local assets (currently .gitkeep only)
+│       └── TryIt.vue       # Legacy Try-It Vue component
+├── public/
+│   └── asssets/             # Public assets (hero-demo.mp4)
+├── assets/                 # Local assets (.gitkeep only)
 ├── docs/                   # Documentation
-├── package.json            # Vue, Vue Router, Vite
-├── vite.config.js          # Vite config
+├── .claude/                # Claude Code skills & config
+│   └── skills/rmd/         # /rmd skill for reading docs
+├── claude.md               # Claude Code instructions
+├── package.json            # Build scripts, Vue/Vite deps
+├── vite.config.js          # Vite config (builds try.html only)
+├── wrangler.toml           # Cloudflare config
 └── .wrangler/              # Cloudflare local state (gitignored)
 ```
 
@@ -56,40 +68,51 @@ The site uses two distinct approaches:
 - Content injected at runtime from `content.js` via `loadContent()`
 - Deployed as static files
 
-### Try-It Page (Vue SPA)
-- `try.html` loads Vue app from `src/main.js`
-- Vue Router handles `/try` route
-- Multi-step form with file upload, validation, API integration
-- Requires `npm run build` (Vite) for production
+### Try-It Page (Standalone HTML)
+- `try.html` is a standalone dark-theme page with split layout
+- Contains form and GMC (Google Menu Connector) story
+- No longer relies on Vue SPA for primary functionality
+
+### Additional Static Pages
+- `faq.html` — Grouped FAQ sections
+- `pricing.html` — Pricing information
+- `how-it-works.html` — How It Works breakdown
+- `analytics.html` — Analytics features
+- `google-pipeline.html` — Google Menu Connector landing page with nav and Calendly CTA
+- `examples.html` — Example lookbooks
 
 ### Build Script
 ```bash
 npm run build
-# 1. Vite builds Vue app → dist/
-# 2. copy-static copies index.html, css/, js/, assets/ into dist/
+# 1. Vite builds Vue app (try.html) → dist/
+# 2. copy-static copies all static HTML, css/, js/, public/, assets/ into dist/
 ```
+
+Copied files: `index.html`, `how-it-works.html`, `google-pipeline.html`, `analytics.html`, `examples.html`, `pricing.html`, `faq.html`, plus `css/`, `js/`, `public/`, `assets/` directories.
 
 ## Key Files
 
 ### index.html (Landing Page)
 Sections:
-1. Sticky navigation (with contact info)
-2. Hero (title, subtitle, CTAs, photo strip, phone mockup video)
-3. Why section ("The table decides")
-4. Who It's For (Busy operators, Design-forward teams)
-5. How It Works (3 steps: AI Try-It, Photo Manager, Easy edits)
-6. Live Example (embedded iframe)
-7. Analytics ("Know what guests crave")
-8. Features Strip (6 features with checkmarks)
-9. FAQ (6 questions, native `<details>` elements)
-10. Try It CTA
-11. Footer
+1. Sticky navigation with hamburger menu (`#nav-toggle`)
+2. Hero — split layout with phone mockup video (`#top`)
+3. Stats bar — key metrics
+4. Revenue Engine / Who section (`#why`)
+5. Comparison section — problem framing (`#problem`)
+6. Proof section — social proof (`#proof`)
+7. How It Works — step cards (`#how`)
+8. Google Menu Connector (`#gmc`)
+9. Testimonials (`#testimonials`)
+10. FAQ — native `<details>` elements (`#faq`)
+11. Final CTA (`#try-it`)
+12. More Teaser (`#more-teaser`)
+13. Footer
 
 ### js/content.js
 Centralized content configuration. All text on the landing page can be edited here without touching HTML. The `CONTENT` object covers: meta, nav, hero, why, who, how-it-works, live example, analytics, features, FAQ, try-it, footer, contact info, and links.
 
-### js/main.js
-7 features (see `docs/javascript.md` for details):
+### js/main.js (419 lines)
+Features (see `docs/javascript.md` for details):
 1. Content loading from `content.js`
 2. Scroll-triggered fade-in animations
 3. Auto-add fade-in classes
@@ -98,14 +121,12 @@ Centralized content configuration. All text on the landing page can be edited he
 6. Scroll-spy for active nav highlighting
 7. GA4 custom event tracking
 
-### try.html + src/views/TryIt.vue
-Multi-step Try-It form:
-- Step 1: Restaurant info (name, address, city, state, zip)
-- Step 2: Contact info (email, mobile)
-- Step 3: Menu input (PDF upload, PDF URL, or website URL)
-- Processing state with progress bar
-- Success state with QR code, shareable link, category summary
-- Attribution tracking integration
+### try.html (769 lines)
+Standalone dark-theme page with:
+- Split layout: form on left, GMC story on right
+- Multi-step form for restaurant onboarding
+- Calendly booking integration
+- Attribution tracking
 
 ## External Services
 

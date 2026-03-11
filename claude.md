@@ -1,5 +1,9 @@
 # Claude Code Instructions
 
+## Meta Rules
+
+- **claude.md line limit**: Keep this file under 5 content lines per section. If more detail is needed, create a sub file in `.claude/docs/` and link to it here.
+
 ## Before Exploring the Codebase
 
 **Always read the documentation first** to reduce token usage:
@@ -122,10 +126,11 @@ Edit `js/content.js` — all text is centralized there.
 
 ## Key Project Info
 
-- **Landing page:** Vanilla HTML, CSS, JS (452 + 632 + 337 lines)
-- **Content config:** `js/content.js` (132 lines)
-- **Try-It page:** Vue 3 + Vue Router SPA (~1200 lines)
+- **Landing page:** Vanilla HTML, CSS, JS (456 + 1670 + 419 lines)
+- **Content config:** `js/content.js` (138 lines)
+- **Try-It page:** Standalone HTML, dark theme (769 lines)
+- **Additional pages:** faq, pricing, how-it-works, analytics, google-pipeline, examples
 - **Hosting:** Cloudflare Pages (auto-deploys from main)
 - **Media:** Cloudflare R2 (two buckets)
-- **Build:** Vite (for Try-It page only)
+- **Build:** Vite (for try.html only), then copy-static copies all HTML/CSS/JS to dist/
 - **Analytics:** GA4 + custom attribution tracking

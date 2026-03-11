@@ -3,7 +3,7 @@ var PAGE_CONTENT = {
   siteDescription: "Know what guests crave and what they ignore. See what gets attention across Google, QR, and links.",
 
   navBrand: "LookbookMenu",
-  navCta: "Scan Your Menu",
+  navCta: "Upload Your Menu",
 
   heroTitle: "Know what guests crave (and what they ignore).",
   heroSubtitle: "See what gets attention across Google, QR, and links \u2014 then use it to sell more of what you want.",

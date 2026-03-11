@@ -11,14 +11,14 @@ const CONTENT = {
 
   // Nav
   navBrand: "LookbookMenu",
-  navCta: "Scan Your Menu",
+  navCta: "Upload Your Menu",
 
   // Hero
   heroTitle: "We eat with our eyes.",
   heroSubtitle: "Your most beautiful dishes are hiding behind a PDF full of words. LookbookMenu turns your menu into a photo-first lookbook guests love to scroll\u2014so they go from \u201cthat sounds interesting\u201d to \u201cI want that.\u201d",
   heroProof: "No app. No POS change. Not online ordering\u2014just visual browsing that helps guests decide faster.",
   heroCta1: "See a Live Example",
-  heroCta2: "Try It Free",
+  heroCta2: "Upload Your Menu",
 
   // Why
   whyTitle: "The table decides. The kitchen confirms.",
@@ -46,7 +46,7 @@ const CONTENT = {
   exampleTitle: "A menu that looks like your food.",
   exampleSubtitle: "A Lookbook feels like browsing a feed\u2014sections are clean, dish photos are front and center, and guests can scan fast without getting lost in text.",
   exampleCallout: "Want yours built? Send your menu and we\u2019ll generate a Try-It Lookbook so you can see it immediately.",
-  exampleCta1: "Try It Free",
+  exampleCta1: "Upload Your Menu",
   exampleCta2: "See FAQs",
 
   // How It Works
@@ -89,7 +89,7 @@ const CONTENT = {
     },
     {
       q: "How fast can I see it?",
-      a: "In minutes. Send a PDF, a URL, or menu photos and we\u2019ll generate a Try-It Lookbook immediately."
+      a: "In 5 minutes. Send a PDF, a URL, or menu photos and we\u2019ll generate a Try-It Lookbook immediately."
     },
     {
       q: "What if I don\u2019t have great photos yet?",
@@ -112,7 +112,7 @@ const CONTENT = {
   // Try It
   tryTitle: "Let\u2019s make your menu look as good as your food.",
   trySubtitle: "Send your menu and we\u2019ll generate your Try-It Lookbook so you can see it instantly. Then you can start swapping in dish photos the same day.",
-  tryCta: "Try It Free",
+  tryCta: "Upload Your Menu",
 
   // But Wait... There's More (homepage teaser)
   moreTeaserTitle: "But wait\u2026 there\u2019s more.",

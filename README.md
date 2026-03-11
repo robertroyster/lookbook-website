@@ -16,7 +16,8 @@ npm run dev
 ## Stack
 
 - **Landing page:** Vanilla HTML, CSS, JS (no frameworks)
-- **Try-It page:** Vue 3 + Vue Router, built with Vite
+- **Try-It page:** Standalone HTML (dark theme, split layout)
+- **Additional pages:** FAQ, Pricing, How It Works, Analytics, Google Pipeline, Examples
 - **Hosting:** Cloudflare Pages (auto-deploys from `main`)
 - **Media:** Cloudflare R2
 

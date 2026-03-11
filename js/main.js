@@ -162,7 +162,7 @@
 
     // Nav brand + CTA (shared)
     set('.nav-brand', PAGE_CONTENT.navBrand || 'LookbookMenu');
-    set('.nav-cta', PAGE_CONTENT.navCta || 'Scan Your Menu');
+    set('.nav-cta', PAGE_CONTENT.navCta || 'Upload Your Menu');
     setHref('.nav-cta', '/try');
 
     // Page hero

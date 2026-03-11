@@ -1,9 +1,9 @@
 var PAGE_CONTENT = {
   siteTitle: "Pricing \u2014 LookbookMenu",
-  siteDescription: "$49 per month. No contracts. Launch your visual menu in minutes.",
+  siteDescription: "$49 per month. No contracts. See your menu in 5 minutes.",
 
   navBrand: "LookbookMenu",
-  navCta: "Scan Your Menu",
+  navCta: "Upload Your Menu",
 
   heroTitle: "Simple pricing. Powerful results.",
   heroSubtitle: "One plan. Everything included. No contracts, no setup fees, no surprises.",

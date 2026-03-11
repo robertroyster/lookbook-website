@@ -3,7 +3,7 @@ var PAGE_CONTENT = {
   siteDescription: "Stop sending Google traffic to a dead-end PDF. LookBook creates deep links for every category and dish.",
 
   navBrand: "LookbookMenu",
-  navCta: "Scan Your Menu",
+  navCta: "Upload Your Menu",
 
   heroTitle: "Stop sending Google traffic to a dead\u2011end PDF.",
   heroSubtitle: "When someone finds your restaurant on Google, they want to see your food \u2014 not download a document. LookBook gives you shareable food pages that work inside Google Business Profile.",

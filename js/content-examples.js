@@ -3,7 +3,7 @@ var PAGE_CONTENT = {
   siteDescription: "See real LookBook menus in action. Browse a live example and see what your menu could look like.",
 
   navBrand: "LookbookMenu",
-  navCta: "Scan Your Menu",
+  navCta: "Upload Your Menu",
 
   heroTitle: "See it in action.",
   heroSubtitle: "Browse a real LookBook menu below. Scroll through categories, tap into dishes, and see what your guests will experience.",
