@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Analytics — LookbookMenu</title>
-  <meta name="description" content="Know what guests crave and what they ignore. See what gets attention across Google, QR, and links." />
+  <meta name="description" content="Know what gets seen. Double down on it. Menu analytics that show what guests browse, what they linger on, and where they come from." />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMCKQMZL1X"></script>
   <script>
@@ -14,7 +14,7 @@
     gtag('config', 'G-DMCKQMZL1X');
   </script>
 
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=7" />
 
   <script>
   (function() {
@@ -44,143 +44,76 @@
     <label for="nav-toggle" class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></label>
     <nav class="nav-links" aria-label="Primary">
       <a href="/how-it-works.html">How It Works</a>
-      <a href="/google-pipeline.html">Google Pipeline</a>
-      <a href="/analytics.html" class="active-page">Analytics</a>
-      <a href="/examples.html">Examples</a>
+      <a href="/google-pipeline.html">Built for Discovery</a>
       <a href="/pricing.html">Pricing</a>
+      <a href="/examples.html">Examples</a>
       <a href="/faq.html">FAQ</a>
     </nav>
     <div class="nav-right">
-      <a class="btn btn-primary nav-cta" href="/try">Scan Your Menu</a>
+      <a class="btn btn-primary nav-cta" href="/try">Upload Your Menu</a>
     </div>
   </div>
 </header>
 
-<!-- ========== PAGE HERO ========== -->
+<!-- ========== HERO ========== -->
 <section class="page-hero">
   <div class="container">
-    <h1 class="page-hero-title">Know what guests crave (and what they ignore).</h1>
-    <p class="page-hero-subtitle">
-      See what gets attention across Google, QR, and links — then use it to sell more of what you want.
-    </p>
-    <div class="page-hero-ctas">
-      <a href="/try" class="btn btn-primary">Scan Your Menu</a>
-      <a href="/examples.html" class="btn btn-secondary">See a Live Example</a>
-    </div>
+    <h1 class="page-hero-title">Know what gets seen. Double down on it.</h1>
+    <p class="page-hero-subtitle">See what guests browse, what they linger on, and where they come from — then use it to sell more of what you want.</p>
   </div>
 </section>
 
-<!-- ========== CORE METRICS ========== -->
-<section class="page-section" id="metrics">
+<!-- ========== ANALYTICS VISUAL ========== -->
+<section class="page-section">
   <div class="container">
-    <h2 class="section-title section-metrics-title">The signals that matter</h2>
-
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <h3 class="metric-card-title">Item taps</h3>
-        <p class="metric-card-desc">See which dishes get the most attention — and which ones guests scroll past.</p>
-      </div>
-      <div class="metric-card">
-        <h3 class="metric-card-title">Category interest</h3>
-        <p class="metric-card-desc">Know what people browse before choosing: appetizers, desserts, cocktails, or specials.</p>
-      </div>
-      <div class="metric-card">
-        <h3 class="metric-card-title">Traffic source</h3>
-        <p class="metric-card-desc">See whether guests come from Google, QR codes, or shared links.</p>
-      </div>
-      <div class="metric-card">
-        <h3 class="metric-card-title">Store comparison</h3>
-        <p class="metric-card-desc">Compare browsing patterns across locations to spot what's working.</p>
-      </div>
-      <div class="metric-card">
-        <h3 class="metric-card-title">Trends over time</h3>
-        <p class="metric-card-desc">Track what's rising and falling so you can feature the winners.</p>
-      </div>
-    </div>
-
-    <ul class="sample-metrics">
-      <li><strong>Top dish:</strong> Spicy Chicken Sandwich — 312 taps</li>
-      <li><strong>Top category:</strong> Wings — 41% of browses</li>
-      <li><strong>Top source:</strong> Google — 63% of visits</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ========== WHAT TO DO WITH IT ========== -->
-<section class="page-section" id="actions">
-  <div class="container">
-    <h2 class="section-title section-actions-title">What to do with it</h2>
-    <ul class="action-bullets">
-      <li>Reorder categories to match actual browsing behavior</li>
-      <li>Promote high-margin items that already get attention</li>
-      <li>Swap photos on ignored dishes to see if visuals make the difference</li>
-      <li>Feature seasonal items backed by real engagement data</li>
-      <li>Identify menu bloat — simplify what nobody browses</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ========== ANALYTICS FAQ ========== -->
-<section class="page-section faq" id="faq">
-  <div class="container">
-    <h2 class="section-title">Common questions</h2>
-    <div class="faq-list">
-      <details>
-        <summary>Is this Google Analytics?</summary>
-        <p>No. Google Analytics tracks page views and sessions. LookBook tracks menu behavior directly — which dishes get taps, which categories get browsed, and where traffic comes from. They're complementary.</p>
-      </details>
-      <details>
-        <summary>Do I need to set up tags or UTMs?</summary>
-        <p>No. LookBook has built-in attribution tracking. UTM parameters are supported but optional — tracking works out of the box.</p>
-      </details>
-      <details>
-        <summary>Does this work for QR and Google?</summary>
-        <p>Yes. Both QR scans and Google traffic are tracked as core sources, so you can see how guests arrive and what they browse.</p>
-      </details>
-      <details>
-        <summary>Can I compare stores?</summary>
-        <p>Yes. Multi-location brands can compare browsing patterns and top dishes across stores.</p>
-      </details>
-      <details>
-        <summary>What about privacy?</summary>
-        <p>LookBook tracks aggregated interaction signals — taps, browses, and sources. No personal data is collected or stored.</p>
-      </details>
-    </div>
+    <img class="section-visual" src="public/images/lbm%20slide%2012.png" alt="Analytics dashboard showing discovery source, menu attention, and dwell time metrics" loading="lazy">
   </div>
 </section>
 
 <!-- ========== CTA ========== -->
-<section class="try-it">
+<section class="final-cta">
   <div class="container">
-    <h2 class="section-title">See what your guests are craving.</h2>
-    <div class="try-it-actions">
-      <a class="btn btn-primary btn-large" href="/try">Scan Your Menu</a>
+    <h2>See what your guests are craving.</h2>
+    <p>Upload your menu and start seeing what drives discovery.</p>
+    <div class="cta-pair" style="justify-content:center;">
+      <a href="/try" class="btn-white">Upload Your Menu</a>
+      <a href="https://calendly.com/lookbookmenu/lookbook-menu-demo" class="btn-outline-white">Book a 15-Minute Demo</a>
     </div>
   </div>
 </section>
 
-<section class="more-teaser">
-  <div class="container">
-    <h2 class="more-teaser-title">But wait… there's more.</h2>
-    <p class="more-teaser-body">See real LookBook menus, category feeds, and dish pages in action.</p>
-    <a href="/examples.html" class="btn btn-primary">Next: Examples →</a>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <p class="footer-brand">LookbookMenu</p>
-    <p class="footer-tagline">We eat with our eyes.</p>
-    <p class="footer-contact">
-      <a href="tel:+19198162113">Call: 919-816-2113</a>
-      <span>&middot;</span>
-      <a href="mailto:info@lookbookmenu.com">Email: info@lookbookmenu.com</a>
-    </p>
-    <p class="footer-note">Menu enhancement only. Not online ordering.</p>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand-block">
+        <a href="/" class="footer-logo">LookbookMenu</a>
+        <p>We eat with our eyes. Patent-pending menu intelligence technology.</p>
+      </div>
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/">Home</a>
+          <a href="/how-it-works.html">How It Works</a>
+          <a href="/google-pipeline.html">Built for Discovery</a>
+          <a href="/examples.html">Examples</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/analytics.html">Analytics</a>
+          <a href="/try">Upload Your Menu</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="/faq.html">FAQ</a>
+          <a href="tel:+19198162113">919-816-2113</a>
+          <a href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LookBook Menu &middot; Menu enhancement only. Not online ordering.</p>
+    </div>
   </div>
 </footer>
 
-<script src="js/content-analytics.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

@@ -228,6 +228,16 @@
   function autoAddFadeIn() {
     const selectors = [
       '.section-title',
+      '.proof-sequence-title',
+      '.proof-sequence-item',
+      '.revenue-section h2',
+      '.revenue-highlight',
+      '.browse-section h2',
+      '.browse-flow',
+      '.discovery-section h2',
+      '.discovery-proof-item',
+      '.easy-section h2',
+      '.easy-list',
       '.why-body',
       '.why-bullets',
       '.who-card',
@@ -237,7 +247,6 @@
       '.page-hero-title',
       '.page-section',
       '.metric-card',
-      '.more-teaser',
       '.pricing-card',
       '.path-comparison',
     ];
