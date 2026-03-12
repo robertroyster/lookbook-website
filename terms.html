@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — LookbookMenu</title>
+  <meta name="description" content="Terms of Service for LookBook Menu — the terms governing your use of our platform and services." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMCKQMZL1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DMCKQMZL1X');
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=7" />
+
+  <script>
+  (function() {
+    'use strict';
+    const API_BASE = 'https://lookbook-admin-api.robert-royster.workers.dev';
+    const VISITOR_ID_KEY = 'lbm_visitor_id';
+    const SESSION_ID_KEY = 'lbm_session_id';
+    const ATTRIBUTION_KEY = 'lbm_attribution';
+    function uuid() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16); }); }
+    function getVisitorId() { let id = localStorage.getItem(VISITOR_ID_KEY); if (!id) { id = uuid(); localStorage.setItem(VISITOR_ID_KEY, id); document.cookie = VISITOR_ID_KEY + '=' + id + '; path=/; max-age=31536000; SameSite=Lax'; } return id; }
+    function getSessionId() { let id = sessionStorage.getItem(SESSION_ID_KEY); if (!id) { id = uuid(); sessionStorage.setItem(SESSION_ID_KEY, id); } return id; }
+    function getUrlParams() { var params = new URLSearchParams(window.location.search); return { gclid: params.get('gclid'), utm_source: params.get('utm_source'), utm_medium: params.get('utm_medium'), utm_campaign: params.get('utm_campaign'), utm_term: params.get('utm_term'), utm_content: params.get('utm_content') }; }
+    function storeAttribution(data) { var existing = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); if (data.gclid || !existing.gclid) { var attribution = Object.assign({}, existing, data, { updated_at: Date.now() }); localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution)); } }
+    function getAttribution() { return JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || '{}'); }
+    async function captureAttribution() { var params = getUrlParams(); if (!params.gclid && !params.utm_source) return; var data = Object.assign({}, params, { landing_page: window.location.pathname, referrer: document.referrer, visitor_id: getVisitorId(), session_id: getSessionId() }); storeAttribution(data); try { var response = await fetch(API_BASE + '/api/public/attribution', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); var result = await response.json(); if (result.attribution_id) { storeAttribution({ attribution_id: result.attribution_id }); } } catch (e) { console.warn('Attribution capture failed:', e); } }
+    window.LookBookTracking = { getVisitorId: getVisitorId, getSessionId: getSessionId, getAttribution: getAttribution, getTrackingData: function() { var attr = getAttribution(); return { visitor_id: getVisitorId(), session_id: getSessionId(), attribution_id: attr.attribution_id || null, gclid: attr.gclid || null, utm_source: attr.utm_source || null, utm_medium: attr.utm_medium || null, utm_campaign: attr.utm_campaign || null }; } };
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', captureAttribution); } else { captureAttribution(); }
+  })();
+  </script>
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/">LookbookMenu</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></label>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/google-pipeline.html">Built for Discovery</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/examples.html">Examples</a>
+      <a href="/faq.html">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-primary nav-cta" href="/try">Upload Your Menu</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-hero-title">Terms of Service</h1>
+    <p class="page-hero-subtitle">The terms governing your use of LookBook Menu.</p>
+  </div>
+</section>
+
+<!-- ========== TERMS CONTENT ========== -->
+<section class="legal-content" style="padding: 4rem 0;">
+  <div class="container" style="max-width: 800px;">
+
+    <p><strong>Effective Date:</strong> March 12, 2026</p>
+    <p><strong>Company:</strong> LookBook Menu</p>
+    <p><strong>Website:</strong> <a href="https://www.lookbookmenu.com">https://www.lookbookmenu.com</a></p>
+    <p><strong>Contact:</strong> <a href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a></p>
+
+    <p>These Terms of Service ("Terms") govern your access to and use of the LookBook Menu website, platform, and related services (collectively, the "Services"). By accessing or using the Services, you agree to be bound by these Terms.</p>
+
+    <p><strong>If you do not agree to these Terms, do not use the Services.</strong></p>
+
+    <h2>1. About LookBook Menu</h2>
+    <p>LookBook Menu ("LookBook Menu," "we," "our," or "us") provides digital tools and services designed to help restaurants and hospitality businesses organize, present, enhance, and distribute menu and related business content, including through website, search, and connected platform integrations.</p>
+
+    <h2>2. Eligibility</h2>
+    <p>You may use the Services only if you:</p>
+    <ul>
+      <li>are at least 18 years old, and</li>
+      <li>have the authority to enter into these Terms on behalf of yourself or the business you represent.</li>
+    </ul>
+    <p>If you use the Services on behalf of a company or organization, you represent and warrant that you have authority to bind that entity to these Terms.</p>
+
+    <h2>3. Accounts and Access</h2>
+    <p>To use certain features, you may need to create an account or connect third-party services.</p>
+    <p>You agree to:</p>
+    <ul>
+      <li>provide accurate and current information</li>
+      <li>maintain the security of your login credentials</li>
+      <li>restrict unauthorized access to your account</li>
+      <li>notify us promptly of any suspected unauthorized use</li>
+    </ul>
+    <p>You are responsible for all activity that occurs under your account.</p>
+
+    <h2>4. Third-Party Integrations</h2>
+    <p>LookBook Menu may allow you to connect third-party services, including Google Business Profile and other platforms.</p>
+    <p>By connecting a third-party service, you:</p>
+    <ul>
+      <li>authorize us to access and use the data you permit through that service</li>
+      <li>represent that you have the right to grant that access</li>
+      <li>acknowledge that third-party platforms are governed by their own terms and policies</li>
+    </ul>
+    <p>We are not responsible for the operation, availability, or policies of third-party services.</p>
+
+    <h2>5. Customer Content</h2>
+    <p>You retain ownership of the content you submit, upload, connect, or provide through the Services, including menu data, images, branding materials, business information, and other content ("Customer Content").</p>
+    <p>You grant LookBook Menu a non-exclusive, worldwide, royalty-free license to host, store, process, reproduce, modify, display, and transmit Customer Content solely as necessary to operate, maintain, improve, and provide the Services to you.</p>
+    <p>You represent and warrant that:</p>
+    <ul>
+      <li>you own or control the necessary rights in Customer Content</li>
+      <li>your Customer Content does not infringe the rights of any third party</li>
+      <li>your Customer Content is accurate to the best of your knowledge</li>
+      <li>you have permission to use and publish any uploaded images, logos, menus, and related materials</li>
+    </ul>
+
+    <h2>6. Acceptable Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>use the Services for unlawful, fraudulent, or misleading purposes</li>
+      <li>upload content that is false, infringing, defamatory, obscene, or harmful</li>
+      <li>interfere with or disrupt the Services or servers</li>
+      <li>attempt to gain unauthorized access to systems or accounts</li>
+      <li>reverse engineer, scrape, or misuse the platform except as expressly permitted by law</li>
+      <li>use the Services to violate the rights of others or any applicable law</li>
+    </ul>
+    <p>We may suspend or terminate access for violations of these Terms.</p>
+
+    <h2>7. Service Changes and Availability</h2>
+    <p>We may modify, suspend, or discontinue any part of the Services at any time, with or without notice.</p>
+    <p>We do not guarantee that the Services will be uninterrupted, error-free, or available at all times. Features may change as the platform evolves.</p>
+
+    <h2>8. Fees and Payments</h2>
+    <p>If any paid services are offered, you agree to pay applicable fees under the pricing and billing terms presented at the time of purchase or subscription.</p>
+    <p>Unless otherwise stated:</p>
+    <ul>
+      <li>fees are non-refundable</li>
+      <li>subscriptions may renew automatically until canceled</li>
+      <li>you are responsible for applicable taxes</li>
+    </ul>
+    <p>Additional billing terms may be presented in a separate order form, proposal, invoice, or subscription agreement.</p>
+
+    <h2>9. Intellectual Property</h2>
+    <p>The Services, excluding Customer Content, are owned by LookBook Menu or its licensors and are protected by intellectual property and other applicable laws.</p>
+    <p>You may not copy, modify, distribute, sell, lease, sublicense, or create derivative works from the Services except as expressly permitted by us in writing.</p>
+
+    <h2>10. Feedback</h2>
+    <p>If you provide suggestions, feedback, or ideas regarding the Services, you grant us the right to use them without restriction or compensation to you.</p>
+
+    <h2>11. Privacy</h2>
+    <p>Your use of the Services is also governed by our <a href="/privacy.html">Privacy Policy</a>.</p>
+
+    <h2>12. Termination</h2>
+    <p>You may stop using the Services at any time.</p>
+    <p>We may suspend or terminate your access at any time if:</p>
+    <ul>
+      <li>you violate these Terms</li>
+      <li>you create risk or legal exposure for us or others</li>
+      <li>we are required to do so by law</li>
+      <li>we discontinue the Services</li>
+    </ul>
+    <p>Upon termination, provisions that by their nature should survive will survive, including ownership, payment obligations, disclaimers, limitations of liability, and dispute-related provisions.</p>
+
+    <h2>13. Disclaimers</h2>
+    <p><strong>THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.</strong></p>
+    <p>We do not warrant that:</p>
+    <ul>
+      <li>the Services will meet your requirements</li>
+      <li>the Services will be uninterrupted, secure, or error-free</li>
+      <li>data or results produced by the Services will always be complete, accurate, or available</li>
+    </ul>
+
+    <h2>14. Limitation of Liability</h2>
+    <p><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, LOOKBOOK MENU AND ITS AFFILIATES, OWNERS, OFFICERS, EMPLOYEES, AGENTS, AND SERVICE PROVIDERS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, DATA, GOODWILL, OR BUSINESS OPPORTUNITY, ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICES.</strong></p>
+    <p><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, LOOKBOOK MENU'S TOTAL LIABILITY FOR ANY CLAIM ARISING OUT OF OR RELATING TO THE SERVICES WILL NOT EXCEED THE AMOUNT YOU PAID TO LOOKBOOK MENU FOR THE SERVICES IN THE TWELVE (12) MONTHS BEFORE THE EVENT GIVING RISE TO THE CLAIM, OR ONE HUNDRED U.S. DOLLARS ($100), WHICHEVER IS GREATER.</strong></p>
+
+    <h2>15. Indemnification</h2>
+    <p>You agree to defend, indemnify, and hold harmless LookBook Menu and its affiliates, owners, officers, employees, agents, and service providers from and against any claims, damages, liabilities, losses, costs, and expenses, including reasonable attorneys' fees, arising out of or related to:</p>
+    <ul>
+      <li>your use of the Services</li>
+      <li>your Customer Content</li>
+      <li>your violation of these Terms</li>
+      <li>your violation of any law or third-party right</li>
+    </ul>
+
+    <h2>16. Governing Law</h2>
+    <p>These Terms are governed by the laws of the State of North Carolina, without regard to conflict of law principles.</p>
+    <p>Any dispute arising out of or relating to these Terms or the Services will be brought in the state or federal courts located in North Carolina, and you consent to the personal jurisdiction and venue of those courts.</p>
+
+    <h2>17. Changes to These Terms</h2>
+    <p>We may update these Terms from time to time. If we do, we will post the updated version and update the Effective Date above. Continued use of the Services after the updated Terms become effective constitutes acceptance of the revised Terms.</p>
+
+    <h2>18. Contact Information</h2>
+    <p>If you have questions about these Terms, contact:</p>
+    <p>
+      LookBook Menu<br />
+      <a href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a><br />
+      <a href="https://www.lookbookmenu.com">https://www.lookbookmenu.com</a>
+    </p>
+
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Ready to see your menu come to life?</h2>
+    <p>Upload your menu and see it in 5 minutes.</p>
+    <div class="cta-pair" style="justify-content:center;">
+      <a href="/try" class="btn-white">Upload Your Menu</a>
+      <a href="https://calendly.com/lookbookmenu/lookbook-menu-demo" class="btn-outline-white">Book a 15-Minute Demo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand-block">
+        <a href="/" class="footer-logo">LookbookMenu</a>
+        <p>We eat with our eyes. Patent-pending menu intelligence technology.</p>
+      </div>
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/">Home</a>
+          <a href="/how-it-works.html">How It Works</a>
+          <a href="/google-pipeline.html">Built for Discovery</a>
+          <a href="/examples.html">Examples</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/analytics.html">Analytics</a>
+          <a href="/try">Upload Your Menu</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="/faq.html">FAQ</a>
+          <a href="tel:+19198162113">919-816-2113</a>
+          <a href="mailto:info@lookbookmenu.com">info@lookbookmenu.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LookBook Menu &middot; Menu enhancement only. Not online ordering. &middot; <a href="/privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> &middot; <a href="/terms.html" style="color: inherit; text-decoration: underline;">Terms of Service</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
