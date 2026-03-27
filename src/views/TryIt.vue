@@ -166,7 +166,7 @@ async function submitForm() {
 
   error.value = ''
   viewState.value = 'processing'
-  processingStep.value = 'Preparing your menu...'
+  processingStep.value = 'Reading your menu...'
   processingProgress.value = 10
 
   try {
@@ -200,7 +200,7 @@ async function submitForm() {
     if (trackingData.utm_medium) formData.append('utm_medium', trackingData.utm_medium)
     if (trackingData.utm_campaign) formData.append('utm_campaign', trackingData.utm_campaign)
 
-    processingStep.value = 'Uploading menu...'
+    processingStep.value = 'AI is extracting dishes, prices, and categories...'
     processingProgress.value = 30
 
     const response = await fetch(`${API_BASE}/try/create`, {
@@ -208,7 +208,7 @@ async function submitForm() {
       body: formData
     })
 
-    processingStep.value = 'Extracting menu items with AI...'
+    processingStep.value = 'Structuring data for Google and AI discovery...'
     processingProgress.value = 60
 
     const data = await response.json()
@@ -217,7 +217,7 @@ async function submitForm() {
       throw new Error(data.error || 'Failed to create demo')
     }
 
-    processingStep.value = 'Creating your lookbook...'
+    processingStep.value = 'Building your lookbook...'
     processingProgress.value = 90
 
     await new Promise(resolve => setTimeout(resolve, 500))
@@ -278,28 +278,28 @@ function startOver() {
       <!-- Left: pitch -->
       <section class="pitch-section">
         <h1 class="headline">
-          Eat with your <span class="highlight">eyes</span>.
+          Your menu, <span class="highlight">live in 30 seconds.</span>
         </h1>
 
         <p class="subheadline">
-          Right now, guests are squinting at a PDF menu full of words.
-          Lookbook turns that same browsing moment into "I have to get that."
+          Upload a PDF, paste a link, or point us to your website. Our AI reads your unstructured menu and turns it into structured data that you, Google, and AI can actually use.
         </p>
 
-        <p class="support-line">Menus explain. Lookbooks convince.</p>
+        <p class="support-line">Unstructured PDF in. Structured lookbook out. Instantly.</p>
 
         <div class="badges">
-          <span class="badge">30-day demo link</span>
+          <span class="badge">AI-powered extraction</span>
+          <span class="badge">Ready in ~30 seconds</span>
           <span class="badge">No credit card</span>
-          <span class="badge">We email your lookbook link</span>
+          <span class="badge">30-day free demo</span>
         </div>
 
         <div class="info-box">
-          <div class="info-title">What happens next</div>
+          <div class="info-title">How it works</div>
           <ol class="info-list">
-            <li><span class="step-num">1.</span> Upload a PDF / paste a menu URL / give us your website</li>
-            <li><span class="step-num">2.</span> We generate a photo-first lookbook layout</li>
-            <li><span class="step-num">3.</span> You get a shareable link to review + send to guests</li>
+            <li><span class="step-num">1.</span> Upload a PDF, paste a menu URL, or give us your website</li>
+            <li><span class="step-num">2.</span> AI extracts every dish — names, prices, descriptions, categories</li>
+            <li><span class="step-num">3.</span> Your lookbook is live instantly — structured, shareable, and Google-ready</li>
           </ol>
         </div>
 
@@ -400,7 +400,7 @@ function startOver() {
           <div v-if="currentStep === 3" class="form-step">
             <div class="step-header">
               <div class="step-title">Your menu</div>
-              <div class="step-desc">Upload a PDF (best) or paste a menu URL.</div>
+              <div class="step-desc">Give us your menu in any format. AI does the rest in ~30 seconds.</div>
             </div>
 
             <!-- Tabs -->
@@ -433,7 +433,7 @@ function startOver() {
             <!-- Website URL -->
             <div v-if="menuType === 'website-url'" class="menu-input">
               <input v-model="menuUrl" type="url" class="input" placeholder="https://restaurant.com/menu" />
-              <p class="input-hint">URL to your menu page (we'll extract items automatically)</p>
+              <p class="input-hint">URL to your menu page — AI extracts dishes automatically</p>
             </div>
 
             <!-- Error -->
@@ -441,10 +441,10 @@ function startOver() {
 
             <div class="button-row">
               <button type="button" @click="prevStep" class="btn-secondary">Back</button>
-              <button type="submit" :disabled="!isStep3Valid" class="btn-primary">Create My Lookbook</button>
+              <button type="submit" :disabled="!isStep3Valid" class="btn-primary">Build My Lookbook Now</button>
             </div>
 
-            <p class="form-footer">Your demo stays live for 30 days. No credit card required.</p>
+            <p class="form-footer">AI builds your lookbook in ~30 seconds. Free 30-day demo. No credit card.</p>
           </div>
         </form>
       </section>
@@ -453,7 +453,7 @@ function startOver() {
     <!-- Processing State -->
     <main v-if="viewState === 'processing'" class="processing-state">
       <div class="processing-icon">🪄</div>
-      <h2 class="processing-title">Creating Your Lookbook</h2>
+      <h2 class="processing-title">AI is building your lookbook</h2>
       <p class="processing-text">{{ processingStep }}</p>
       <div class="progress-bar">
         <div class="progress-fill" :style="{ width: `${processingProgress}%` }"></div>
