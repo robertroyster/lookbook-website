@@ -6,19 +6,19 @@
 
 const CONTENT = {
   // Meta
-  siteTitle: "LookbookMenu — We eat with our eyes",
-  siteDescription: "Your most beautiful dishes are hiding behind a PDF. LookbookMenu turns your menu into a photo-first lookbook guests love to scroll.",
+  siteTitle: "LookbookMenu \u2014 AI Menu Grader | Google Menu Connector | Visual Menus",
+  siteDescription: "See how Google and AI actually view your menu. LookBook Menu combines an AI Menu Review, Google Business Profile Menu Connector, and photo-first dish discovery so your menu is visible, structured, and beautiful.",
 
   // Nav
   navBrand: "LookbookMenu",
-  navCta: "Upload Your Menu",
+  navCta: "Grade My Menu",
 
   // Hero
-  heroTitle: "We eat with our eyes.",
-  heroSubtitle: "Your most beautiful dishes are hiding behind a PDF full of words. LookbookMenu turns your menu into a photo-first lookbook guests love to scroll\u2014so they go from \u201cthat sounds interesting\u201d to \u201cI want that.\u201d",
-  heroProof: "No app. No POS change. Not online ordering\u2014just visual browsing that helps guests decide faster.",
-  heroCta1: "See a Live Example",
-  heroCta2: "Upload Your Menu",
+  heroTitle: "Your menu should sell dishes, feed Google, and make sense to AI.",
+  heroSubtitle: "LookBook Menu combines an AI Menu Review, a Google Business Profile Menu Connector, and a photo-first menu experience\u2014so your menu is easier to see, understand, and choose.",
+  heroProof: "",
+  heroCta1: "Grade My Menu",
+  heroCta2: "See a Live Example",
 
   // Why
   whyTitle: "The table decides. The kitchen confirms.",

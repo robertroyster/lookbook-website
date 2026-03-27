@@ -1917,6 +1917,170 @@ section[id] { scroll-margin-top: 96px; }
   margin-top: var(--space-md);
 }
 
+/* ========================================
+   HOMEPAGE v3 — Rewrite Sections
+   ======================================== */
+
+/* Shared section heading */
+.section-heading {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  text-align: center;
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* ---------- Score Framework ---------- */
+.score-section {
+  padding: var(--space-xl) var(--space-md);
+  background: var(--surface);
+  text-align: center;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  max-width: 1000px;
+  margin: var(--space-lg) auto 0;
+}
+
+.score-card {
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  text-align: center;
+  border: 1px solid var(--line);
+  background: white;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.score-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.score-card--bad  { border-top: 4px solid #ef4444; }
+.score-card--poor { border-top: 4px solid #f97316; }
+.score-card--ok   { border-top: 4px solid #eab308; }
+.score-card--great { border-top: 4px solid #22c55e; }
+
+.score-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--space-xs);
+  line-height: 1;
+}
+
+.score-card--bad .score-number  { color: #ef4444; }
+.score-card--poor .score-number { color: #f97316; }
+.score-card--ok .score-number   { color: #eab308; }
+.score-card--great .score-number { color: #22c55e; }
+
+.score-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--ink);
+}
+
+.score-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.score-cta {
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .score-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .score-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Three Pillars ---------- */
+.pillars-section {
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  max-width: 1000px;
+  margin: var(--space-lg) auto 0;
+}
+
+.pillar-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  text-align: left;
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.pillar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(249,115,22,.22);
+}
+
+.pillar-icon {
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+
+.pillar-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--ink);
+}
+
+.pillar-card p {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.pillar-card-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.pillar-card-link:hover { color: var(--ink); }
+
+@media (max-width: 768px) {
+  .pillars-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Short Why Section ---------- */
+.why-short {
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+}
+
+.why-short-body {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.why-short-body strong { color: var(--ink); }
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }

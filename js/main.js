@@ -249,6 +249,9 @@
       '.metric-card',
       '.pricing-card',
       '.path-comparison',
+      '.pillar-card',
+      '.score-card',
+      '.section-heading',
     ];
 
     selectors.forEach((selector) => {
